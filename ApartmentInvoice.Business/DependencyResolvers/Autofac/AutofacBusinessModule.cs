@@ -1,0 +1,71 @@
+﻿using ApartmentInvoice.Business.Abstract;
+using ApartmentInvoice.Business.Concrete;
+using ApartmentInvoice.Core.Utilities.Security.JWT;
+using ApartmentInvoice.DataAccess.Abstract;
+using ApartmentInvoice.DataAccess.Concrete.EntityFramework;
+using Autofac;
+using Autofac.Extras.DynamicProxy;
+using ApartmentInvoice.Core.Utilities.Interceptors;
+using Castle.DynamicProxy;
+using Core.Utilities.Security.JWT;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ApartmentInvoice.Business.DependencyResolvers.Autofac
+{
+    public class AutofacBusinessModule : Module
+    {
+
+        protected override void Load(ContainerBuilder builder)
+        {
+
+
+            builder.RegisterType<AuthManager>().As<IAuthService>();
+            builder.RegisterType<JwtHelper>().As<ITokenHelper>();
+
+            builder.RegisterType<UserManager>().As<IUserService>();
+            builder.RegisterType<UserRepository>().As<IUserRepository>();
+
+            builder.RegisterType<CategoryManager>().As<ICategoryService>();
+            builder.RegisterType<CategoryRepository>().As<ICategoryRepository>();
+
+            builder.RegisterType<BlockManager>().As<IBlockService>();
+            builder.RegisterType<BlockRepository>().As<IBlockRepository>();
+
+            builder.RegisterType<FlatManager>().As<IFlatService>();
+            builder.RegisterType<FlatRepository>().As<IFlatRepository>();
+
+
+            builder.RegisterType<SubscriptionManager>().As<ISubscriptionService>();
+            builder.RegisterType<SubscriptionRepository>().As<ISubscriptionRepository>();
+
+            builder.RegisterType<FlatSubscriptionManager>().As<IFlatSubscriptionService>();
+            builder.RegisterType<FlatSubscriptionRepository>().As<IFlatSubscriptionRepository>();
+
+            builder.RegisterType<BillManager>().As<IBillService>();
+            builder.RegisterType<BillRepository>().As<IBillRepository>();
+
+
+            builder.RegisterType<MessageManager>().As<IMessageService>();
+            builder.RegisterType<MessageRepository>().As<IMessageRepository>();
+
+            builder.RegisterType<OperationClaimManager>().As<IOperationClaimService>();
+            builder.RegisterType<OperationClaimRepository>().As<IOperationClaimRepository>();
+
+            builder.RegisterType<UserOperationClaimManager>().As<IUserOperationClaimService>();
+            builder.RegisterType<UserOperationClaimRepository>().As<IUserOperationClaimRepository>();
+            //builder.RegisterType<CarImageRepository>().As<ICarImageRepository>();
+
+            var assembly = System.Reflection.Assembly.GetExecutingAssembly();
+
+            builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()
+                .EnableInterfaceInterceptors(new ProxyGenerationOptions()
+                {
+                    Selector = new AspectInterceptorSelector()
+                }).SingleInstance();
+        }
+    }
+}
