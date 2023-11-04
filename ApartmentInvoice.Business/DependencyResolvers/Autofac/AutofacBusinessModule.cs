@@ -57,6 +57,21 @@ namespace ApartmentInvoice.Business.DependencyResolvers.Autofac
 
             builder.RegisterType<UserOperationClaimManager>().As<IUserOperationClaimService>();
             builder.RegisterType<UserOperationClaimRepository>().As<IUserOperationClaimRepository>();
+
+            builder.RegisterType<ActivityManager>().As<IActivityService>();
+            builder.RegisterType<ActivityRepository>().As<IActivityRepository>();
+
+            builder.RegisterType<ActivityCommentManager>().As<IActivityCommentService>();
+            builder.RegisterType<ActivityCommentRepository>().As<IActivityCommentRepository>();
+
+            builder.RegisterType<UserActivityManager>().As<IUserActivityService>();
+            builder.RegisterType<UserActivityRepository>().As<IUserActivityRepository>();
+
+            builder.RegisterType<PostManager>().As<IPostService>();
+            builder.RegisterType<PostRepository>().As<IPostRepository>();
+
+            builder.RegisterType<PostCommentManager>().As<IPostCommentService>();
+            builder.RegisterType<PostCommentRepository>().As<IPostCommentRepository>();
             //builder.RegisterType<CarImageRepository>().As<ICarImageRepository>();
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();

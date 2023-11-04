@@ -17,7 +17,10 @@ namespace ApartmentInvocie.WebApi.Controllers
            _blockService = blockService;
 
         }
-
+        /// <summary>
+        ///  Bütün blockları getiren API 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
 
@@ -33,7 +36,11 @@ namespace ApartmentInvocie.WebApi.Controllers
 
         }
 
-
+        /// <summary>
+        /// Yeni block eklemeyi sağlayan API 
+        /// </summary>
+        /// <param name="blockAddDto"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("[action]")]
 
@@ -49,6 +56,12 @@ namespace ApartmentInvocie.WebApi.Controllers
 
         }
 
+        /// <summary>
+        ///  Tek bir block getiren API 
+        ///  Id ye göre getirir 
+        /// </summary>
+        /// <param name="blockId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("[action]/{blockId:int}")]
         public async Task<IActionResult> GetBlockById(int blockId)
@@ -63,7 +76,13 @@ namespace ApartmentInvocie.WebApi.Controllers
 
 
        
-
+        /// <summary>
+        ///  Block silen API 
+        ///  Id ye göre siler 
+        ///  Yöneticinin erisim hakkı varıdr 
+        /// </summary>
+        /// <param name="blockId"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("[action]/{blockId:int}")]
         public async Task<IActionResult> DeleteBlock(int blockId)
@@ -78,7 +97,12 @@ namespace ApartmentInvocie.WebApi.Controllers
             return BadRequest();
         }
 
-
+        /// <summary>
+        /// Block güncelleyen API 
+        /// Yöneticinin erişim hakkı vardır 
+        /// </summary>
+        /// <param name="blockUpdateDto"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("[action]")]
 

@@ -17,6 +17,13 @@ namespace ApartmentInvocie.WebApi.Controllers
         {
             _authService = authService;
         }
+        /// <summary>
+        /// Kullanici giris yapan API 
+        /// </summary>
+        /// <param name="email"></param>>
+        /// <param name="Password"></param>>
+     
+        /// <returns></returns>
 
         [HttpPost]
         [Route("[action]")]
@@ -37,6 +44,16 @@ namespace ApartmentInvocie.WebApi.Controllers
             return BadRequest(result.Message);
         }
 
+
+        /// <summary>
+        ///  Kullanici Kaydı 
+        ///  Şifre database de hashlenerek tutulur 
+        /// </summary>
+        /// <param name="FirstName"></param>
+        /// <param name="LastName"></param>
+        /// <param name="Email"></param>
+        /// <param name="Password"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("[action]")]
         public ActionResult Register(UserForRegisterDto userForRegisterDto)

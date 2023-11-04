@@ -16,7 +16,10 @@ namespace ApartmentInvocie.WebApi.Controllers
             _categoryService = categoryService;
         }
 
-
+        /// <summary>
+        /// Bütün kategorileri getiren API 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
 
@@ -32,7 +35,11 @@ namespace ApartmentInvocie.WebApi.Controllers
 
         }
 
-
+        /// <summary>
+        ///  Id ye göre tek bir kategori getiren API 
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("[action]/{categoryId:int}")]
         public async Task<IActionResult> GetCategoryById(int categoryId)
