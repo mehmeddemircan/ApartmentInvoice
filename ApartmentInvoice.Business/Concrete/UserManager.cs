@@ -1,4 +1,5 @@
 ﻿using ApartmentInvoice.Business.Abstract;
+using ApartmentInvoice.Business.BusinessAspects.Autofac;
 using ApartmentInvoice.Business.Constants;
 using ApartmentInvoice.Core.Entities.Concrete.Auth;
 using ApartmentInvoice.Core.Utilities.Results;
@@ -42,7 +43,7 @@ namespace ApartmentInvoice.Business.Concrete
             return _userRepository.Get(u => u.Email == email);
         }
 
-        //[SecuredOperation("admin")]
+        [SecuredOperation("admin")]
         //[CacheAspect(10)]
         public async Task<IDataResult<IEnumerable<UserDetailDto>>> GetListAsync(Expression<Func<User, bool>> filter = null)
         {

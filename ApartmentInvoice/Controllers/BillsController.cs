@@ -9,7 +9,7 @@ namespace ApartmentInvocie.WebApi.Controllers
     [ApiController]
     public class BillsController : ControllerBase
     {
-        //Todo: Authentication Ekleencek 
+
         IBillService _billService; 
         public BillsController(IBillService billService)
         {
@@ -17,7 +17,11 @@ namespace ApartmentInvocie.WebApi.Controllers
             _billService = billService;
 
         }
-
+        /// <summary>
+        ///  Database de ki bütün faturaları getiren API 
+        ///  Yönetici görebilir 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
 
@@ -33,7 +37,12 @@ namespace ApartmentInvocie.WebApi.Controllers
 
         }
 
-
+        /// <summary>
+        /// Yeni fatura ekleyen API 
+        /// Yöneticinin erişme hakkı vardır 
+        /// </summary>
+        /// <param name="billAddDto"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("[action]")]
 
@@ -48,7 +57,11 @@ namespace ApartmentInvocie.WebApi.Controllers
             return BadRequest();
 
         }
-
+        /// <summary>
+        /// Faturanın Id ye göre getiren API 
+        /// </summary>
+        /// <param name="billId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("[action]/{billId:int}")]
         public async Task<IActionResult> GetBillById(int billId)
@@ -62,7 +75,11 @@ namespace ApartmentInvocie.WebApi.Controllers
         }
 
 
-
+        /// <summary>
+        /// Fatura silen API 
+        /// </summary>
+        /// <param name="billId"></param>
+        /// <returns></returns>
 
         [HttpDelete]
         [Route("[action]/{billId:int}")]
@@ -78,7 +95,11 @@ namespace ApartmentInvocie.WebApi.Controllers
             return BadRequest();
         }
 
-
+        /// <summary>
+        /// Fatura Güncelleyen API 
+        /// </summary>
+        /// <param name="billUpdateDto"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("[action]")]
 

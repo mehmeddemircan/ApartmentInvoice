@@ -32,6 +32,11 @@ var mapperConfig = new MapperConfiguration(mc =>
     mc.AddProfile(new MessageProfile());
     mc.AddProfile(new OperationClaimProfile());
     mc.AddProfile(new UserOperationClaimProfile());
+    mc.AddProfile(new ActivityProfile());
+    mc.AddProfile(new ActivityCommentProfile());
+    mc.AddProfile(new UserActivityProfile());
+    mc.AddProfile(new PostProfile());
+    mc.AddProfile(new PostCommentProfile());
 
   
 });

@@ -34,5 +34,14 @@ namespace ApartmentInvoice.DataAccess.Concrete.Contexts
         public DbSet<Message> Messages { get; set; }
         public DbSet<Subscription> Subscriptions { get; set; }
         public DbSet<FlatSubscription> FlatSubscriptions { get; set; }
+
+        public DbSet<Activity> Activities { get; set; }
+  
+        public DbSet<ActivityComment> ActivityComments { get; set; }
+
+        public DbSet<UserActivity> UserActivities { get; set; }
+
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<PostComment> PostComments { get; set; }
     }
 }

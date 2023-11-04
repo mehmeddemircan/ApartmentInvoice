@@ -21,7 +21,10 @@ namespace ApartmentInvocie.WebApi.Controllers
         {
             _flatService = flatService;
         }
-
+        /// <summary>
+        /// Bütün daireleri getiren API 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
 
@@ -37,7 +40,11 @@ namespace ApartmentInvocie.WebApi.Controllers
 
         }
 
-
+        /// <summary>
+        /// Yeni bir daire eklemeyi sağlayan API 
+        /// </summary>
+        /// <param name="flatAddDto"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("[action]")]
 
@@ -53,6 +60,11 @@ namespace ApartmentInvocie.WebApi.Controllers
 
         }
 
+        /// <summary>
+        /// Id ye göre tek bir daire getiren API 
+        /// </summary>
+        /// <param name="flatId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("[action]/{flatId:int}")]
         public async Task<IActionResult> GetFlatById(int flatId)
@@ -65,7 +77,11 @@ namespace ApartmentInvocie.WebApi.Controllers
             return BadRequest();
         }
 
-
+        /// <summary>
+        /// Dolu mu boş mu olduguna  göre daireleri listeyen  API 
+        /// </summary>
+        /// <param name="isEmpty"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("[action]/{isEmpty:bool}")]
         public async Task<IActionResult> GetFlatByEmpty(bool isEmpty)
@@ -78,6 +94,11 @@ namespace ApartmentInvocie.WebApi.Controllers
             return BadRequest();
         }
 
+        /// <summary>
+        /// Daire silmeyi sağlayan API 
+        /// </summary>
+        /// <param name="flatId"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("[action]/{flatId:int}")]
         public async Task<IActionResult> DeleteFlat(int flatId)
@@ -92,7 +113,11 @@ namespace ApartmentInvocie.WebApi.Controllers
             return BadRequest();
         }
 
-
+        /// <summary>
+        /// Daire güncelleyen API 
+        /// </summary>
+        /// <param name="flatUpdateDto"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("[action]")]
 
