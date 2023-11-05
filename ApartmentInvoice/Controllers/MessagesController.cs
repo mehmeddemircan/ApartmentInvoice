@@ -15,6 +15,10 @@ namespace ApartmentInvocie.WebApi.Controllers
             _messageService = messageService;
         }
 
+        /// <summary>
+        /// Bütün şikayetleri gösteren api 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
 
@@ -31,6 +35,11 @@ namespace ApartmentInvocie.WebApi.Controllers
         }
 
 
+        /// <summary>
+        ///  Şikayeti kaydeden api 
+        /// </summary>
+        /// <param name="messageAddDto"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("[action]")]
 
@@ -46,6 +55,11 @@ namespace ApartmentInvocie.WebApi.Controllers
 
         }
 
+        /// <summary>
+        /// Sikayeti id ye göre çeken api 
+        /// </summary>
+        /// <param name="messageId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("[action]/{messageId:int}")]
         public async Task<IActionResult> GetMessageById(int messageId)
@@ -60,7 +74,11 @@ namespace ApartmentInvocie.WebApi.Controllers
 
 
 
-
+        /// <summary>
+        /// Şikayeti silen api 
+        /// </summary>
+        /// <param name="messageId"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("[action]/{messageId:int}")]
         public async Task<IActionResult> DeleteMessage(int messageId)
@@ -76,6 +94,11 @@ namespace ApartmentInvocie.WebApi.Controllers
         }
 
 
+        /// <summary>
+        /// şikayeti güncelleyen api 
+        /// </summary>
+        /// <param name="messageUpdateDto"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("[action]")]
 

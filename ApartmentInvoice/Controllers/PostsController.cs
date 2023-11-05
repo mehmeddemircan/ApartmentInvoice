@@ -14,7 +14,10 @@ namespace ApartmentInvoice.WebApi.Controllers
         {
             _postService = postService;
         }
-
+        /// <summary>
+        /// Bütün postları listeleyen api 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
         public async Task<IActionResult> GetAllPost()
@@ -29,7 +32,11 @@ namespace ApartmentInvoice.WebApi.Controllers
 
         }
 
-
+        /// <summary>
+        /// Yeni post ekleyen api 
+        /// </summary>
+        /// <param name="postAddDto"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("[action]")]
 
@@ -59,7 +66,11 @@ namespace ApartmentInvoice.WebApi.Controllers
 
 
 
-
+        /// <summary>
+        /// Post silen api 
+        /// </summary>
+        /// <param name="postId"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("[action]/{postId:int}")]
         public async Task<IActionResult> DeletePost(int postId)
@@ -74,7 +85,11 @@ namespace ApartmentInvoice.WebApi.Controllers
             return BadRequest();
         }
 
-
+        /// <summary>
+        /// Post güncelleyen api 
+        /// </summary>
+        /// <param name="postUpdateDto"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("[action]")]
 

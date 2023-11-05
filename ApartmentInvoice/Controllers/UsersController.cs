@@ -15,7 +15,10 @@ namespace ApartmentInvocie.WebApi.Controllers
         {
             _userService = userService;
         }
-
+        /// <summary>
+        /// Bütün kullanıcıları çeken api 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
         public async Task<IActionResult> GetUsers()
@@ -30,7 +33,11 @@ namespace ApartmentInvocie.WebApi.Controllers
 
         }
 
-
+        /// <summary>
+        /// Tek bir kullanıcı profilini çeken api 
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("[action]/{userId:int}")]
         public async Task<IActionResult> GetUserById(int userId)
@@ -44,7 +51,11 @@ namespace ApartmentInvocie.WebApi.Controllers
         }
 
 
-
+        /// <summary>
+        /// Kullanıcıyi silen api 
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
 
         [HttpDelete]
         [Route("[action]")]
@@ -58,7 +69,11 @@ namespace ApartmentInvocie.WebApi.Controllers
             }
             return BadRequest();
         }
-
+        /// <summary>
+        /// Kullanıcıyı güncelleyen api 
+        /// </summary>
+        /// <param name="userUpdateDto"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("[action]")]
         public async Task<IActionResult> UpdateUser([FromBody] UserUpdateDto userUpdateDto)

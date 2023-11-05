@@ -14,7 +14,12 @@ namespace ApartmentInvoice.WebApi.Controllers
         {
             _postCommentService = postCommentService;
         }
+        
 
+        /// <summary>
+        /// Bütün post yorumlarını  listeleyen api 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
         public async Task<IActionResult> GetAllPostComment()
@@ -29,7 +34,12 @@ namespace ApartmentInvoice.WebApi.Controllers
 
         }
 
-
+        /// <summary>
+        /// Yeni post yorumu  ekleyen api
+        
+        /// </summary>
+        /// <param name="postCommentAddDto"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("[action]")]
 
@@ -45,6 +55,11 @@ namespace ApartmentInvoice.WebApi.Controllers
 
         }
 
+        /// <summary>
+        /// Id ye göre post detaylarını gösteren api 
+        /// </summary>
+        /// <param name="postCommentId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("[action]/{postCommentId:int}")]
         public async Task<IActionResult> GetPostCommentById(int postCommentId)
@@ -59,7 +74,11 @@ namespace ApartmentInvoice.WebApi.Controllers
 
 
 
-
+        /// <summary>
+        /// Post yorumunu  silen api 
+        /// </summary>
+        /// <param name="postCommentId"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("[action]/{postCommentId:int}")]
         public async Task<IActionResult> DeletePostComment(int postCommentId)
@@ -74,7 +93,11 @@ namespace ApartmentInvoice.WebApi.Controllers
             return BadRequest();
         }
 
-
+        /// <summary>
+        /// Postun commentini güncelleyen api 
+        /// </summary>
+        /// <param name="postCommentUpdateDto"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("[action]")]
 
@@ -89,7 +112,11 @@ namespace ApartmentInvoice.WebApi.Controllers
             return BadRequest();
         }
 
-
+        /// <summary>
+        /// Bir postda ki bütün yorumları getiren api 
+        /// </summary>
+        /// <param name="postId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("[action]/{postId:int}")]
 
