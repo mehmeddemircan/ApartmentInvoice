@@ -41,10 +41,6 @@ namespace ApartmentInvoice.WebApi.Controllers
                 return Ok(result);
             }
 
-
-
-
-
             return BadRequest();
 
         }
