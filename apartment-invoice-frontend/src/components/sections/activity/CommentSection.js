@@ -31,8 +31,7 @@ const CommentSections = () => {
           handleCloseCommentModal={handleCloseCommentModal}
         />
       </div>
-
-
+      <CommentItem />
 
       <CommentItem />
       <CommentItem />
