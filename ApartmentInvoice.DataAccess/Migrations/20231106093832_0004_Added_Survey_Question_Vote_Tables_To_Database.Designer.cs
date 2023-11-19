@@ -4,6 +4,7 @@ using ApartmentInvoice.DataAccess.Concrete.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApartmentInvoice.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231106093832_0004_Added_Survey_Question_Vote_Tables_To_Database")]
+    partial class _0004_Added_Survey_Question_Vote_Tables_To_Database
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -651,6 +654,9 @@ namespace ApartmentInvoice.DataAccess.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Surveys");
@@ -894,7 +900,7 @@ namespace ApartmentInvoice.DataAccess.Migrations
             modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.Vote", b =>
                 {
                     b.HasOne("ApartmentInvoice.Entity.Concrete.Question", "Question")
-                        .WithMany()
+                        .WithMany("Votes")
                         .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -937,6 +943,11 @@ namespace ApartmentInvoice.DataAccess.Migrations
                     b.Navigation("Bills");
 
                     b.Navigation("FlatSubscriptions");
+                });
+
+            modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.Question", b =>
+                {
+                    b.Navigation("Votes");
                 });
 
             modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.Subscription", b =>

@@ -37,6 +37,10 @@ var mapperConfig = new MapperConfiguration(mc =>
     mc.AddProfile(new UserActivityProfile());
     mc.AddProfile(new PostProfile());
     mc.AddProfile(new PostCommentProfile());
+    mc.AddProfile(new AnnouncementProfile());
+    mc.AddProfile(new SurveyProfile());
+    mc.AddProfile(new QuestionProfile());
+    mc.AddProfile(new VoteProfile());
 
   
 });
@@ -74,7 +78,16 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 #endregion
 
+builder.Services.AddCors(options =>
+{
+    var frontendURL = configuration.GetValue<string>("frontend_url");
 
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.WithOrigins(frontendURL).AllowAnyMethod().AllowAnyHeader();
+    });
+
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -88,6 +101,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 
+app.UseCors();
 app.UseAuthorization();
 
 app.MapControllers();

@@ -16,6 +16,9 @@ import {
 } from "@heroicons/react/20/solid";
 import LoginModal from "../modal/LoginModal";
 import LanguageModal from "../modal/LanguageModal";
+import { LoggedInHeader } from "./LoggedInHeader";
+import {useSelector} from 'react-redux'
+import { NotLoggedInHeader } from "./NotLoggedInHeader";
 
 const products = [
   {
@@ -77,6 +80,7 @@ const MainHeader = () => {
   const handleCloseLanguageModal = () => {
     setShowLanguageModal(false);
   };
+  const auth = useSelector((state) => state.auth)
 
 
   return (
@@ -189,13 +193,8 @@ const MainHeader = () => {
           </a>
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a
-            href="#"
-            className="text-sm font-semibold leading-6 text-dark  hover:text-green-400 me-4"
-            onClick={handleShowLoginModal}
-          >
-            Log in 
-          </a>
+      
+          {auth.authenticate ? <LoggedInHeader /> :  <NotLoggedInHeader handleShowLoginModal={handleShowLoginModal} />}
           <LoginModal 
             isShowLoginModalOpen={isShowLoginModalOpen}
             handleCancelLoginModal={handleCancelLoginModal}

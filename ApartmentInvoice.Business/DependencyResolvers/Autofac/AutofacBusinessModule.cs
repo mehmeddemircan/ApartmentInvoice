@@ -72,6 +72,21 @@ namespace ApartmentInvoice.Business.DependencyResolvers.Autofac
 
             builder.RegisterType<PostCommentManager>().As<IPostCommentService>();
             builder.RegisterType<PostCommentRepository>().As<IPostCommentRepository>();
+
+            builder.RegisterType<AnnouncementManager>().As<IAnnouncementService>();
+            builder.RegisterType<AnnouncementRepository>().As<IAnnouncementRepository>();
+
+
+            builder.RegisterType<SurveyManager>().As<ISurveyService>();
+            builder.RegisterType<SurveyRepository>().As<ISurveyRepository>();
+
+
+            builder.RegisterType<QuestionManager>().As<IQuestionService>();
+            builder.RegisterType<QuestionRepository>().As<IQuestionRepository>();
+
+
+            builder.RegisterType<VoteManager>().As<IVoteService>();
+            builder.RegisterType<VoteRepository>().As<IVoteRepository>();
             //builder.RegisterType<CarImageRepository>().As<ICarImageRepository>();
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
