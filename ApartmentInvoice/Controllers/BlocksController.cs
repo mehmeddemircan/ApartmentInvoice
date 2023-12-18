@@ -106,7 +106,7 @@ namespace ApartmentInvocie.WebApi.Controllers
         [HttpPut]
         [Route("[action]")]
 
-        public async Task<IActionResult> UpdateBlock([FromForm] BlockUpdateDto blockUpdateDto)
+        public async Task<IActionResult> UpdateBlock([FromBody] BlockUpdateDto blockUpdateDto)
         {
             var result = await _blockService.UpdateAsync(blockUpdateDto);
 

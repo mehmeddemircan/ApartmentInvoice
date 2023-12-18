@@ -1,8 +1,10 @@
-﻿using ApartmentInvoice.Core.Utilities.Results;
+﻿using ApartmentInvoice.Core.Helpers;
+using ApartmentInvoice.Core.Utilities.Results;
 using ApartmentInvoice.Entity.Concrete;
 using ApartmentInvoice.Entity.DTOs.PostDtos;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -16,6 +18,8 @@ namespace ApartmentInvoice.Business.Abstract
 
 
         Task<IDataResult<IEnumerable<PostsDto>>> GetListAsync(Expression<Func<Post, bool>> filter = null);
+
+        Task<IDataResult<IEnumerable<PostsDto>>> GetListAsyncPagination(int pageNumber, int pageSize, Expression<Func<Post, bool>> filter = null);
         Task<IDataResult<PostDetailDto>> GetAsync(Expression<Func<Post, bool>> filter);
 
         Task<IDataResult<PostDetailDto>> GetByIdAsync(int id);

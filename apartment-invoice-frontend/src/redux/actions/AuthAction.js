@@ -6,6 +6,7 @@ import {
   LOGOUT_SUCCESS,
   REGISTER_FAIL,
   REGISTER_REQUEST,
+  REGISTER_SUCCESS,
 } from "../constants/AuthConstants";
 export const login = (user) => async (dispatch) => {
   try {
@@ -26,11 +27,7 @@ export const login = (user) => async (dispatch) => {
 
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
-      //   const { data } = await axios.post(
-      //     "https://localhost:7046/api/Auth/login",
-      //     user,
-      //     config
-      //   );
+   
 
       dispatch({
         type: LOGIN_SUCCESS,
@@ -51,13 +48,20 @@ export const register = (user) => async (dispatch) => {
   try {
     dispatch({ type: REGISTER_REQUEST });
 
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
 
 
     const res = await axios.post(
-      "https://localhost:7173/api/Auths/Register", 
-        user  
-  
-      
+      "https://localhost:7173/api/Auths/Register", {
+        ...user,
+        config
+      }
+       
     
     );
 

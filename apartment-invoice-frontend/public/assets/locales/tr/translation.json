@@ -1,8 +1,10 @@
 {
     "header" : {
-        "login" : "Login",
-        "favorites" : "My Favorites",
-        "users" : "Users"
+        "login" : "Giriş Yap",
+        "mybills" : "Faturalarım",
+        "complain" : "Şikayet Et",
+        "pay" : "Ödeme yap",
+        "general": "Genel"
 
 
         

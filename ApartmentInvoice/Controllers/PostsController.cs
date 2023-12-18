@@ -93,7 +93,7 @@ namespace ApartmentInvoice.WebApi.Controllers
         [HttpPut]
         [Route("[action]")]
 
-        public async Task<IActionResult> UpdatePost([FromForm] PostUpdateDto postUpdateDto)
+        public async Task<IActionResult> UpdatePost([FromBody] PostUpdateDto postUpdateDto)
         {
             var result = await _postService.UpdateAsync(postUpdateDto);
 
@@ -102,6 +102,22 @@ namespace ApartmentInvoice.WebApi.Controllers
                 return Ok(result);
             }
             return BadRequest();
+        }
+
+
+        [HttpGet]
+        [Route("[action]")]
+
+        public async Task<IActionResult> GetPostswithPage(int pageNumber, int pageSize)
+        {
+            var result = await _postService.GetListAsyncPagination(pageNumber, pageSize);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest();
+
         }
     }
 }

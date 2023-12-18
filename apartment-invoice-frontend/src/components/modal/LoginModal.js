@@ -7,7 +7,7 @@ import { message } from "antd";
 import { login ,register as _register} from '../../redux/actions/AuthAction';
 const LoginModal = ({isShowLoginModalOpen,handleCancelLoginModal}) => {
   const [showRegister, setShowRegister] = useState(false);
-   // kayıt ol , giriş yap kısımlarını toggle şeklinde geçis yapma 
+   // kayıt ol , giriş yap kısımlarını toggle şeklinde geçis yapma
    const handleToggleAuthButton = () => {
     setShowRegister((prev) => !prev);
   };
@@ -25,7 +25,7 @@ const LoginModal = ({isShowLoginModalOpen,handleCancelLoginModal}) => {
 
     dispatch(_register(user));
   };
-    // authentication işlemi 
+    // authentication işlemi
 const userLogin = (e) => {
   e.preventDefault();
 
@@ -61,21 +61,21 @@ useEffect(() => {
 
   return (
     <>
-      <Modal footer={null} title="Basic Modal"  centered={true} open={isShowLoginModalOpen} onOk={handleCancelLoginModal} onCancel={handleCancelLoginModal}>
+      <Modal footer={null}   centered={true} open={isShowLoginModalOpen} onOk={handleCancelLoginModal} onCancel={handleCancelLoginModal}>
       <main className="w-full  flex flex-col items-center justify-center px-4">
           <div className="max-w-sm w-full text-gray-600 space-y-8">
               <div className="text-center">
-                  <img src="https://floatui.com/logo.svg" width={150} className="mx-auto" />
+                 
                   <div className="mt-5 space-y-2">
-                      
+
                       <a onClick={handleToggleAuthButton}>
                       {showRegister ? (
                         <>
                          <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">Create your account now</h3>
                          <p className="">İf you have a account <a href="javascript:void(0)" className="font-medium text-indigo-600 hover:text-indigo-500">Sign in </a></p>
                          </>
-                      ) : 
-                        ( 
+                      ) :
+                        (
                         <>
                           <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl"> Log in to your account </h3>
                         <p className="">Don't have an account? <a href="javascript:void(0)" className="font-medium text-indigo-600 hover:text-indigo-500">Sign up</a></p>
@@ -87,7 +87,7 @@ useEffect(() => {
               </div>
               <form
                   onSubmit={(e) => e.preventDefault()}
-              > 
+              >
                 {showRegister&& (
                     <>
                       <div>
@@ -115,7 +115,7 @@ useEffect(() => {
               />
           </div>
                     </>
-                
+
                 )}
                   <div>
                       <label className="font-medium">

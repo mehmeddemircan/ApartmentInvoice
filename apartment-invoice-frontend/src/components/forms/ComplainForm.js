@@ -1,15 +1,36 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { Switch } from "@headlessui/react";
-
+import {useDispatch, useSelector} from 'react-redux'
 import { Select } from "antd";
 import FormButton from "../button/FormButton";
+import { SendComplain } from "../../redux/actions/ComplainAction";
+import { SEND_COMPLAIN_RESET } from "../../redux/constants/ComplainConstants";
+import {message} from 'antd'
 const { Option } = Select;
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 const ComplainForm = () => {
+  const auth = useSelector((state) => state.auth)
+  const [userId,setUserId] = useState(auth.user.id)
+  const [subject, setSubject] = useState("")
+  const [messageContent, setMessageContent] = useState("")
+  const dispatch = useDispatch()
+  const handleSendComplain = () => {
+    dispatch(SendComplain({userId,subject,messageContent}))
+  }
+  const sendComplain = useSelector((state) => state.complain.sendComplain);
+useEffect(() => {
+  setUserId(auth.user.id)
+ if (sendComplain.isAdded) {
+  dispatch({type:SEND_COMPLAIN_RESET})
+  setSubject("")
+  setMessageContent("")
+  message.success("Başarılı şekilde şikayetiniz iletilmiştir")
+ }
+}, [dispatch,auth,sendComplain.isAdded])
   return (
     <Fragment>
       <div className="bg-white px-6 py-2 sm:py-32 lg:px-8">
@@ -24,13 +45,13 @@ const ComplainForm = () => {
                 htmlFor="email"
                 className="block text-sm font-semibold leading-6 text-gray-900"
               >
-                Subject
+                Subject 
               </label>
               <div className="mt-2.5">
                 <input
-                  //   value={email}
-                  //   onChange={(e) => setEmail(e.target.value)}
-                  type="email"
+                    value={subject}
+                    onChange={(e) => setSubject(e.target.value)}
+                  type="name"
                   name="email"
                   id="email"
                   autoComplete="email"
@@ -43,14 +64,14 @@ const ComplainForm = () => {
                 htmlFor="email"
                 className="block text-sm font-semibold leading-6 text-gray-900"
               >
-                Content
+                Content 
               </label>
               <div className="mt-2.5">
                 <textarea
                   rows={8}
-                  //   value={email}
-                  //   onChange={(e) => setEmail(e.target.value)}
-                  type="email"
+                    value={messageContent}
+                    onChange={(e) => setMessageContent(e.target.value)}
+                  type="name"
                   name="email"
                   id="email"
                   autoComplete="email"
@@ -60,7 +81,7 @@ const ComplainForm = () => {
             </div>
           </div>
           <div className="mt-10">
-            <FormButton title="Gönder" />
+            <FormButton title="Gönder" onClick={handleSendComplain} />
           </div>
         </form>
       </div>

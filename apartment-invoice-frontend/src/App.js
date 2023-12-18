@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { isUserLoggedIn } from "./redux/actions/AuthAction";
 import ProfilePage from "./pages/ProfilePage";
+import PostsPage from "./pages/PostsPage";
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
         <Route path="/donate" element={<DonatePage />} />
         <Route path="/results" element={<ResultsPage />} />
         <Route path="/my-profile" element={<ProfilePage />} />
+        <Route path="/posts" element={<PostsPage />} />
       </Routes>
     </Router>
   );

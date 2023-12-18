@@ -1,8 +1,13 @@
 {
     "header" : {
-        "login" : "Login",
-        "favorites" : "My Favorites",
-        "users" : "Users"
+        "login" : "Sign In",
+        "mybills" : "My bills",
+        "complain" : "Complain",
+        "pay" : "Pay",
+        "general": "General"
+
+
+        
     }
 
  }

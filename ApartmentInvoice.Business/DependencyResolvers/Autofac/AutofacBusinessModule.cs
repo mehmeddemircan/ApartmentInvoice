@@ -87,6 +87,8 @@ namespace ApartmentInvoice.Business.DependencyResolvers.Autofac
 
             builder.RegisterType<VoteManager>().As<IVoteService>();
             builder.RegisterType<VoteRepository>().As<IVoteRepository>();
+
+            builder.RegisterType<PaymentManager>().As<IPaymentService>();
             //builder.RegisterType<CarImageRepository>().As<ICarImageRepository>();
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();

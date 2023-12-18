@@ -94,6 +94,18 @@ namespace ApartmentInvocie.WebApi.Controllers
             return BadRequest();
         }
 
+        [HttpGet]
+        [Route("[action]/{blockId:int}")]
+        public async Task<IActionResult> GetFlatByBlock(int blockId)
+        {
+            var result = await _flatService.GetListAsync(x => x.BlockId == blockId);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
         /// <summary>
         /// Daire silmeyi sağlayan API 
         /// </summary>

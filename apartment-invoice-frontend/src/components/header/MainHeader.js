@@ -1,4 +1,5 @@
 import { Fragment, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import {
   ArrowPathIcon,
@@ -22,6 +23,12 @@ import { NotLoggedInHeader } from "./NotLoggedInHeader";
 
 const products = [
   {
+    name: "Postlar",
+    description: "Get a better understanding of your traffic",
+    href: "/posts",
+    icon: ChartPieIcon,
+  },
+  {
     name: "Özellikler",
     description: "Get a better understanding of your traffic",
     href: "/features",
@@ -40,17 +47,12 @@ const products = [
     icon: FingerPrintIcon,
   },
   {
-    name: "Integrations",
+    name: "Otopark Takip",
     description: "Connect with third-party tools",
     href: "#",
     icon: SquaresPlusIcon,
-  },
-  {
-    name: "Automations",
-    description: "Build strategic funnels that will convert",
-    href: "#",
-    icon: ArrowPathIcon,
-  },
+  }
+  
 ];
 const callsToAction = [
   { name: "Watch demo", href: "#", icon: PlayCircleIcon },
@@ -60,7 +62,6 @@ const callsToAction = [
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
-
 const MainHeader = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isShowLoginModalOpen, setIsShowLoginModalOpen] = useState(false);
@@ -82,7 +83,7 @@ const MainHeader = () => {
   };
   const auth = useSelector((state) => state.auth)
 
-
+  const {t} = useTranslation()
   return (
     <header className="bg-white">
       <nav
@@ -112,7 +113,7 @@ const MainHeader = () => {
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
           <Popover className="relative">
             <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-dark hover:text-green-400">
-              Product
+            {t('header.general')}
               <ChevronDownIcon
                 className="h-5 w-5 flex-none text-gray-400"
                 aria-hidden="true"
@@ -177,19 +178,19 @@ const MainHeader = () => {
             href="/payment"
             className="text-sm font-semibold leading-6 text-dark hover:text-green-400"
           >
-            Ödeme Yap
+           {t('header.pay')}
           </a>
           <a
             href="/my-bills"
             className="text-sm font-semibold leading-6 text-dark  hover:text-green-400"
           >
-            Faturalarım
+        {t('header.mybills')}
           </a>
           <a
             href="/complain"
             className="text-sm font-semibold leading-6 text-dark  hover:text-green-400"
           >
-            Sikayet Et
+         {t('header.complain')}
           </a>
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
