@@ -1,0 +1,11 @@
+.ant-empty-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .ant-empty-image > img {
+    max-width: 100%;
+    height: auto;
+  }
+  

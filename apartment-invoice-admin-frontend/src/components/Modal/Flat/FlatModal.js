@@ -2,25 +2,22 @@ import React, { useState } from "react";
 import { Button, Modal } from "antd";
 import { Form, Input, InputNumber, Select, Switch } from "antd";
 import { useParams } from "react-router-dom";
-const FlatModal = ({ isShowFlatModal, handleCancelFlatModal }) => {
-  let { blockNo } = useParams();
-  const [blockId, setBlockId] = useState(blockNo);
-  const [flatNo, setFlatNo] = useState("");
-  const [numberOfRooms, setNumberOfRooms] = useState("");
-  const [isEmpty, setIsEmpty] = useState(true);
-  const [floor, setFloor] = useState("");
 
-  const handleChangeNumberOfRooms = (value) => {
-    setNumberOfRooms(value);
-    // Do something with the selected value
-  };
-
-  const handleChangeFloor = (value) => {
-    setFloor(value);
-  };
-  const handleChangeFlatNo = (value) => {
-    setFlatNo(value);
-  };
+import { useDispatch, useSelector } from "react-redux";
+import { CreateFlat } from "../../../redux/actions/FlatActions";
+const FlatModal = ({
+  isShowFlatModal,
+  handleCancelFlatModal,
+  handleChangeFloor,
+  handleAddFlat,
+  handleChangeFlatNo,
+  handleChangeNumberOfRooms,
+  flatNo,
+  isEmpty,
+  setIsEmpty,
+  numberOfRooms,
+  floor,
+}) => {
   return (
     <Modal
       title="Daire Ekle"
@@ -33,14 +30,13 @@ const FlatModal = ({ isShowFlatModal, handleCancelFlatModal }) => {
         <Button
           key="submit"
           className="btn btn-outline-primary"
-          onClick={handleCancelFlatModal}
+          onClick={handleAddFlat}
         >
-          Ekle {blockId}
+          Ekle
         </Button>,
       ]}
     >
-      
-     <Form
+      <Form
         className="mt-6"
         labelCol={{
           span: 4,
@@ -51,12 +47,20 @@ const FlatModal = ({ isShowFlatModal, handleCancelFlatModal }) => {
         style={{
           maxWidth: 600,
         }}
-      > 
-       <Form.Item label="Daire No">
-          <InputNumber placeholder="daire no" onChange={handleChangeFlatNo} className="w-full" />
+      >
+        <Form.Item label="Daire No">
+          <InputNumber
+            placeholder="daire no"
+            onChange={handleChangeFlatNo}
+            className="w-full"
+          />
         </Form.Item>
         <Form.Item label="Kaçıncı Kat">
-          <InputNumber placeholder="kaçıncı kat" onChange={handleChangeFloor} className="w-full" />
+          <InputNumber
+            placeholder="kaçıncı kat"
+            onChange={handleChangeFloor}
+            className="w-full"
+          />
         </Form.Item>
         <Form.Item label="Genişlik">
           <Select placeholder="genişlik" onSelect={handleChangeNumberOfRooms}>
@@ -76,10 +80,6 @@ const FlatModal = ({ isShowFlatModal, handleCancelFlatModal }) => {
           />
         </Form.Item>
       </Form>
-      {flatNo}
-      {floor}
-      {numberOfRooms}
-      {isEmpty ? "true" : "false"} 
     </Modal>
   );
 };

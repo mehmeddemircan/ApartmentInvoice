@@ -104,7 +104,7 @@ namespace ApartmentInvocie.WebApi.Controllers
         [HttpPut]
         [Route("[action]")]
 
-        public async Task<IActionResult> UpdateOperationClaim([FromForm] OperationClaimUpdateDto operationClaimUpdateDto)
+        public async Task<IActionResult> UpdateOperationClaim([FromBody] OperationClaimUpdateDto operationClaimUpdateDto)
         {
             var result = await _operationClaimService.UpdateAsync(operationClaimUpdateDto);
 

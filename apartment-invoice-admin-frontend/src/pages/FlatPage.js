@@ -2,25 +2,64 @@ import React, { useEffect, useState } from "react";
 import MainLayout from "../layouts/MainLayout";
 import FlatModal from "../components/Modal/Flat/FlatModal";
 import { useParams } from "react-router-dom";
-import {useDispatch, useSelector} from 'react-redux'
-import { AllFlatByBlock } from "../redux/actions/FlatActions";
+import { useDispatch, useSelector } from "react-redux";
+import { AllFlatByBlock, CreateFlat } from "../redux/actions/FlatActions";
+import FlatItem from "../components/ListItem/FlatItem";
+import LoadingSpinner from "../components/Spinner/LoadingSpinner";
+import EmptyResult from "../components/Results/EmptyResult";
+import { message } from "antd";
+import { ADD_FLAT_RESET, DELETE_FLAT_RESET } from "../redux/constants/FlatConstants";
 const FlatPage = () => {
-
-    let { blockNo } = useParams();
-    const dispatch = useDispatch(); 
-    useEffect(() => {
-        dispatch(AllFlatByBlock(blockNo))
-    }, [dispatch,blockNo])
-
-    const [isShowFlatModal, setIsShowFlatModal] = useState(false)
-
-    const handleShowFlatModal = () => {
-        setIsShowFlatModal(true)
+  const getAllFlat = useSelector((state) => state.flat.getAllFlat);
+  const deleteUpdateFlat = useSelector((state) => state.flat.deleteUpdateFlat)
+  const addFlat = useSelector((state) => state.flat.addFlat);
+  let { blockNo } = useParams();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(AllFlatByBlock(blockNo));
+  }, [dispatch, blockNo, addFlat.isAdded,deleteUpdateFlat.isDeleted]);
+  useEffect(() => {
+    if (addFlat.isAdded) {
+      message.success(addFlat.message);
+      handleCancelFlatModal();
+      dispatch({ type: ADD_FLAT_RESET });
     }
+    if (deleteUpdateFlat.isDeleted) {
+        message.success(deleteUpdateFlat.message);
+        dispatch({ type: DELETE_FLAT_RESET });
+      }
+  }, [dispatch, addFlat.isAdded,deleteUpdateFlat.isDeleted]);
 
-    const handleCancelFlatModal =() => {
-        setIsShowFlatModal(false)
-    }
+  const handleAddFlat = () => {
+    dispatch(CreateFlat({ flatNo, isEmpty, numberOfRooms, floor, blockId }));
+  };
+  const [isShowFlatModal, setIsShowFlatModal] = useState(false);
+
+  const handleShowFlatModal = () => {
+    setIsShowFlatModal(true);
+  };
+
+  const handleCancelFlatModal = () => {
+    setIsShowFlatModal(false);
+  };
+
+  const [blockId, setBlockId] = useState(blockNo);
+  const [flatNo, setFlatNo] = useState("");
+  const [numberOfRooms, setNumberOfRooms] = useState("");
+  const [isEmpty, setIsEmpty] = useState(true);
+  const [floor, setFloor] = useState("");
+
+  const handleChangeNumberOfRooms = (value) => {
+    setNumberOfRooms(value);
+    // Do something with the selected value
+  };
+
+  const handleChangeFloor = (value) => {
+    setFloor(value);
+  };
+  const handleChangeFlatNo = (value) => {
+    setFlatNo(value);
+  };
   return (
     <MainLayout>
       <div className="flex flex-row justify-between items-center">
@@ -49,11 +88,42 @@ const FlatPage = () => {
             </svg>
             Yeni Daire
           </button>
-          <FlatModal 
+          <FlatModal
             isShowFlatModal={isShowFlatModal}
             handleCancelFlatModal={handleCancelFlatModal}
+            handleAddFlat={handleAddFlat}
+            flatNo={flatNo}
+            setFlatNo={setFlatNo}
+            isEmpty={isEmpty}
+            setIsEmpty={setIsEmpty}
+            floor={floor}
+            setFloor={setFloor}
+            numberOfRooms={numberOfRooms}
+            setNumberOfRooms={setNumberOfRooms}
+            handleChangeFloor={handleChangeFloor}
+            handleChangeFlatNo={handleChangeFlatNo}
+            handleChangeNumberOfRooms={handleChangeNumberOfRooms}
           />
         </div>
+      </div>
+      <div>
+        
+          {getAllFlat && getAllFlat.success ? (
+            getAllFlat.flats.data.length === 0 ? (
+              <EmptyResult />
+            ) : (
+                <div className="mt-12 flex justify-between items-center gap-3 flex-wrap">
+                    {
+                    getAllFlat.flats.data.map((item) => (
+                <FlatItem key={item.id} item={item} />
+              ))
+              }
+              </div>
+            )
+          ) : (
+            <LoadingSpinner />
+          )}
+        
       </div>
     </MainLayout>
   );

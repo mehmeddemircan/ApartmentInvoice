@@ -3,6 +3,9 @@ import {
   ADD_FLAT_FAIL,
   ADD_FLAT_REQUEST,
   ADD_FLAT_SUCCESS,
+  DELETE_FLAT_FAIL,
+  DELETE_FLAT_REQUEST,
+  DELETE_FLAT_SUCCESS,
   GET_ALL_FLAT_FAIL,
   GET_ALL_FLAT_REQUEST,
   GET_ALL_FLAT_SUCCESS,
@@ -51,3 +54,27 @@ export const AllFlatByBlock = (blockId) => async (dispatch) => {
       });
     }
   };
+
+
+
+// anket sil 
+  export const DeleteFlat = (flatId) => async (dispatch) => {
+    try {
+      dispatch({
+        type: DELETE_FLAT_REQUEST,
+      });
+  
+      const { data } = await axios.delete(`https://localhost:7173/api/Flats/DeleteFlat/${flatId}`);
+  
+      dispatch({
+        type: DELETE_FLAT_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: DELETE_FLAT_FAIL,
+        error: error.response,
+      });
+    }
+  };
+//update flat 

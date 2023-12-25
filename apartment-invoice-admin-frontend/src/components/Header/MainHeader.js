@@ -105,11 +105,14 @@ export default function MainHeader() {
             </Transition>
           </Popover>
 
-          <a href="/announcements" className="text-sm font-semibold leading-6 text-gray-900">
+          <a href="/add-announcement" className="text-sm font-semibold leading-6 text-gray-900">
             Duyuru Yap 
           </a>
           <a href="/users" className="text-sm font-semibold leading-6 text-gray-900">
             Tüm Kullanıcılar 
+          </a>
+          <a href="/add-role" className="text-sm font-semibold leading-6 text-gray-900">
+            Rol Ekle 
           </a>
           {/* <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
             Company

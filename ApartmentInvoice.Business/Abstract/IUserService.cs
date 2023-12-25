@@ -1,5 +1,7 @@
 ﻿using ApartmentInvoice.Core.Entities.Concrete.Auth;
 using ApartmentInvoice.Core.Utilities.Results;
+using ApartmentInvoice.Entity.Concrete;
+using ApartmentInvoice.Entity.DTOs.PostDtos;
 using ApartmentInvoice.Entity.DTOs.UsersDtos;
 using System;
 using System.Collections.Generic;
@@ -17,6 +19,8 @@ namespace ApartmentInvoice.Business.Abstract
         User GetByMail(string email);
 
         Task<IDataResult<IEnumerable<UserDetailDto>>> GetListAsync(Expression<Func<User, bool>> filter = null);
+
+        Task<IDataResult<IEnumerable<UsersDto>>> GetListAsyncPagination(int pageNumber, int pageSize, Expression<Func<User, bool>> filter = null);
         Task<IDataResult<UsersDto>> GetAsync(Expression<Func<User, bool>> filter);
 
         Task<IDataResult<UsersDto>> GetByIdAsync(int id);

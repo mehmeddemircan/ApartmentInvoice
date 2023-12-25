@@ -10,6 +10,9 @@ import { useEffect } from 'react';
 import { isUserLoggedIn } from './redux/actions/AuthActions';
 import PrivateRoute from './routes/PrivateRoute';
 import FlatPage from './pages/FlatPage';
+import AnnouncementPage from './pages/AnnouncementPage';
+import UserPage from './pages/UserPage';
+import RolesPage from './pages/RolesPage';
 function App() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth)
@@ -27,6 +30,9 @@ function App() {
       <Route index path="/login" element={<LoginPage />} />
 
       <Route  path="/blocks" element={<PrivateRoute><BlockPage /></PrivateRoute>} />
+      <Route  path="/users" element={<PrivateRoute><UserPage /></PrivateRoute>} />
+      <Route  path="/add-announcement" element={<PrivateRoute><AnnouncementPage /></PrivateRoute>} />
+      <Route  path="/add-role" element={<PrivateRoute><RolesPage /></PrivateRoute>} />
       <Route  path="/blocks/:blockNo/add-new-flat" element={<PrivateRoute><FlatPage /></PrivateRoute>} />
       <Route  path="*" element={<NotFoundPage />} />
    

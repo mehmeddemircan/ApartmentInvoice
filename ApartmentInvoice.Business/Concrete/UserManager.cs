@@ -4,6 +4,9 @@ using ApartmentInvoice.Business.Constants;
 using ApartmentInvoice.Core.Entities.Concrete.Auth;
 using ApartmentInvoice.Core.Utilities.Results;
 using ApartmentInvoice.DataAccess.Abstract;
+using ApartmentInvoice.DataAccess.Concrete.EntityFramework;
+using ApartmentInvoice.Entity.Concrete;
+using ApartmentInvoice.Entity.DTOs.PostDtos;
 using ApartmentInvoice.Entity.DTOs.UsersDtos;
 using AutoMapper;
 using System;
@@ -43,7 +46,7 @@ namespace ApartmentInvoice.Business.Concrete
             return _userRepository.Get(u => u.Email == email);
         }
 
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         //[CacheAspect(10)]
         public async Task<IDataResult<IEnumerable<UserDetailDto>>> GetListAsync(Expression<Func<User, bool>> filter = null)
         {
@@ -131,5 +134,25 @@ namespace ApartmentInvoice.Business.Concrete
         //    return UsersDto;
         //}
 
+
+        public async Task<IDataResult<IEnumerable<UsersDto>>> GetListAsyncPagination(int pageNumber, int pageSize, Expression<Func<User, bool>> filter = null)
+        {
+            if (filter == null)
+            {
+
+                var response = await _userRepository.GetListAsyncPagination(pageNumber, pageSize);
+
+                var responsePostsDto = _mapper.Map<IEnumerable<UsersDto>>(response);
+                return new SuccessDataResult<IEnumerable<UsersDto>>(responsePostsDto, Messages.Listed);
+            }
+            else
+            {
+
+                var response = await _userRepository.GetListAsyncPagination(pageNumber, pageSize, filter);
+
+                var responsePostsDto = _mapper.Map<IEnumerable<UsersDto>>(response);
+                return new SuccessDataResult<IEnumerable<UsersDto>>(responsePostsDto, Messages.Listed);
+            }
+        }
     }
 }

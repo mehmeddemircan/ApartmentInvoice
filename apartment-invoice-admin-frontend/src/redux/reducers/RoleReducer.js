@@ -1,25 +1,25 @@
 import { combineReducers } from "redux";
-import { ADD_FLAT_FAIL, ADD_FLAT_REQUEST, ADD_FLAT_RESET, ADD_FLAT_SUCCESS, DELETE_FLAT_FAIL, DELETE_FLAT_REQUEST, DELETE_FLAT_RESET, DELETE_FLAT_SUCCESS, GET_ALL_FLAT_FAIL, GET_ALL_FLAT_REQUEST, GET_ALL_FLAT_SUCCESS, UPDATE_FLAT_FAIL, UPDATE_FLAT_REQUEST, UPDATE_FLAT_RESET, UPDATE_FLAT_SUCCESS } from "../constants/FlatConstants";
+import { ADD_ROLE_FAIL, ADD_ROLE_REQUEST, ADD_ROLE_RESET, ADD_ROLE_SUCCESS, DELETE_ROLE_FAIL, DELETE_ROLE_REQUEST, DELETE_ROLE_RESET, DELETE_ROLE_SUCCESS, GET_ALL_ROLE_FAIL, GET_ALL_ROLE_REQUEST, GET_ALL_ROLE_SUCCESS, UPDATE_ROLE_FAIL, UPDATE_ROLE_REQUEST, UPDATE_ROLE_RESET, UPDATE_ROLE_SUCCESS } from "../constants/RoleConstants";
 
 
 
-export const getAllFlatReducer = (
-    state = { flats : [], success : false },
+  export const getAllRoleReducer = (
+    state = {roles : [], success : false },
     action
   ) => {
     switch (action.type) {
-      case GET_ALL_FLAT_REQUEST:
+      case GET_ALL_ROLE_REQUEST:
         return { ...state, loading: true };
   
-      case GET_ALL_FLAT_SUCCESS:
+      case GET_ALL_ROLE_SUCCESS:
         return {
           ...state,
           loading: false,
           success: true,
-          flats: action.payload,
+          roles: action.payload,
         };
   
-      case GET_ALL_FLAT_FAIL:
+      case GET_ALL_ROLE_FAIL:
         return {
           ...state,
           loading: false,
@@ -31,12 +31,12 @@ export const getAllFlatReducer = (
     }
   };
 
-  export const addFlatReducer = (state = { message: null ,success : false , isAdded  : false}, action) => {
+  export const addRoleReducer = (state = { message: null ,success : false , isAdded  : false}, action) => {
     switch (action.type) {
-      case ADD_FLAT_REQUEST:
+      case ADD_ROLE_REQUEST:
         return { ...state, loading: true };
   
-      case ADD_FLAT_SUCCESS:
+      case ADD_ROLE_SUCCESS:
         return {
           ...state,
           loading: false,
@@ -45,27 +45,27 @@ export const getAllFlatReducer = (
           message : action.payload.message
         };
   
-      case ADD_FLAT_FAIL:
+      case ADD_ROLE_FAIL:
         return { ...state, loading: false, error: action.payload };
-      case ADD_FLAT_RESET:
+      case ADD_ROLE_RESET:
          return { ...state, success: false , isAdded : false };
       default:
         return state;
     }
   };
 
-  export const deleteUpdateFlatReducer = (
+  export const deleteUpdateRoleReducer = (
     state = { message : null,
         isDeleted : false ,
         isUpdated : false ,},
     action
   ) => {
     switch (action.type) {
-      case DELETE_FLAT_REQUEST:
-      case UPDATE_FLAT_REQUEST:
+      case DELETE_ROLE_REQUEST:
+      case UPDATE_ROLE_REQUEST:
         return { ...state, loading: true };
   
-      case DELETE_FLAT_SUCCESS:
+      case DELETE_ROLE_SUCCESS:
         return {
           ...state,
           loading: false,
@@ -73,7 +73,7 @@ export const getAllFlatReducer = (
           message : action.payload
         };
   
-      case UPDATE_FLAT_SUCCESS:
+      case UPDATE_ROLE_SUCCESS:
         return {
           ...state,
           loading: false,
@@ -82,15 +82,15 @@ export const getAllFlatReducer = (
         
         };
   
-      case DELETE_FLAT_FAIL:
-      case UPDATE_FLAT_FAIL:
+      case DELETE_ROLE_FAIL:
+      case UPDATE_ROLE_FAIL:
         return { ...state, error: action.payload.error };
   
-      case DELETE_FLAT_RESET:
+      case DELETE_ROLE_RESET:
         return {
           ...state , isDeleted : false
         };
-      case UPDATE_FLAT_RESET:
+      case UPDATE_ROLE_RESET:
         return {
           ...state,isUpdated : false
         };
@@ -98,11 +98,11 @@ export const getAllFlatReducer = (
         return state;
     }
   };
-  const flatReducer = combineReducers({
-    getAllFlat : getAllFlatReducer,
-    addFlat : addFlatReducer,
-    deleteUpdateFlat : deleteUpdateFlatReducer
- 
- })
- 
- export default flatReducer
+  const roleReducer = combineReducers({
+   getAllRole : getAllRoleReducer,
+   addRole : addRoleReducer,
+   deleteUpdateRole : deleteUpdateRoleReducer
+
+})
+
+export default roleReducer

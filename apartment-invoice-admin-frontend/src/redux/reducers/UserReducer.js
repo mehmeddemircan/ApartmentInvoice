@@ -1,25 +1,24 @@
+
+
 import { combineReducers } from "redux";
-import { ADD_FLAT_FAIL, ADD_FLAT_REQUEST, ADD_FLAT_RESET, ADD_FLAT_SUCCESS, DELETE_FLAT_FAIL, DELETE_FLAT_REQUEST, DELETE_FLAT_RESET, DELETE_FLAT_SUCCESS, GET_ALL_FLAT_FAIL, GET_ALL_FLAT_REQUEST, GET_ALL_FLAT_SUCCESS, UPDATE_FLAT_FAIL, UPDATE_FLAT_REQUEST, UPDATE_FLAT_RESET, UPDATE_FLAT_SUCCESS } from "../constants/FlatConstants";
-
-
-
-export const getAllFlatReducer = (
-    state = { flats : [], success : false },
+import { ADD_ROLE_TO_USER_FAIL, ADD_ROLE_TO_USER_REQUEST, ADD_ROLE_TO_USER_RESET, ADD_ROLE_TO_USER_SUCCESS, DELETE_USER_REQUEST, DELETE_USER_RESET, DELETE_USER_SUCCESS, GET_ALL_USER_FAIL, GET_ALL_USER_REQUEST, GET_ALL_USER_SUCCESS, UPDATE_USER_FAIL, UPDATE_USER_REQUEST, UPDATE_USER_RESET, UPDATE_USER_SUCCESS } from "../constants/UserConstants";
+export const getAllUserReducer = (
+    state = { users : [], success : false },
     action
   ) => {
     switch (action.type) {
-      case GET_ALL_FLAT_REQUEST:
+      case GET_ALL_USER_REQUEST:
         return { ...state, loading: true };
   
-      case GET_ALL_FLAT_SUCCESS:
+      case GET_ALL_USER_SUCCESS:
         return {
           ...state,
           loading: false,
           success: true,
-          flats: action.payload,
+          users: action.payload,
         };
   
-      case GET_ALL_FLAT_FAIL:
+      case GET_ALL_USER_FAIL:
         return {
           ...state,
           loading: false,
@@ -31,12 +30,12 @@ export const getAllFlatReducer = (
     }
   };
 
-  export const addFlatReducer = (state = { message: null ,success : false , isAdded  : false}, action) => {
+  export const addRoleToUserReducer = (state = { message: null ,success : false , isAdded  : false}, action) => {
     switch (action.type) {
-      case ADD_FLAT_REQUEST:
+      case ADD_ROLE_TO_USER_REQUEST:
         return { ...state, loading: true };
   
-      case ADD_FLAT_SUCCESS:
+      case ADD_ROLE_TO_USER_SUCCESS:
         return {
           ...state,
           loading: false,
@@ -45,27 +44,28 @@ export const getAllFlatReducer = (
           message : action.payload.message
         };
   
-      case ADD_FLAT_FAIL:
+      case ADD_ROLE_TO_USER_FAIL:
         return { ...state, loading: false, error: action.payload };
-      case ADD_FLAT_RESET:
+      case ADD_ROLE_TO_USER_RESET:
          return { ...state, success: false , isAdded : false };
       default:
         return state;
     }
   };
 
-  export const deleteUpdateFlatReducer = (
+
+  export const deleteUpdateUserReducer = (
     state = { message : null,
         isDeleted : false ,
         isUpdated : false ,},
     action
   ) => {
     switch (action.type) {
-      case DELETE_FLAT_REQUEST:
-      case UPDATE_FLAT_REQUEST:
+      case DELETE_USER_REQUEST:
+      case UPDATE_USER_REQUEST:
         return { ...state, loading: true };
   
-      case DELETE_FLAT_SUCCESS:
+      case DELETE_USER_SUCCESS:
         return {
           ...state,
           loading: false,
@@ -73,7 +73,7 @@ export const getAllFlatReducer = (
           message : action.payload
         };
   
-      case UPDATE_FLAT_SUCCESS:
+      case UPDATE_USER_SUCCESS:
         return {
           ...state,
           loading: false,
@@ -82,15 +82,15 @@ export const getAllFlatReducer = (
         
         };
   
-      case DELETE_FLAT_FAIL:
-      case UPDATE_FLAT_FAIL:
+      case DELETE_USER_REQUEST:
+      case UPDATE_USER_FAIL:
         return { ...state, error: action.payload.error };
   
-      case DELETE_FLAT_RESET:
+      case DELETE_USER_RESET:
         return {
           ...state , isDeleted : false
         };
-      case UPDATE_FLAT_RESET:
+      case UPDATE_USER_RESET:
         return {
           ...state,isUpdated : false
         };
@@ -98,11 +98,11 @@ export const getAllFlatReducer = (
         return state;
     }
   };
-  const flatReducer = combineReducers({
-    getAllFlat : getAllFlatReducer,
-    addFlat : addFlatReducer,
-    deleteUpdateFlat : deleteUpdateFlatReducer
+  const userReducer = combineReducers({
+    getAllUser : getAllUserReducer,
+    deleteUpdateUser : deleteUpdateUserReducer,
+    addRoleToUser : addRoleToUserReducer
  
  })
  
- export default flatReducer
+ export default userReducer
