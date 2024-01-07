@@ -111,12 +111,13 @@ export default function MainHeader() {
           <a href="/users" className="text-sm font-semibold leading-6 text-gray-900">
             Tüm Kullanıcılar 
           </a>
+          <a href="/complains" className="text-sm font-semibold leading-6 text-gray-900">
+            Tüm Şikayetler 
+          </a>
           <a href="/add-role" className="text-sm font-semibold leading-6 text-gray-900">
             Rol Ekle 
           </a>
-          {/* <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Company
-          </a> */}
+       
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
         {auth.authenticate ? <LoggedInHeader /> :  <NotLoggedInHeader  />}

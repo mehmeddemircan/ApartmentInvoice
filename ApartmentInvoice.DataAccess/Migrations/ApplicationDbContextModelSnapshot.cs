@@ -77,6 +77,9 @@ namespace ApartmentInvoice.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("OperationClaimId")
+                        .HasColumnType("int");
+
                     b.Property<byte[]>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
@@ -95,6 +98,8 @@ namespace ApartmentInvoice.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OperationClaimId");
 
                     b.ToTable("Users");
                 });
@@ -726,16 +731,25 @@ namespace ApartmentInvoice.DataAccess.Migrations
                     b.ToTable("Votes");
                 });
 
+            modelBuilder.Entity("ApartmentInvoice.Core.Entities.Concrete.Auth.User", b =>
+                {
+                    b.HasOne("ApartmentInvoice.Core.Entities.Concrete.Auth.OperationClaim", "OperationClaim")
+                        .WithMany()
+                        .HasForeignKey("OperationClaimId");
+
+                    b.Navigation("OperationClaim");
+                });
+
             modelBuilder.Entity("ApartmentInvoice.Core.Entities.Concrete.Auth.UserOperationClaim", b =>
                 {
                     b.HasOne("ApartmentInvoice.Core.Entities.Concrete.Auth.OperationClaim", "OperationClaim")
-                        .WithMany("UserRoles")
+                        .WithMany()
                         .HasForeignKey("OperationClaimId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ApartmentInvoice.Core.Entities.Concrete.Auth.User", "User")
-                        .WithMany("UserRoles")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -908,16 +922,6 @@ namespace ApartmentInvoice.DataAccess.Migrations
                     b.Navigation("Question");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("ApartmentInvoice.Core.Entities.Concrete.Auth.OperationClaim", b =>
-                {
-                    b.Navigation("UserRoles");
-                });
-
-            modelBuilder.Entity("ApartmentInvoice.Core.Entities.Concrete.Auth.User", b =>
-                {
-                    b.Navigation("UserRoles");
                 });
 
             modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.Activity", b =>

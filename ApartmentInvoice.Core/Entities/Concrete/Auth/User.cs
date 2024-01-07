@@ -18,7 +18,9 @@ namespace ApartmentInvoice.Core.Entities.Concrete.Auth
         public byte[] PasswordHash { get; set; }
         public bool Status { get; set; }
 
-        public virtual ICollection<UserOperationClaim>? UserRoles { get; set; }
+        public int? OperationClaimId { get; set; }
+
+        public virtual OperationClaim OperationClaim { get; set; }
 
 
 

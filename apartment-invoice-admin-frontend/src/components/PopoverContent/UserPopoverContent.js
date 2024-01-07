@@ -1,14 +1,22 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Select, Space } from 'antd';
 import { useDispatch, useSelector } from "react-redux";
 import { AllRole } from '../../redux/actions/RoleActions';
+import { GetUserByRole } from '../../redux/actions/UserActions';
 const {Option} = Select ; 
-const UserPopoverContent = () => {
+const UserPopoverContent = ({pageNumber,pageSize}) => {
 
     const getAllRole  = useSelector((state) => state.role.getAllRole)
-
+    const [operationClaimId, setOperationClaimId] = useState(0)
+   
     const handleSelect = (value) => {
-        alert(value)
+        setOperationClaimId(value)
+    }
+
+    const dispatch = useDispatch()
+
+    const handleSelectUsersByRole = () => {
+      dispatch(GetUserByRole(pageNumber,pageSize,operationClaimId))
     }
 
   return (
@@ -34,7 +42,7 @@ const UserPopoverContent = () => {
        </Space>
 
        <div className='flex justify-end'>
-        <button className='bg-black text-white rounded-full w-24 mt-4 h-8'>Uygula</button>
+        <button className='bg-black text-white rounded-full w-24 mt-4 h-8' onClick={handleSelectUsersByRole} >Uygula </button>
        </div>
     </Fragment>
   )

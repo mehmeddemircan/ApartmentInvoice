@@ -24,7 +24,10 @@ namespace ApartmentInvoice.Business.Mappings
             CreateMap<User, UsersDto>();
 
             CreateMap<UserDetailDto, User>();
-            CreateMap<User, UserDetailDto>();
+            CreateMap<User, UserDetailDto>()
+                  .ForMember(dest => dest.RoleId, opt => opt.MapFrom(src => src.OperationClaim.Id))
+          
+                .ForMember(dest => dest.RoleName, opt => opt.MapFrom(src => src.OperationClaim.Name));
         }
     }
 }

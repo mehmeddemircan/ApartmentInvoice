@@ -72,6 +72,17 @@ namespace ApartmentInvocie.WebApi.Controllers
             return BadRequest();
         }
 
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<IActionResult> GetMessageByWithPagination(int pageNumber,int pageSize)
+        {
+            var result = await _messageService.GetListAsyncPagination(pageNumber,pageSize);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
 
 
         /// <summary>

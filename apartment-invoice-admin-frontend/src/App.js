@@ -13,6 +13,7 @@ import FlatPage from './pages/FlatPage';
 import AnnouncementPage from './pages/AnnouncementPage';
 import UserPage from './pages/UserPage';
 import RolesPage from './pages/RolesPage';
+import ComplainsPage from './pages/ComplainsPage';
 function App() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth)
@@ -34,6 +35,7 @@ function App() {
       <Route  path="/add-announcement" element={<PrivateRoute><AnnouncementPage /></PrivateRoute>} />
       <Route  path="/add-role" element={<PrivateRoute><RolesPage /></PrivateRoute>} />
       <Route  path="/blocks/:blockNo/add-new-flat" element={<PrivateRoute><FlatPage /></PrivateRoute>} />
+      <Route  path="/complains" element={<PrivateRoute><ComplainsPage /></PrivateRoute>} />
       <Route  path="*" element={<NotFoundPage />} />
    
     </Routes>

@@ -1,4 +1,5 @@
 ﻿using ApartmentInvoice.Core.Entities.Abstract;
+using ApartmentInvoice.Core.Entities.Concrete.Auth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,5 +20,8 @@ namespace ApartmentInvoice.Entity.DTOs.UsersDtos
         public byte[] PasswordSalt { get; set; }
         public byte[] PasswordHash { get; set; }
         public bool Status { get; set; }
+
+        public string  RoleId { get; set; }
+        public string RoleName { get; set; }
     }
 }

@@ -15,5 +15,7 @@ namespace ApartmentInvoice.Entity.DTOs.UsersDtos
         public byte[] PasswordHash { get; set; }
         public bool Status { get; set; }
 
+        public string RoleId { get; set; }
+        public string RoleName { get; set; }
     }
 }

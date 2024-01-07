@@ -76,7 +76,7 @@ namespace ApartmentInvoice.Business.Concrete
                 // Exception 
                 //throw new UnauthorizedAccessException("UnAuthorized"); 
                 var response = await _announcementRepository.GetListAsync();
-                var responseDetailDto = _mapper.Map<IEnumerable<AnnouncementsDto>>(response);
+               
 
 
                 foreach (var announcement in response)
@@ -91,7 +91,7 @@ namespace ApartmentInvoice.Business.Concrete
                 // Exception 
                 //throw new UnauthorizedAccessException("UnAuthorized"); 
                 var response = await _announcementRepository.GetListAsync(filter);
-                var responseDetailDto = _mapper.Map<IEnumerable<AnnouncementsDto>>(response);
+                
 
 
                 foreach (var announcement in response)
@@ -146,6 +146,44 @@ namespace ApartmentInvoice.Business.Concrete
 
             var announcementDetailDto = _mapper.Map<AnnouncementDetailDto>(announcement);
             return announcementDetailDto;
+        }
+
+        public async Task<IDataResult<IEnumerable<AnnouncementsDto>>> GetListAsyncPagination(int pageNumber, int pageSize, Expression<Func<Announcement, bool>> filter = null)
+        {
+            List<AnnouncementsDto> announcements = new List<AnnouncementsDto>();
+
+            if (filter == null)
+            {
+                // Exception 
+                //throw new UnauthorizedAccessException("UnAuthorized"); 
+                var response = await _announcementRepository.GetListAsyncPagination(pageNumber,pageSize);
+
+
+
+                foreach (var announcement in response)
+                {
+                    var announcementDto = await AssignAnnouncements(announcement, announcement.UserId);
+                    announcements.Add(announcementDto);
+                }
+                return new SuccessDataResult<IEnumerable<AnnouncementsDto>>(announcements, Messages.Listed);
+            }
+            else
+            {
+              
+                    // Exception 
+                    //throw new UnauthorizedAccessException("UnAuthorized"); 
+                    var response = await _announcementRepository.GetListAsyncPagination(pageNumber,pageSize,filter);
+
+
+
+                    foreach (var announcement in response)
+                    {
+                        var announcementDto = await AssignAnnouncements(announcement, announcement.UserId);
+                        announcements.Add(announcementDto);
+                    }
+                    return new SuccessDataResult<IEnumerable<AnnouncementsDto>>(announcements, Messages.Listed);
+                
+            }
         }
     }
 }

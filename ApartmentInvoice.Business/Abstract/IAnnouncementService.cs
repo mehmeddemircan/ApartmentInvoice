@@ -1,6 +1,8 @@
-﻿using ApartmentInvoice.Core.Utilities.Results;
+﻿using ApartmentInvoice.Core.Entities.Concrete.Auth;
+using ApartmentInvoice.Core.Utilities.Results;
 using ApartmentInvoice.Entity.Concrete;
 using ApartmentInvoice.Entity.DTOs.AnnouncementDtos;
+using ApartmentInvoice.Entity.DTOs.UsersDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +24,8 @@ namespace ApartmentInvoice.Business.Abstract
         Task<IDataResult<AnnouncementDetailDto>> GetByIdAsync(int id);
 
         Task<IDataResult<AnnouncementUpdateDto>> UpdateAsync(AnnouncementUpdateDto announcementUpdateDto);
+
+        Task<IDataResult<IEnumerable<AnnouncementsDto>>> GetListAsyncPagination(int pageNumber, int pageSize, Expression<Func<Announcement, bool>> filter = null);
 
         Task<IDataResult<bool>> DeleteAsync(int id);
     }

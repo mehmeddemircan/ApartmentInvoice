@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Popover } from "antd";
 import AuthorizationContent from "../PopoverContent/AuthorizationContent";
-import { Button, message, Popconfirm } from "antd";
+import { Button, message, Popconfirm ,Tag} from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { DeleteUser } from "../../redux/actions/UserActions";
 const UserItem = ({ item, idx }) => {
@@ -17,7 +17,7 @@ const UserItem = ({ item, idx }) => {
           <div>
             <span className="block text-sm text-gray-700 font-semibold">
               {item.firstName} {item.lastName}{" "}
-              <a className="ms-3">(sdadasdsasdadsadasds)</a>
+              <a className="ms-3"><Tag color="#108ee9">{item.roleName}</Tag></a>
             </span>
             <span className="block text-sm text-gray-600">{item.email}</span>
           </div>

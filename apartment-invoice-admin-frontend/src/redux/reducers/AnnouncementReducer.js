@@ -1,6 +1,6 @@
 
 import { combineReducers } from "redux";
-import { ADD_ANNOUNCEMENT_FAIL, ADD_ANNOUNCEMENT_REQUEST, ADD_ANNOUNCEMENT_RESET, ADD_ANNOUNCEMENT_SUCCESS, DELETE_ANNOUNCEMENT_FAIL, DELETE_ANNOUNCEMENT_REQUEST, DELETE_ANNOUNCEMENT_RESET, DELETE_ANNOUNCEMENT_SUCCESS, GET_ALL_ANNOUNCEMENT_FAIL, GET_ALL_ANNOUNCEMENT_REQUEST, GET_ALL_ANNOUNCEMENT_SUCCESS, UPDATE_ANNOUNCEMENT_FAIL, UPDATE_ANNOUNCEMENT_REQUEST, UPDATE_ANNOUNCEMENT_RESET, UPDATE_ANNOUNCEMENT_SUCCESS } from "../constants/AnnouncementConstants";
+import { ADD_ANNOUNCEMENT_FAIL, ADD_ANNOUNCEMENT_REQUEST, ADD_ANNOUNCEMENT_RESET, ADD_ANNOUNCEMENT_SUCCESS, DELETE_ANNOUNCEMENT_FAIL, DELETE_ANNOUNCEMENT_REQUEST, DELETE_ANNOUNCEMENT_RESET, DELETE_ANNOUNCEMENT_SUCCESS, GET_ALL_ANNOUNCEMENT_FAIL, GET_ALL_ANNOUNCEMENT_REQUEST, GET_ALL_ANNOUNCEMENT_SUCCESS, GET_ALL_ANNOUNCEMENT_WITH_PAGE_FAIL, GET_ALL_ANNOUNCEMENT_WITH_PAGE_REQUEST, GET_ALL_ANNOUNCEMENT_WITH_PAGE_SUCCESS, UPDATE_ANNOUNCEMENT_FAIL, UPDATE_ANNOUNCEMENT_REQUEST, UPDATE_ANNOUNCEMENT_RESET, UPDATE_ANNOUNCEMENT_SUCCESS } from "../constants/AnnouncementConstants";
 export const getAllAnnouncementReducer = (
     state = { announcements : [], success : false },
     action
@@ -18,6 +18,34 @@ export const getAllAnnouncementReducer = (
         };
   
       case GET_ALL_ANNOUNCEMENT_FAIL:
+        return {
+          ...state,
+          loading: false,
+          success: false,
+          error: action.payload,
+        };
+      default:
+        return state;
+    }
+  };
+
+  export const getAllAnnouncementWithPageReducer = (
+    state = { announcements : [], success : false },
+    action
+  ) => {
+    switch (action.type) {
+      case GET_ALL_ANNOUNCEMENT_WITH_PAGE_REQUEST:
+        return { ...state, loading: true };
+  
+      case GET_ALL_ANNOUNCEMENT_WITH_PAGE_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+          success: true,
+          announcements: action.payload,
+        };
+  
+      case GET_ALL_ANNOUNCEMENT_WITH_PAGE_FAIL:
         return {
           ...state,
           loading: false,
@@ -99,8 +127,8 @@ export const getAllAnnouncementReducer = (
   const announcementReducer = combineReducers({
     getAllAnnouncement : getAllAnnouncementReducer,
     addAnnouncement : addAnnouncementReducer,
-    deleteUpdateAnnouncement : deleteUpdateAnnouncementReducer
- 
+    deleteUpdateAnnouncement : deleteUpdateAnnouncementReducer,
+    getAllAnnouncementWithPage : getAllAnnouncementWithPageReducer
  })
  
  export default announcementReducer

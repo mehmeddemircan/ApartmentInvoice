@@ -6,6 +6,8 @@ using ApartmentInvoice.Core.Utilities.Results;
 using ApartmentInvoice.DataAccess.Abstract;
 using ApartmentInvoice.DataAccess.Concrete.EntityFramework;
 using ApartmentInvoice.Entity.Concrete;
+using ApartmentInvoice.Entity.DTOs.CommentDtos;
+using ApartmentInvoice.Entity.DTOs.OperationClaimDtos;
 using ApartmentInvoice.Entity.DTOs.PostDtos;
 using ApartmentInvoice.Entity.DTOs.UsersDtos;
 using AutoMapper;
@@ -15,18 +17,20 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ApartmentInvoice.Business.Concrete
 {
     public class UserManager : IUserService
     {
         IUserRepository _userRepository;
-        //IOperationClaimRepository _operationClaimRepository;
+        IOperationClaimRepository _operationClaimRepository;
         IMapper _mapper;
-        public UserManager(IUserRepository userRepository, IMapper mapper)
+        public UserManager(IUserRepository userRepository, IMapper mapper,IOperationClaimRepository operationClaimRepository)
         {
             _userRepository = userRepository;
             _mapper = mapper;
+            _operationClaimRepository = operationClaimRepository;
            
         }
 
@@ -50,18 +54,33 @@ namespace ApartmentInvoice.Business.Concrete
         //[CacheAspect(10)]
         public async Task<IDataResult<IEnumerable<UserDetailDto>>> GetListAsync(Expression<Func<User, bool>> filter = null)
         {
+
+            List<UserDetailDto> comments = new List<UserDetailDto>();
             if (filter == null)
             {
-
                 var response = await _userRepository.GetListAsync();
-                var responseUserDetailDto = _mapper.Map<IEnumerable<UserDetailDto>>(response);
-                return new SuccessDataResult<IEnumerable<UserDetailDto>>(responseUserDetailDto, Messages.Listed);
+
+                foreach (var comment in response)
+                {
+                    var commentDto = await AssignOperationClaimDetails(comment, comment.OperationClaimId);
+                    comments.Add(commentDto);
+                }
+              
+              
+                return new SuccessDataResult<IEnumerable<UserDetailDto>>(comments, Messages.Listed);
             }
             else
             {
                 var response = await _userRepository.GetListAsync(filter);
-                var responseUserDetailDto = _mapper.Map<IEnumerable<UserDetailDto>>(response);
-                return new SuccessDataResult<IEnumerable<UserDetailDto>>(responseUserDetailDto, Messages.Listed);
+
+                foreach (var comment in response)
+                {
+                    var commentDto = await AssignOperationClaimDetails(comment, comment.OperationClaimId);
+                    comments.Add(commentDto);
+                }
+
+
+                return new SuccessDataResult<IEnumerable<UserDetailDto>>(comments, Messages.Listed);
             }
         }
 
@@ -117,42 +136,69 @@ namespace ApartmentInvoice.Business.Concrete
 
             return new SuccessDataResult<UserUpdateDto>(resultUpdate, Messages.Updated);
         }
-        //private async Task<UsersDto> AssignOperationClaimDetails(User user, int operationClaimId)
-        //{
-        //    var operationClaim = await _operationClaimRepository.GetAsync(x => x.Id == operationClaimId);
-
-
-        //    if (operationClaim == null)
-        //    {
-        //        return null;
-        //    }
-
-        //    user.OperationClaim = operationClaim;
-
-
-        //    var UsersDto = _mapper.Map<UsersDto>(user);
-        //    return UsersDto;
-        //}
-
-
-        public async Task<IDataResult<IEnumerable<UsersDto>>> GetListAsyncPagination(int pageNumber, int pageSize, Expression<Func<User, bool>> filter = null)
+        private async Task<UserDetailDto> AssignOperationClaimDetails(User user, int? operationClaimId)
         {
+            var operationClaim = await _operationClaimRepository.GetAsync(x => x.Id == operationClaimId);
+
+
+            if (operationClaim == null)
+            {
+                return null;
+            }
+
+            user.OperationClaim = operationClaim;
+
+
+            var UsersDto = _mapper.Map<UserDetailDto>(user);
+            return UsersDto;
+        }
+
+
+        public async Task<IDataResult<IEnumerable<UserDetailDto>>> GetListAsyncPagination(int pageNumber, int pageSize, Expression<Func<User, bool>> filter = null)
+        {
+
+            List<UserDetailDto> comments = new List<UserDetailDto>();
             if (filter == null)
             {
 
-                var response = await _userRepository.GetListAsyncPagination(pageNumber, pageSize);
+                var response = await _userRepository.GetListAsyncPagination(pageNumber,pageSize);
 
-                var responsePostsDto = _mapper.Map<IEnumerable<UsersDto>>(response);
-                return new SuccessDataResult<IEnumerable<UsersDto>>(responsePostsDto, Messages.Listed);
+                foreach (var comment in response)
+                {
+                    var commentDto = await AssignOperationClaimDetails(comment, comment.OperationClaimId);
+                    comments.Add(commentDto);
+                }
+
+
+              
+                return new SuccessDataResult<IEnumerable<UserDetailDto>>(comments, Messages.Listed);
             }
             else
             {
 
-                var response = await _userRepository.GetListAsyncPagination(pageNumber, pageSize, filter);
+                var response = await _userRepository.GetListAsyncPagination(pageNumber, pageSize,filter);
 
-                var responsePostsDto = _mapper.Map<IEnumerable<UsersDto>>(response);
-                return new SuccessDataResult<IEnumerable<UsersDto>>(responsePostsDto, Messages.Listed);
+                foreach (var comment in response)
+                {
+                    var commentDto = await AssignOperationClaimDetails(comment, comment.OperationClaimId);
+                    comments.Add(commentDto);
+                }
+                return new SuccessDataResult<IEnumerable<UserDetailDto>>(comments, Messages.Listed);
             }
+        }
+
+        public async Task<IResult> ChangeRoleUser(int userId, int operationClaimId)
+        {
+            var getUser = await _userRepository.GetAsync(x => x.Id == userId);
+
+          
+            getUser.OperationClaimId = operationClaimId;
+      
+
+
+            var userUpdate = await _userRepository.UpdateAsync(getUser);
+
+            return new SuccessResult(Messages.Added);
         }
     }
 }

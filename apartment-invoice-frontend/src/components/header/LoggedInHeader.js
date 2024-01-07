@@ -141,11 +141,29 @@ export const LoggedInHeader = () => {
                 <button className="btn btn-dark rounded-pill" onClick={() => navigate('/my-profile', {replace : true })}>Profilim</button>
               </div>
               <div
-                key="yorumlarım"
+                key="postlarım"
                 className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
               >
                 <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                   <i class="fa-solid fa-comment fs-6 text-gray-600 group-hover:text-indigo-600"></i>
+                </div>
+                <div className="flex-auto">
+                  <a
+                    href="/my-comments"
+                    className="block font-semibold text-gray-900"
+                  >
+                    Postlarım
+                    <span className="absolute inset-0" />
+                  </a>
+                </div>
+              </div>
+
+              <div
+                key="yorumlarım"
+                className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
+              >
+                <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                  <i class="fa-brands fa-wpforms  fs-6 text-gray-600 group-hover:text-indigo-600"></i>
                 </div>
                 <div className="flex-auto">
                   <a
@@ -157,58 +175,7 @@ export const LoggedInHeader = () => {
                   </a>
                 </div>
               </div>
-
-              <div
-                key="formlarım"
-                className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
-              >
-                <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                  <i class="fa-brands fa-wpforms  fs-6 text-gray-600 group-hover:text-indigo-600"></i>
-                </div>
-                <div className="flex-auto">
-                  <a
-                    href="/my-forms"
-                    className="block font-semibold text-gray-900"
-                  >
-                    Formlarım
-                    <span className="absolute inset-0" />
-                  </a>
-                </div>
-              </div>
-              <div
-                key="sepetim"
-                className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
-              >
-                <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                  <i class="fa-solid fa-basket-shopping  fs-6 text-gray-600 group-hover:text-indigo-600"></i>
-                </div>
-                <div className="flex-auto">
-                  <a
-                    href="/my-basket"
-                    className="block font-semibold text-gray-900"
-                  >
-                    Sepetim
-                    <span className="absolute inset-0" />
-                  </a>
-                </div>
-              </div>
-              <div
-                key="sepetim"
-                className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
-              >
-                <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                  <i class="fa-solid fa-file-invoice fs-6 text-gray-600 group-hover:text-indigo-600"></i>
-                </div>
-                <div className="flex-auto">
-                  <a
-                    href="/my-orders"
-                    className="block font-semibold text-gray-900"
-                  >
-                    Siparişlerim
-                    <span className="absolute inset-0" />
-                  </a>
-                </div>
-              </div>
+             
               <div
                 key="formlarım"
                 className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"

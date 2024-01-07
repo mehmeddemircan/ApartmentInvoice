@@ -85,6 +85,24 @@ namespace ApartmentInvoice.Business.Concrete
             }
         }
 
+        public async Task<IDataResult<IEnumerable<MessagesDto>>> GetListAsyncPagination(int pageNumber, int pageSize, Expression<Func<Message, bool>> filter = null)
+        {
+            if (filter == null)
+            {
+                // Exception 
+                //throw new UnauthorizedAccessException("UnAuthorized"); 
+                var response = await _messageRepository.GetListAsyncPagination(pageNumber,pageSize);
+                var responseDetailDto = _mapper.Map<IEnumerable<MessagesDto>>(response);
+                return new SuccessDataResult<IEnumerable<MessagesDto>>(responseDetailDto, Messages.Listed);
+            }
+            else
+            {
+                var response = await _messageRepository.GetListAsyncPagination(pageNumber,pageSize,filter);
+                var responseDetailDto = _mapper.Map<IEnumerable<MessagesDto>>(response);
+                return new SuccessDataResult<IEnumerable<MessagesDto>>(responseDetailDto, Messages.Listed);
+            }
+        }
+
         public async Task<IDataResult<MessageUpdateDto>> UpdateAsync(MessageUpdateDto messageUpdateDto)
         {
             var getMessage = await _messageRepository.GetAsync(x => x.Id == messageUpdateDto.Id);

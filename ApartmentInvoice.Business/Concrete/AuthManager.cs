@@ -5,7 +5,7 @@ using ApartmentInvoice.Core.Utilities.Results;
 using ApartmentInvoice.Core.Utilities.Security.Hashing;
 using ApartmentInvoice.Core.Utilities.Security.JWT;
 using ApartmentInvoice.Entity.DTOs.AuthDtos;
-
+using ApartmentInvoice.Entity.DTOs.UserOperationClaimDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,11 +18,12 @@ namespace ApartmentInvoice.Business.Concrete
     {
         private IUserService _userService;
         private ITokenHelper _tokenHelper;
-
-        public AuthManager(IUserService userService, ITokenHelper tokenHelper)
+        private IUserOperationClaimService _userOperationClaimService;
+        public AuthManager(IUserService userService, ITokenHelper tokenHelper,IUserOperationClaimService userOperationClaimService)
         {
             _userService = userService;
             _tokenHelper = tokenHelper;
+            _userOperationClaimService = userOperationClaimService;
         }
 
       
@@ -38,10 +39,14 @@ namespace ApartmentInvoice.Business.Concrete
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
                 Status = true,
+                OperationClaimId = 5 ,
+                
 
 
             };
             _userService.Add(user);
+          
+       
             return new SuccessDataResult<User>(user, Messages.UserRegistered);
         }
 

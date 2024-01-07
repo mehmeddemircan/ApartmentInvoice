@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import EmptyResult from "../components/results/EmptyResult";
 import ErrorResult from "../components/results/ErrorResult";
 import AddedEmptyResult from "../components/results/AddedEmptyResult";
+import FaqSegment from "../components/faq/FaqSegment";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ const HomePage = () => {
       <h2>home page</h2>
     
       <HomeSection />
+      {/* <FaqSegment /> */}
     </MainLayout>
   );
 };

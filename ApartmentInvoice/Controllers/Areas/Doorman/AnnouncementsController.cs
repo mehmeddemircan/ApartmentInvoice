@@ -95,7 +95,7 @@ namespace ApartmentInvoice.WebApi.Controllers.Areas.Doorman
         [HttpPut]
         [Route("[action]")]
 
-        public async Task<IActionResult> UpdateAnnouncement([FromForm] AnnouncementUpdateDto announcementUpdateDto)
+        public async Task<IActionResult> UpdateAnnouncement([FromBody] AnnouncementUpdateDto announcementUpdateDto)
         {
             var result = await _announcementService.UpdateAsync(announcementUpdateDto);
 
@@ -104,6 +104,37 @@ namespace ApartmentInvoice.WebApi.Controllers.Areas.Doorman
                 return Ok(result);
             }
             return BadRequest();
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+
+        public async Task<IActionResult> GetAnnouncementsWithPage(int pageNumber, int pageSize)
+        {
+            var result = await _announcementService.GetListAsyncPagination(pageNumber, pageSize);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest();
+
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+
+        public async Task<IActionResult> GetAnnouncementByDateposted()
+        {
+           var   datePosted = DateTime.Now.Date; 
+            var result = await _announcementService.GetListAsync(x => x.DatePosted.Date == datePosted);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest();
+
         }
     }
 }

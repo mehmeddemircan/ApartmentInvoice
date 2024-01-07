@@ -1,4 +1,5 @@
 ﻿using ApartmentInvoice.Business.Abstract;
+using ApartmentInvoice.Entity.Concrete;
 using ApartmentInvoice.Entity.DTOs.UsersDtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -93,6 +94,37 @@ namespace ApartmentInvocie.WebApi.Controllers
         public async Task<IActionResult> GetUserswithPage(int pageNumber, int pageSize)
         {
             var result = await _userService.GetListAsyncPagination(pageNumber, pageSize);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest();
+
+        }
+
+        [HttpPut]
+        [Route("[action]")]
+
+        public async Task<IActionResult> ChangeRoleUser(int userId, int operationClaimId)
+        {
+            var result = await _userService.ChangeRoleUser(userId, operationClaimId);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest();
+
+        }
+
+        
+        [HttpGet]
+        [Route("[action]")]
+
+        public async Task<IActionResult> GetUsersByRole(int pageNumber,int pageSize,int operationClaimId)
+        {
+            var result = await _userService.GetListAsyncPagination(pageNumber,pageSize, x => x.OperationClaimId == operationClaimId);
             if (result != null)
             {
                 return Ok(result);

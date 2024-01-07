@@ -10,7 +10,5 @@ namespace ApartmentInvoice.Core.Entities.Concrete.Auth
     {
 
         public string Name { get; set; }
-
-        public virtual ICollection<UserOperationClaim>? UserRoles { get; set; }
     }
 }

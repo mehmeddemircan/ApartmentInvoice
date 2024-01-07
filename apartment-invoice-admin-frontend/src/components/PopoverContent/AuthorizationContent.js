@@ -12,7 +12,7 @@ const AuthorizationContent = ({ item }) => {
   };
 
   const handleAddRoleToUser = () => {
-    dispatch(AddRoleToUser({ userId, operationClaimId }));
+    dispatch(AddRoleToUser(userId,operationClaimId));
   };
 
   const getAllRole = useSelector((state) => state.role.getAllRole);
@@ -41,7 +41,7 @@ const AuthorizationContent = ({ item }) => {
           className="bg-black text-white rounded-full w-24 mt-4 h-8"
           onClick={handleAddRoleToUser}
         >
-          Uygula
+          Uygula 
         </button>
       </div>
     </Fragment>

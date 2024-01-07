@@ -14,12 +14,16 @@ import {
   ChevronDownIcon,
   PhoneIcon,
   PlayCircleIcon,
+
 } from "@heroicons/react/20/solid";
+import {Menu ,Dropdown,Badge,Tooltip} from 'antd'
 import LoginModal from "../modal/LoginModal";
 import LanguageModal from "../modal/LanguageModal";
 import { LoggedInHeader } from "./LoggedInHeader";
 import {useSelector} from 'react-redux'
 import { NotLoggedInHeader } from "./NotLoggedInHeader";
+import GenericPopover from "../popover/GenericPopover";
+import AnnouncementContent from "../popover/content/AnnouncementContent";
 
 const products = [
   {
@@ -200,6 +204,20 @@ const MainHeader = () => {
             isShowLoginModalOpen={isShowLoginModalOpen}
             handleCancelLoginModal={handleCancelLoginModal}
           />
+            
+         <GenericPopover content={<AnnouncementContent />}>
+         <div >
+            <i
+              class="fa-solid fa-bell me-3 ms-3 mt-1"
+              
+            ></i>
+            
+          </div>
+         </GenericPopover>
+     
+       
+          
+           
            <div >
             <i
               class="fa-solid fa-globe me-3 mt-1"
@@ -211,6 +229,12 @@ const MainHeader = () => {
           />
           </div>
         </div>
+
+        
+      
+          
+      
+      
        
       </nav>
       <Dialog

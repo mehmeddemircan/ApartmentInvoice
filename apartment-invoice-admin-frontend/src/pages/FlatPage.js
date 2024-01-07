@@ -8,16 +8,20 @@ import FlatItem from "../components/ListItem/FlatItem";
 import LoadingSpinner from "../components/Spinner/LoadingSpinner";
 import EmptyResult from "../components/Results/EmptyResult";
 import { message } from "antd";
-import { ADD_FLAT_RESET, DELETE_FLAT_RESET } from "../redux/constants/FlatConstants";
+import {
+  ADD_FLAT_RESET,
+  DELETE_FLAT_RESET,
+  UPDATE_FLAT_RESET,
+} from "../redux/constants/FlatConstants";
 const FlatPage = () => {
   const getAllFlat = useSelector((state) => state.flat.getAllFlat);
-  const deleteUpdateFlat = useSelector((state) => state.flat.deleteUpdateFlat)
+  const deleteUpdateFlat = useSelector((state) => state.flat.deleteUpdateFlat);
   const addFlat = useSelector((state) => state.flat.addFlat);
   let { blockNo } = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(AllFlatByBlock(blockNo));
-  }, [dispatch, blockNo, addFlat.isAdded,deleteUpdateFlat.isDeleted]);
+  }, [dispatch, blockNo, addFlat.isAdded, deleteUpdateFlat.isDeleted]);
   useEffect(() => {
     if (addFlat.isAdded) {
       message.success(addFlat.message);
@@ -25,10 +29,21 @@ const FlatPage = () => {
       dispatch({ type: ADD_FLAT_RESET });
     }
     if (deleteUpdateFlat.isDeleted) {
-        message.success(deleteUpdateFlat.message);
-        dispatch({ type: DELETE_FLAT_RESET });
-      }
-  }, [dispatch, addFlat.isAdded,deleteUpdateFlat.isDeleted]);
+      message.success(deleteUpdateFlat.message);
+      dispatch({ type: DELETE_FLAT_RESET });
+    }
+
+    if (deleteUpdateFlat.isUpdated) {
+      message.success(deleteUpdateFlat.message);
+
+      dispatch({ type: UPDATE_FLAT_RESET });
+    }
+  }, [
+    dispatch,
+    addFlat.isAdded,
+    deleteUpdateFlat.isDeleted,
+    deleteUpdateFlat.isUpdated,
+  ]);
 
   const handleAddFlat = () => {
     dispatch(CreateFlat({ flatNo, isEmpty, numberOfRooms, floor, blockId }));
@@ -107,23 +122,19 @@ const FlatPage = () => {
         </div>
       </div>
       <div>
-        
-          {getAllFlat && getAllFlat.success ? (
-            getAllFlat.flats.data.length === 0 ? (
-              <EmptyResult />
-            ) : (
-                <div className="mt-12 flex justify-between items-center gap-3 flex-wrap">
-                    {
-                    getAllFlat.flats.data.map((item) => (
-                <FlatItem key={item.id} item={item} />
-              ))
-              }
-              </div>
-            )
+        {getAllFlat && getAllFlat.success ? (
+          getAllFlat.flats.data.length === 0 ? (
+            <EmptyResult />
           ) : (
-            <LoadingSpinner />
-          )}
-        
+            <div className="mt-12 flex justify-between items-center gap-3 flex-wrap">
+              {getAllFlat.flats.data.map((item) => (
+                <FlatItem key={item.id} item={item} />
+              ))}
+            </div>
+          )
+        ) : (
+          <LoadingSpinner />
+        )}
       </div>
     </MainLayout>
   );

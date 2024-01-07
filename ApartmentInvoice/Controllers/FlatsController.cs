@@ -133,7 +133,7 @@ namespace ApartmentInvocie.WebApi.Controllers
         [HttpPut]
         [Route("[action]")]
 
-        public async Task<IActionResult> UpdateFlat([FromForm] FlatUpdateDto flatUpdateDto)
+        public async Task<IActionResult> UpdateFlat([FromBody] FlatUpdateDto flatUpdateDto)
         {
             var result = await _flatService.UpdateAsync(flatUpdateDto);
 

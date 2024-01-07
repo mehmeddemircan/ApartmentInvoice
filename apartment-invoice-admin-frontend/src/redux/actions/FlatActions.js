@@ -9,6 +9,9 @@ import {
   GET_ALL_FLAT_FAIL,
   GET_ALL_FLAT_REQUEST,
   GET_ALL_FLAT_SUCCESS,
+  UPDATE_FLAT_FAIL,
+  UPDATE_FLAT_REQUEST,
+  UPDATE_FLAT_SUCCESS,
 } from "../constants/FlatConstants";
 
 export const CreateFlat = (flat) => async (dispatch) => {
@@ -78,3 +81,44 @@ export const AllFlatByBlock = (blockId) => async (dispatch) => {
     }
   };
 //update flat 
+
+export const UpdateFlat = (flat) => async (dispatch) => {
+  try {
+    dispatch({
+      type: UPDATE_FLAT_REQUEST,
+    });
+
+    const { data } = await axios.put(`https://localhost:7173/api/Flats/UpdateFlat`,flat);
+
+    dispatch({
+      type: UPDATE_FLAT_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: UPDATE_FLAT_FAIL,
+      error: error.response,
+    });
+  }
+};
+
+export const AddUserToFlat = (flat) => async (dispatch) => {
+  try {
+    dispatch({
+      type: UPDATE_FLAT_REQUEST,
+    });
+
+    const { data } = await axios.put(`https://localhost:7173/api/Flats/UpdateFlat`,flat);
+
+    dispatch({
+      type: UPDATE_FLAT_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: UPDATE_FLAT_FAIL,
+      error: error.response,
+    });
+  }
+};
+
