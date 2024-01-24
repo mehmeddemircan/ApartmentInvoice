@@ -14,7 +14,7 @@ const ActivitiesPage = () => {
         <ActivityCard />
         <ActivityCard />
       </div>
-      <CustomPagination />
+     
     </MainLayout>
   );
 };

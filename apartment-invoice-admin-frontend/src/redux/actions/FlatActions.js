@@ -3,6 +3,9 @@ import {
   ADD_FLAT_FAIL,
   ADD_FLAT_REQUEST,
   ADD_FLAT_SUCCESS,
+  ADD_USER_TO_FLAT_FAIL,
+  ADD_USER_TO_FLAT_REQUEST,
+  ADD_USER_TO_FLAT_SUCCESS,
   DELETE_FLAT_FAIL,
   DELETE_FLAT_REQUEST,
   DELETE_FLAT_SUCCESS,
@@ -105,18 +108,18 @@ export const UpdateFlat = (flat) => async (dispatch) => {
 export const AddUserToFlat = (flat) => async (dispatch) => {
   try {
     dispatch({
-      type: UPDATE_FLAT_REQUEST,
+      type: ADD_USER_TO_FLAT_REQUEST,
     });
 
-    const { data } = await axios.put(`https://localhost:7173/api/Flats/UpdateFlat`,flat);
+    const { data } = await axios.put(`https://localhost:7173/api/Flats/AddUserToFlat`,flat);
 
     dispatch({
-      type: UPDATE_FLAT_SUCCESS,
+      type: ADD_USER_TO_FLAT_SUCCESS,
       payload: data,
     });
   } catch (error) {
     dispatch({
-      type: UPDATE_FLAT_FAIL,
+      type: ADD_USER_TO_FLAT_FAIL,
       error: error.response,
     });
   }

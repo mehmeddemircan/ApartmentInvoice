@@ -1,5 +1,8 @@
 ﻿using ApartmentInvoice.Business.Abstract;
+using ApartmentInvoice.Entity.Concrete;
 using ApartmentInvoice.Entity.DTOs.AuthDtos;
+using ApartmentInvoice.Email;
+using Castle.Core.Smtp;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,10 +15,11 @@ namespace ApartmentInvocie.WebApi.Controllers
 
 
         private IAuthService _authService;
-
-        public AuthsController(IAuthService authService)
+        private ApartmentInvoice.Email.IEmailSender _emailSender;
+        public AuthsController(IAuthService authService, ApartmentInvoice.Email.IEmailSender emailSender)
         {
             _authService = authService;
+            _emailSender = emailSender;
         }
         /// <summary>
         /// Kullanici giris yapan API 
@@ -42,6 +46,14 @@ namespace ApartmentInvocie.WebApi.Controllers
             }
 
             return BadRequest(result.Message);
+        }
+
+        [HttpGet("sendEmailAsync")]
+        public async Task<IActionResult> SendEmailAsync(string email)
+        {
+            var message = new ApartmentInvoice.Email.Message(new string[] { email }, "Doğrulama maili", "http://localhost:3000/verified/" + email);
+            await _emailSender.SendEmailAsync(message);
+            return Ok();
         }
 
 

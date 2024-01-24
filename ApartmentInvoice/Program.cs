@@ -1,7 +1,9 @@
 using ApartmentInvoice.Business.DependencyResolvers.Autofac;
 using ApartmentInvoice.Business.Mappings;
+using ApartmentInvoice.Core.Utilities.Cloudinary;
 using ApartmentInvoice.Core.Utilities.Security.Encryption;
 using ApartmentInvoice.Core.Utilities.Security.JWT;
+using ApartmentInvoice.Email;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using AutoMapper;
@@ -81,6 +83,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 #endregion
 
+builder.Services.Configure<CloudinarySettings>(configuration.GetSection("CloudinarySettings"));
+var emailConfig = builder.Configuration
+        .GetSection("EmailConfiguration")
+        .Get<EmailConfiguration>();
+builder.Services.AddSingleton(emailConfig);
 builder.Services.AddCors(options =>
 {
     var frontendURL = configuration.GetValue<string>("frontend_url");
@@ -91,6 +98,7 @@ builder.Services.AddCors(options =>
     });
 
 });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -11,7 +11,8 @@ namespace ApartmentInvoice.Entity.DTOs.FlatDtos
         public string NumberOfRooms { get; set; }
         public int Floor { get; set; }
         public int FlatNo { get; set; }
-       
+
+        public int? UserId { get; set; }
         public int BlockId { get; set; }
  
     }

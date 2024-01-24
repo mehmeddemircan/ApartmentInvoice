@@ -3,16 +3,22 @@ import { Button, Modal } from "antd";
 import { Form, Input, InputNumber, Select, Switch } from "antd";
 
 import { useDispatch, useSelector } from "react-redux";
+import { AllUser } from "../../../redux/actions/UserActions";
+import { useEffect } from "react";
 
 const AddUserToFlatModal = ({
   isShowAddUserToFlatModal,
   handleCloseAddUserToFlatModal,
+  handleChangeUser,
+  handleAddUserToFlat
 }) => {
   const dispatch = useDispatch();
+useEffect(() => {
+    dispatch(AllUser())
+}, [dispatch])
 
-  const handleAddUserToFlat = () => {
-    dispatch();
-  };
+
+  const getAllUser = useSelector((state) => state.user.getAllUser)
 
   return (
     <Modal
@@ -28,7 +34,7 @@ const AddUserToFlatModal = ({
           className="btn btn-outline-primary"
           onClick={handleAddUserToFlat}
         >
-          Onayla
+          Ekle
         </Button>,
       ]}
     >
@@ -45,12 +51,11 @@ const AddUserToFlatModal = ({
         }}
       >
         <Form.Item label="Kullanici">
-          <Select placeholder="kullanici">
-            <Select.Option value="1+0">1+0</Select.Option>
-            <Select.Option value="1+1">1+1</Select.Option>
-            <Select.Option value="2+1">2+1</Select.Option>
-            <Select.Option value="3+1">3+1</Select.Option>
-            <Select.Option value="4+1">4+1</Select.Option>
+          <Select onSelect={handleChangeUser} placeholder="kullanici">
+            {getAllUser && getAllUser.success && getAllUser.users.data.map((item) => (
+                 <Select.Option value={item.id}>{item.email}</Select.Option>
+               
+            ))}
           </Select>
         </Form.Item>
       </Form>

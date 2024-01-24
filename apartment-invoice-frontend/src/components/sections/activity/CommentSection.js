@@ -36,7 +36,7 @@ const CommentSections = () => {
       <CommentItem />
       <CommentItem />
       <CommentItem />
-      <CustomPagination />
+ 
     </Fragment>
   );
 };

@@ -6,7 +6,7 @@ import {
 } from "@ant-design/icons";
 import { Card, Descriptions, Tooltip,message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { DeleteFlat, UpdateFlat } from "../../redux/actions/FlatActions";
+import { AddUserToFlat, DeleteFlat, UpdateFlat } from "../../redux/actions/FlatActions";
 import EditFlatModal from "../Modal/Flat/EditFlatModal";
 import { useParams } from "react-router-dom";
 import { UPDATE_FLAT_RESET } from "../../redux/constants/FlatConstants";
@@ -16,16 +16,16 @@ import AddUserToFlatModal from "../Modal/Flat/AddUserToFlatModal";
 const FlatItem = ({ item }) => {
   const dispatch = useDispatch();
   const deleteUpdateFlat = useSelector((state) => state.flat.deleteUpdateFlat)
-  const handleDeleteFlat = (flatId) => {
-    dispatch(DeleteFlat(flatId));
-  };
-  let { blockNo } = useParams();
 
+  let { blockNo } = useParams();
+  const [userId, setUserId] = useState("")
   const handleChangeNumberOfRooms = (value) => {
     setNumberOfRooms(value);
     // Do something with the selected value
   };
-
+  const handleChangeUser = (value) => {
+    setUserId(value)
+  }
   const handleChangeFloor = (value) => {
     setFloor(value);
   };
@@ -40,7 +40,9 @@ const FlatItem = ({ item }) => {
   const [flatNo, setFlatNo] = useState(item.flatNo)
   const [blockId, setBlockId] = useState(blockNo)
 
-
+  const handleAddUserToFlat = () => {
+    dispatch(AddUserToFlat({id,isEmpty,numberOfRooms,floor,flatNo,userId,blockId}))
+  }
 
   const handleUpdateFlat = () => {
     dispatch(UpdateFlat({id,isEmpty,numberOfRooms,floor,flatNo,blockId}))
@@ -61,7 +63,10 @@ const FlatItem = ({ item }) => {
     if (deleteUpdateFlat.isUpdated) {
       handleCancelEditFlatModal()
     }
-  }, [deleteUpdateFlat.isUpdated])
+    if (deleteUpdateFlat.isAddedUser) {
+      handleCloseAddUserToFlatModal()
+    }
+  }, [deleteUpdateFlat.isUpdated,deleteUpdateFlat.isAddedUser])
 
   const confirm = (itemId) => {
     dispatch(DeleteFlat(itemId));
@@ -93,7 +98,9 @@ const FlatItem = ({ item }) => {
             </Tooltip>
             <AddUserToFlatModal 
               isShowAddUserToFlatModal={isShowAddUserToFlatModal}
-              handleCancelEditFlatModal={handleCancelEditFlatModal}
+              handleCloseAddUserToFlatModal={handleCloseAddUserToFlatModal}
+              handleChangeUser={handleChangeUser}
+              handleAddUserToFlat={handleAddUserToFlat}
             />
             <Tooltip placement="topLeft" title="Edit">
               <button className="btn btn-sm " onClick={handleShowEditFlatModal}>

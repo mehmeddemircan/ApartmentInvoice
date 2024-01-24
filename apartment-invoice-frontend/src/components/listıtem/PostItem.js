@@ -39,7 +39,7 @@ if (postUpdateDelete.isUpdated) {
       <div class="flex items-center">
         <p class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
          
-          Michael Gough  
+          {item.firstName} {item.lastName}
         </p>
         <p class="text-sm text-gray-600 dark:text-gray-400">
           <time pubdate datetime="2022-02-08" title="February 8th, 2022">

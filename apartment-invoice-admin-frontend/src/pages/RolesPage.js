@@ -52,8 +52,8 @@ const RolesPage = () => {
 <div className="w-full mx-auto px-4">
         <div className="items-start justify-between sm:flex">
             <div>
-                <h4 className="text-gray-800 text-xl font-semibold">Tüm Kullanıcılar</h4>
-                <p className="mt-2 text-gray-600 text-base sm:text-sm">Give your team members access to manage the system.</p>
+                <h4 className="text-gray-800 text-xl font-semibold">Tüm Roller</h4>
+                <p className="mt-2 text-gray-600 text-base sm:text-sm">Burada tüm rolleri görebilirsiniz ve rol isimlerini ve yeni rol ekleyebilir silebilirsiniz </p>
             </div>
             <button
             onClick={handleShowRoleModal}

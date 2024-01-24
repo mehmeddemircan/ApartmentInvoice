@@ -10,7 +10,7 @@ const FlatDescription = ({item}) => {
           <p><strong>Kat Sayısı : </strong>{item.floor}</p>
           <p><strong>Genişlik : </strong>{item.numberOfRooms}</p>
           <p><strong>Boş mu : </strong>{item.isEmpty ? "Boş" : "Dolu"}</p>
-          
+         {item.userId != null &&  <p><strong>Kullanici : </strong>{item.email}</p>}
         </div>
       </div>
     )

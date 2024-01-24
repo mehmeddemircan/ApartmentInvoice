@@ -11,6 +11,7 @@
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Autofac.Extras.DynamicProxy" Version="7.1.0" />
     <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="CloudinaryDotNet" Version="1.25.0" />
     <PackageReference Include="FluentValidation" Version="11.7.1" />
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
     <PackageReference Include="Stripe.net" Version="43.5.0" />
@@ -18,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ApartmentInvoice.DataAccess\ApartmentInvoice.DataAccess.csproj" />
+    <ProjectReference Include="..\ApartmentInvoice.Email\ApartmentInvoice.Email.csproj" />
     <ProjectReference Include="..\ApartmentInvoice.Entity\ApartmentInvoice.Entity.csproj" />
   </ItemGroup>
 

@@ -152,21 +152,35 @@ namespace ApartmentInvoice.Business.Concrete
 
         public async Task<IDataResult<IEnumerable<PostsDto>>> GetListAsyncPagination(int pageNumber, int pageSize, Expression<Func<Post, bool>> filter = null)
         {
+
+            List<PostsDto> posts = new List<PostsDto>();
+
             if (filter == null)
             {
           
                 var response = await _postRepository.GetListAsyncPagination(pageNumber, pageSize);
 
-                var responsePostsDto= _mapper.Map<IEnumerable<PostsDto>>(response);
-                return new SuccessDataResult<IEnumerable<PostsDto>>(responsePostsDto, Messages.Listed);
+                //var responsePostsDto= _mapper.Map<IEnumerable<PostsDto>>(response);
+
+                foreach (var post in response)
+                {
+                    var postDto = await AssignPosts(post, post.UserId);
+                    posts.Add(postDto);
+                }
+                return new SuccessDataResult<IEnumerable<PostsDto>>(posts, Messages.Listed);
             }
             else
             {
 
                 var response = await _postRepository.GetListAsyncPagination(pageNumber, pageSize,filter);
 
-                var responsePostsDto = _mapper.Map<IEnumerable<PostsDto>>(response);
-                return new SuccessDataResult<IEnumerable<PostsDto>>(responsePostsDto, Messages.Listed);
+
+                foreach (var post in response)
+                {
+                    var postDto = await AssignPosts(post, post.UserId);
+                    posts.Add(postDto);
+                }
+                return new SuccessDataResult<IEnumerable<PostsDto>>(posts, Messages.Listed);
             }
         }
     }

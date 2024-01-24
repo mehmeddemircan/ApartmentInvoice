@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ApartmentInvoice.Email;
 
 namespace ApartmentInvoice.Business.DependencyResolvers.Autofac
 {
@@ -89,6 +90,10 @@ namespace ApartmentInvoice.Business.DependencyResolvers.Autofac
             builder.RegisterType<VoteRepository>().As<IVoteRepository>();
 
             builder.RegisterType<PaymentManager>().As<IPaymentService>();
+
+            builder.RegisterType<EmailSender>().As<IEmailSender>();
+            builder.RegisterType<CloudinaryManager>().As<ICloudinaryService>();
+            builder.RegisterType<ActivityImageRepository>().As<IActivityImageRepository>();
             //builder.RegisterType<CarImageRepository>().As<ICarImageRepository>();
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();

@@ -15,6 +15,8 @@ import { useEffect } from "react";
 import { isUserLoggedIn } from "./redux/actions/AuthAction";
 import ProfilePage from "./pages/ProfilePage";
 import PostsPage from "./pages/PostsPage";
+import MyPostsPage from "./pages/MyPostsPage";
+import MyCommentsPage from "./pages/MyCommentsPage";
 
 
 function App() {
@@ -43,6 +45,8 @@ function App() {
         <Route path="/results" element={<ResultsPage />} />
         <Route path="/my-profile" element={<ProfilePage />} />
         <Route path="/posts" element={<PostsPage />} />
+        <Route path="/my-posts" element={<MyPostsPage />} />
+        <Route path="/my-comments" element={<MyCommentsPage />} />
       </Routes>
     </Router>
   );

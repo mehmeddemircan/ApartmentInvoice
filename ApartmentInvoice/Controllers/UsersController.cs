@@ -11,10 +11,14 @@ namespace ApartmentInvocie.WebApi.Controllers
     public class UsersController : ControllerBase
     {
 
-        IUserService _userService; 
-        public UsersController(IUserService userService)
+        IUserService _userService;
+        IPostService _postService;
+        IPostCommentService _postCommentService;
+        public UsersController(IUserService userService,IPostService postService, IPostCommentService postCommentService)
         {
             _userService = userService;
+            _postService = postService;
+            _postCommentService = postCommentService;
         }
         /// <summary>
         /// Bütün kullanıcıları çeken api 
@@ -125,6 +129,37 @@ namespace ApartmentInvocie.WebApi.Controllers
         public async Task<IActionResult> GetUsersByRole(int pageNumber,int pageSize,int operationClaimId)
         {
             var result = await _userService.GetListAsyncPagination(pageNumber,pageSize, x => x.OperationClaimId == operationClaimId);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest();
+
+        }
+
+
+        [HttpGet]
+        [Route("[action]")]
+
+        public async Task<IActionResult> GetUsersPosts(int pageNumber, int pageSize, int userId)
+        {
+            var result = await _postService.GetListAsyncPagination(pageNumber, pageSize, x => x.UserId == userId);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest();
+
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+
+        public async Task<IActionResult> GetUsersPostComments( int userId)
+        {
+            var result = await _postCommentService.GetListAsync(x => x.UserId == userId);
             if (result != null)
             {
                 return Ok(result);

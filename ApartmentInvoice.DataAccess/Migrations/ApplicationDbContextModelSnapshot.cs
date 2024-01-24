@@ -220,6 +220,43 @@ namespace ApartmentInvoice.DataAccess.Migrations
                     b.ToTable("ActivityComments");
                 });
 
+            modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.ActivityImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ActivityId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PublicId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ActivityId");
+
+                    b.ToTable("ActivityImage");
+                });
+
             modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.Announcement", b =>
                 {
                     b.Property<int>("Id")
@@ -776,6 +813,15 @@ namespace ApartmentInvoice.DataAccess.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.ActivityImage", b =>
+                {
+                    b.HasOne("ApartmentInvoice.Entity.Concrete.Activity", null)
+                        .WithMany("Images")
+                        .HasForeignKey("ActivityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.Announcement", b =>
                 {
                     b.HasOne("ApartmentInvoice.Core.Entities.Concrete.Auth.User", "User")
@@ -927,6 +973,8 @@ namespace ApartmentInvoice.DataAccess.Migrations
             modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.Activity", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("Images");
 
                     b.Navigation("UserActivities");
                 });

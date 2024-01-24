@@ -143,5 +143,19 @@ namespace ApartmentInvocie.WebApi.Controllers
             }
             return BadRequest();
         }
+
+        [HttpPut]
+        [Route("[action]")]
+
+        public async Task<IActionResult> AddUserToFlat([FromBody] FlatUpdateDto flatUpdateDto)
+        {
+            var result = await _flatService.AddUserToFlat(flatUpdateDto);
+
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
     }
 }

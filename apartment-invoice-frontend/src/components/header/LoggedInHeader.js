@@ -149,7 +149,7 @@ export const LoggedInHeader = () => {
                 </div>
                 <div className="flex-auto">
                   <a
-                    href="/my-comments"
+                    href="/my-posts"
                     className="block font-semibold text-gray-900"
                   >
                     Postlarım

@@ -10,6 +10,7 @@ import EmptyResult from "../components/Results/EmptyResult";
 import { message } from "antd";
 import {
   ADD_FLAT_RESET,
+  ADD_USER_TO_FLAT_RESET,
   DELETE_FLAT_RESET,
   UPDATE_FLAT_RESET,
 } from "../redux/constants/FlatConstants";
@@ -21,7 +22,7 @@ const FlatPage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(AllFlatByBlock(blockNo));
-  }, [dispatch, blockNo, addFlat.isAdded, deleteUpdateFlat.isDeleted]);
+  }, [dispatch, blockNo, addFlat.isAdded, deleteUpdateFlat.isDeleted,deleteUpdateFlat.isAddedUser]);
   useEffect(() => {
     if (addFlat.isAdded) {
       message.success(addFlat.message);
@@ -38,11 +39,17 @@ const FlatPage = () => {
 
       dispatch({ type: UPDATE_FLAT_RESET });
     }
+    if (deleteUpdateFlat.isAddedUser) {
+      message.success(deleteUpdateFlat.message);
+
+      dispatch({ type: ADD_USER_TO_FLAT_RESET });
+    }
   }, [
     dispatch,
     addFlat.isAdded,
     deleteUpdateFlat.isDeleted,
     deleteUpdateFlat.isUpdated,
+    deleteUpdateFlat.isAddedUser
   ]);
 
   const handleAddFlat = () => {
@@ -127,8 +134,8 @@ const FlatPage = () => {
             <EmptyResult />
           ) : (
             <div className="mt-12 flex justify-between items-center gap-3 flex-wrap">
-              {getAllFlat.flats.data.map((item) => (
-                <FlatItem key={item.id} item={item} />
+              {getAllFlat.flats.data.map((item,idx) => (
+                <FlatItem key={idx} item={item} />
               ))}
             </div>
           )

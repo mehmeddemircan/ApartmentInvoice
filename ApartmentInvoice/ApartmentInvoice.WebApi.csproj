@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ApartmentInvoice.Business\ApartmentInvoice.Business.csproj" />
+    <ProjectReference Include="..\ApartmentInvoice.Email\ApartmentInvoice.Email.csproj" />
   </ItemGroup>
 
 </Project>

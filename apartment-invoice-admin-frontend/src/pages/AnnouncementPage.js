@@ -108,9 +108,9 @@ const AnnouncementPage = () => {
           <>
             <div className="my-10 flex flex-row justify-between items-center">
               <h1 class="text-5xl font-extrabold dark:text-white">
-                Flowbite
+                Apartman Yönetim
                 <small class="ms-2 font-semibold text-gray-500 dark:text-gray-400">
-                  This is secondary text
+               Duyuruları
                 </small>
               </h1>
               <button

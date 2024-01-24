@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { ADD_FLAT_FAIL, ADD_FLAT_REQUEST, ADD_FLAT_RESET, ADD_FLAT_SUCCESS, DELETE_FLAT_FAIL, DELETE_FLAT_REQUEST, DELETE_FLAT_RESET, DELETE_FLAT_SUCCESS, GET_ALL_FLAT_FAIL, GET_ALL_FLAT_REQUEST, GET_ALL_FLAT_SUCCESS, UPDATE_FLAT_FAIL, UPDATE_FLAT_REQUEST, UPDATE_FLAT_RESET, UPDATE_FLAT_SUCCESS } from "../constants/FlatConstants";
+import { ADD_FLAT_FAIL, ADD_FLAT_REQUEST, ADD_FLAT_RESET, ADD_FLAT_SUCCESS, ADD_USER_TO_FLAT_FAIL, ADD_USER_TO_FLAT_REQUEST, ADD_USER_TO_FLAT_RESET, ADD_USER_TO_FLAT_SUCCESS, DELETE_FLAT_FAIL, DELETE_FLAT_REQUEST, DELETE_FLAT_RESET, DELETE_FLAT_SUCCESS, GET_ALL_FLAT_FAIL, GET_ALL_FLAT_REQUEST, GET_ALL_FLAT_SUCCESS, UPDATE_FLAT_FAIL, UPDATE_FLAT_REQUEST, UPDATE_FLAT_RESET, UPDATE_FLAT_SUCCESS } from "../constants/FlatConstants";
 
 
 
@@ -63,6 +63,7 @@ export const getAllFlatReducer = (
     switch (action.type) {
       case DELETE_FLAT_REQUEST:
       case UPDATE_FLAT_REQUEST:
+        case ADD_USER_TO_FLAT_REQUEST: 
         return { ...state, loading: true };
   
       case DELETE_FLAT_SUCCESS:
@@ -81,9 +82,18 @@ export const getAllFlatReducer = (
           message : action.payload.message 
         
         };
+        case ADD_USER_TO_FLAT_SUCCESS:
+          return {
+            ...state,
+            loading: false,
+            isAddedUser: true,
+            message : action.payload.message 
+          
+          };
   
       case DELETE_FLAT_FAIL:
       case UPDATE_FLAT_FAIL:
+      case ADD_USER_TO_FLAT_FAIL:
         return { ...state, error: action.payload.error };
   
       case DELETE_FLAT_RESET:
@@ -94,6 +104,11 @@ export const getAllFlatReducer = (
         return {
           ...state,isUpdated : false
         };
+
+        case ADD_USER_TO_FLAT_RESET:
+          return {
+            ...state,isAddedUser : false
+          };
       default:
         return state;
     }
