@@ -20,5 +20,7 @@ namespace ApartmentInvoice.Entity.DTOs.ActivityDtos
         public int Capacity { get; set; }
 
         public bool IsActive { get; set; }
+
+        public string Images { get; set; }
     }
 }

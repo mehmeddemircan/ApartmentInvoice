@@ -14,6 +14,7 @@ import AnnouncementPage from './pages/AnnouncementPage';
 import UserPage from './pages/UserPage';
 import RolesPage from './pages/RolesPage';
 import ComplainsPage from './pages/ComplainsPage';
+import ActivityPage from './pages/ActivityPage';
 function App() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth)
@@ -36,6 +37,7 @@ function App() {
       <Route  path="/add-role" element={<PrivateRoute><RolesPage /></PrivateRoute>} />
       <Route  path="/blocks/:blockNo/add-new-flat" element={<PrivateRoute><FlatPage /></PrivateRoute>} />
       <Route  path="/complains" element={<PrivateRoute><ComplainsPage /></PrivateRoute>} />
+      <Route  path="/add-activity" element={<PrivateRoute><ActivityPage /></PrivateRoute>} />
       <Route  path="*" element={<NotFoundPage />} />
    
     </Routes>

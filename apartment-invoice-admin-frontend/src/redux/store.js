@@ -8,6 +8,7 @@ import announcementReducer from "./reducers/AnnouncementReducer";
 import userReducer from "./reducers/UserReducer";
 import roleReducer from "./reducers/RoleReducer";
 import complainReducer from "./reducers/ComplainReducer";
+import activityReducer from "./reducers/ActivityReducer";
 
 
 const rootReducer = combineReducers({
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
    announcement : announcementReducer,
    user : userReducer,
    role:  roleReducer,
-   complain : complainReducer
+   complain : complainReducer,
+   activity : activityReducer
  
 })
 const initialState = {}

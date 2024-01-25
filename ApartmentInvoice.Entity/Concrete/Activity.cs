@@ -21,7 +21,7 @@ namespace ApartmentInvoice.Entity.Concrete
 
         public bool IsActive { get; set; }
 
-        public List<ActivityImage> Images { get; set; }
+        public string Images { get; set; }
 
         public ICollection<ActivityComment> Comments { get; set; }
 

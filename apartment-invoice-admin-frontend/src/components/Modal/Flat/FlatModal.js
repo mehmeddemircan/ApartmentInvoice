@@ -38,6 +38,7 @@ const FlatModal = ({
     >
       <Form
         className="mt-6"
+        
         labelCol={{
           span: 4,
         }}

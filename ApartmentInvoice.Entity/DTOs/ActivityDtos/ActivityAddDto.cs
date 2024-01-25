@@ -22,7 +22,7 @@ namespace ApartmentInvoice.Entity.DTOs.ActivityDtos
 
         public bool IsActive { get; set; } = true;
 
-        public List<IFormFile> Images { get; set; }
+        public string Images { get; set; }
 
 
     }
