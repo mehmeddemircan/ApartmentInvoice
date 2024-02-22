@@ -6,6 +6,8 @@ import complainReducer from "./reducers/ComplainReducer";
 import postReducer from "./reducers/PostReducer";
 import announcementReducer from "./reducers/AnnouncementReducer";
 import userReducer from "./reducers/UserReducer";
+import activityReducer from "./reducers/ActivityReducer";
+import activityCommentReducer from "./reducers/ActivityCommentReducer";
 
 
 const rootReducer = combineReducers({
@@ -13,7 +15,9 @@ const rootReducer = combineReducers({
     complain : complainReducer,
     post : postReducer,
     announcement : announcementReducer,
-    user : userReducer
+    user : userReducer,
+    activity : activityReducer,
+    activityComment :activityCommentReducer
  
 })
 const initialState = {}

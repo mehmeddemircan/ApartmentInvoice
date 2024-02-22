@@ -40,7 +40,7 @@ function App() {
         <Route path="/features" element={<FeaturesPage />} />
         <Route path="/payment" element={<PaymentPage />} />
         <Route path="/activities" element={<ActivitiesPage />} />
-        <Route path="/activity-details" element={<ActivityDetailsPage />} />
+        <Route path="/activities/:activityId/details" element={<ActivityDetailsPage />} />
         <Route path="/donate" element={<DonatePage />} />
         <Route path="/results" element={<ResultsPage />} />
         <Route path="/my-profile" element={<ProfilePage />} />

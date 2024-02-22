@@ -75,9 +75,9 @@ const FlatModal = ({
 
         <Form.Item label="Boş Mu" valuePropName="checked">
           <Switch
-            defaultChecked={isEmpty}
-            value={isEmpty}
-            onChange={(e) => setIsEmpty(e.target.value)}
+             defaultChecked={isEmpty}
+             checked={isEmpty}
+             onChange={(checked) => setIsEmpty(checked)}
           />
         </Form.Item>
       </Form>

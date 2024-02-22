@@ -22,7 +22,7 @@ const FlatPage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(AllFlatByBlock(blockNo));
-  }, [dispatch, blockNo, addFlat.isAdded, deleteUpdateFlat.isDeleted,deleteUpdateFlat.isAddedUser]);
+  }, [dispatch, blockNo, addFlat.isAdded, deleteUpdateFlat.isDeleted,deleteUpdateFlat.isAddedUser,deleteUpdateFlat.isUpdated]);
   useEffect(() => {
     if (addFlat.isAdded) {
       message.success(addFlat.message);
@@ -36,7 +36,6 @@ const FlatPage = () => {
 
     if (deleteUpdateFlat.isUpdated) {
       message.success(deleteUpdateFlat.message);
-
       dispatch({ type: UPDATE_FLAT_RESET });
     }
     if (deleteUpdateFlat.isAddedUser) {
