@@ -2,7 +2,7 @@
 
 import { combineReducers } from "redux";
 import { DELETE_POST_FAIL, DELETE_POST_REQUEST, DELETE_POST_RESET, DELETE_POST_SUCCESS, GET_ALL_POST_FAIL, GET_ALL_POST_REQUEST, GET_ALL_POST_SUCCESS, GET_ALL_POST_WITH_PAGE_FAIL, GET_ALL_POST_WITH_PAGE_REQUEST, GET_ALL_POST_WITH_PAGE_SUCCESS, SEND_POST_FAIL, SEND_POST_REQUEST, SEND_POST_RESET, SEND_POST_SUCCESS, UPDATE_POST_FAIL, UPDATE_POST_REQUEST, UPDATE_POST_RESET, UPDATE_POST_SUCCESS } from "../constants/PostConstants";
-import { ADD_ACTIVITY_COMMENT_FAIL, ADD_ACTIVITY_COMMENT_REQUEST, ADD_ACTIVITY_COMMENT_RESET, ADD_ACTIVITY_COMMENT_SUCCESS, DELETE_ACTIVITY_COMMENT_FAIL, DELETE_ACTIVITY_COMMENT_REQUEST, DELETE_ACTIVITY_COMMENT_RESET, DELETE_ACTIVITY_COMMENT_SUCCESS, GET_ACTIVITY_COMMENTS_FAIL, GET_ACTIVITY_COMMENTS_REQUEST, GET_ACTIVITY_COMMENTS_SUCCESS, UPDATE_ACTIVITY_COMMENT_FAIL, UPDATE_ACTIVITY_COMMENT_REQUEST, UPDATE_ACTIVITY_COMMENT_RESET, UPDATE_ACTIVITY_COMMENT_SUCCESS } from "../constants/ActivityCommentConstants";
+import { ADD_ACTIVITY_COMMENT_FAIL, ADD_ACTIVITY_COMMENT_REQUEST, ADD_ACTIVITY_COMMENT_RESET, ADD_ACTIVITY_COMMENT_SUCCESS, DELETE_ACTIVITY_COMMENT_FAIL, DELETE_ACTIVITY_COMMENT_REQUEST, DELETE_ACTIVITY_COMMENT_RESET, DELETE_ACTIVITY_COMMENT_SUCCESS, GET_ACTIVITY_COMMENTS_BY_USER_FAIL, GET_ACTIVITY_COMMENTS_BY_USER_REQUEST, GET_ACTIVITY_COMMENTS_BY_USER_SUCCESS, GET_ACTIVITY_COMMENTS_FAIL, GET_ACTIVITY_COMMENTS_REQUEST, GET_ACTIVITY_COMMENTS_SUCCESS, UPDATE_ACTIVITY_COMMENT_FAIL, UPDATE_ACTIVITY_COMMENT_REQUEST, UPDATE_ACTIVITY_COMMENT_RESET, UPDATE_ACTIVITY_COMMENT_SUCCESS } from "../constants/ActivityCommentConstants";
 
 export const getActivityCommentsReducer = (state = { activityComments : []  }, action) => {
     switch (action.type) {
@@ -23,26 +23,27 @@ export const getActivityCommentsReducer = (state = { activityComments : []  }, a
         return state;
     }
   };
+
+  export const getActivityCommentsByUserReducer = (state = { userActivityComments : []  }, action) => {
+    switch (action.type) {
+      case GET_ACTIVITY_COMMENTS_BY_USER_REQUEST:
+        return { ...state, loading: true };
   
-//   export const  = (state = { posts : []  }, action) => {
-//     switch (action.type) {
-//       case GET_ALL_POST_WITH_PAGE_REQUEST:
-//         return { ...state, loading: true };
+      case GET_ACTIVITY_COMMENTS_BY_USER_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+          success: true,
+          userActivityComments: action.payload,
+        };
   
-//       case GET_ALL_POST_WITH_PAGE_SUCCESS:
-//         return {
-//           ...state,
-//           loading: false,
-//           success: true,
-//           posts: action.payload,
-//         };
-  
-//       case GET_ALL_POST_WITH_PAGE_FAIL:
-//         return { ...state, loading: false, error: action.payload };
-//       default:
-//         return state;
-//     }
-//   };
+      case GET_ACTIVITY_COMMENTS_BY_USER_FAIL:
+        return { ...state, loading: false, error: action.payload };
+      default:
+        return state;
+    }
+  };
+
   export const sendActivityCommentReducer = (state = { message: null ,success : false , isAdded  : false}, action) => {
     switch (action.type) {
       case ADD_ACTIVITY_COMMENT_REQUEST:
@@ -65,30 +66,6 @@ export const getActivityCommentsReducer = (state = { activityComments : []  }, a
         return state;
     }
   };
-
-//   export const getSinglePOSTReducer = (state = { post : {} }, action) => {
-//     switch (action.type) {
-//       case GET_SINGLE_POST_REQUEST:
-//         return { ...state, loading: true };
-  
-//       case GET_SINGLE_POST_SUCCESS:
-//         return {
-//           ...state,
-//           loading: false,
-//           success: true,
-//           post: action.payload,
-//         };
-  
-//       case GET_SINGLE_POST_FAIL:
-//         return { ...state, loading: false, error: action.payload };
-//       default:
-//         return state;
-//     }
-//   };
-  
-
-
-
 
   export const activityCommentUpdateDeleteReducer = (
     state = { isUpdated: false, isDeleted: false,message: null },
@@ -139,7 +116,8 @@ export const getActivityCommentsReducer = (state = { activityComments : []  }, a
   const activityCommentReducer = combineReducers({
     sendActivityComment : sendActivityCommentReducer,
     getActivityComments : getActivityCommentsReducer,
-    activityCommentUpdateDelete : activityCommentUpdateDeleteReducer
+    activityCommentUpdateDelete : activityCommentUpdateDeleteReducer,
+    getActivityCommentsByUser : getActivityCommentsByUserReducer
   });
   
   export default activityCommentReducer;

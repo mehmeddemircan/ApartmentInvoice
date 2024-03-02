@@ -4,7 +4,9 @@ import CommentButton from "../../button/CommentButton";
 import CommentModal from "../../modal/CommentModal";
 import CommentItem from "../../listıtem/CommentItem";
 import CustomPagination from "../../pagination/CustomPagination";
-
+import { useDispatch, useSelector } from "react-redux";
+import EmptyResult from "../../results/EmptyResult";
+import LoadingSpinner from "../../spinner/LoadingSpinner";
 const CommentSections = () => {
   const [showCommentModal, setShowCommentModal] = useState(false);
 
@@ -14,7 +16,8 @@ const CommentSections = () => {
   const handleCloseCommentModal = () => {
     setShowCommentModal(false);
   };
-
+    
+  const getActivityComments = useSelector((state) => state.activityComment.getActivityComments)
   return (
     <Fragment>
       <div class="inline-flex items-center justify-center w-full">
@@ -31,12 +34,18 @@ const CommentSections = () => {
           handleCloseCommentModal={handleCloseCommentModal}
         />
       </div>
-      <CommentItem />
-
-      <CommentItem />
-      <CommentItem />
-      <CommentItem />
- 
+      {getActivityComments && getActivityComments.success ? (
+        getActivityComments.activityComments.data.length === 0 ? (
+          <EmptyResult />
+        ) : (
+          getActivityComments.activityComments.data.map((item) => (
+            <CommentItem item={item} />
+          ))
+        )
+      ) : (
+        <LoadingSpinner />
+      )}
+    
     </Fragment>
   );
 };

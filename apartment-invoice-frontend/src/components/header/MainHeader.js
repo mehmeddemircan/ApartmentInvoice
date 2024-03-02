@@ -38,6 +38,7 @@ const products = [
     href: "/features",
     icon: ChartPieIcon,
   },
+ 
   {
     name: "Etkinlikler",
     description: "Speak directly to your customers",
@@ -179,7 +180,7 @@ const MainHeader = () => {
           </Popover>
 
           <a
-            href="/payment"
+            href="/pay-aidat"
             className="text-sm font-semibold leading-6 text-dark hover:text-green-400"
           >
            {t('header.pay')}

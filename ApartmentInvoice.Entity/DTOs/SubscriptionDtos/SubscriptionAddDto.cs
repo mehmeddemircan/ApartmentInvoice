@@ -12,7 +12,7 @@ namespace ApartmentInvoice.Entity.DTOs.SubscriptionDtos
     public class SubscriptionAddDto : IDto
     {
         public float Amount { get; set; }
-        public int Month { get; set; }
-        public int Year { get; set; }
+    
+        public string SubscriptionDate { get; set; }
     }
 }

@@ -5,6 +5,9 @@ import {
   DELETE_ACTIVITY_COMMENT_FAIL,
   DELETE_ACTIVITY_COMMENT_REQUEST,
   DELETE_ACTIVITY_COMMENT_SUCCESS,
+  GET_ACTIVITY_COMMENTS_BY_USER_FAIL,
+  GET_ACTIVITY_COMMENTS_BY_USER_REQUEST,
+  GET_ACTIVITY_COMMENTS_BY_USER_SUCCESS,
   GET_ACTIVITY_COMMENTS_FAIL,
   GET_ACTIVITY_COMMENTS_REQUEST,
   GET_ACTIVITY_COMMENTS_SUCCESS,
@@ -21,7 +24,7 @@ export const SendActivityComment = (activityComment) => async (dispatch) => {
     });
 
     const { data } = await axios.post(
-      `https://localhost:7173/api/Posts/AddNewPost`,
+      `https://localhost:7173/api/ActivityComments/AddNewActivityComment`,
       activityComment
     );
 
@@ -44,7 +47,7 @@ export const GetActivityComments = (id) => async (dispatch) => {
     });
 
     const { data } = await axios.get(
-      `https://localhost:7173/api/Posts/GetAllPost`
+      `https://localhost:7173/api/ActivityComments/GetActivityCommentsByActivityId/${id}`
     );
 
     dispatch({
@@ -58,27 +61,31 @@ export const GetActivityComments = (id) => async (dispatch) => {
     });
   }
 };
-//   export const AllPostWithPage = (pageNumber,pageSize) => async (dispatch) => {
-//     try {
-//       dispatch({
-//         type: GET_ALL_POST_WITH_PAGE_REQUEST,
-//       });
 
-//       const { data } = await axios.get(
-//         `https://localhost:7173/api/Posts/GetPostswithPage?pageNumber=${pageNumber}&pageSize=${pageSize}`
-//       );
 
-//       dispatch({
-//         type: GET_ALL_POST_WITH_PAGE_SUCCESS,
-//         payload: data,
-//       });
-//     } catch (error) {
-//       dispatch({
-//         type: GET_ALL_POST_WITH_PAGE_FAIL,
-//         error: error.response,
-//       });
-//     }
-//   };
+export const GetActivityCommentsByUser = (userId) => async (dispatch) => {
+  try {
+    dispatch({
+      type: GET_ACTIVITY_COMMENTS_BY_USER_REQUEST,
+    });
+
+    const { data } = await axios.get(
+      `https://localhost:7173/api/ActivityComments/GetActivityCommentsByUserId/${userId}`
+
+    );
+
+    dispatch({
+      type: GET_ACTIVITY_COMMENTS_BY_USER_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_ACTIVITY_COMMENTS_BY_USER_FAIL,
+      error: error.response,
+    });
+  }
+};
+
 
 export const DeleteActivityComment =
   (activityCommentId) => async (dispatch) => {
@@ -88,7 +95,7 @@ export const DeleteActivityComment =
       });
 
       const { data } = await axios.delete(
-        `https://localhost:7173/api/Posts/DeletePost/${activityCommentId}`
+        `https://localhost:7173/api/ActivityComments/DeleteActivityComment/${activityCommentId}`
       );
 
       dispatch({
@@ -110,7 +117,7 @@ export const UpdateActivityComment = (activityComment) => async (dispatch) => {
     });
 
     const { data } = await axios.put(
-      "https://localhost:7173/api/Posts/UpdatePost",
+      "https://localhost:7173/api/ActivityComments/UpdateActivityComment",
       activityComment
     );
 

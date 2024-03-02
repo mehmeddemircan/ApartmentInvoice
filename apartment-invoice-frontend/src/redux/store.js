@@ -8,6 +8,8 @@ import announcementReducer from "./reducers/AnnouncementReducer";
 import userReducer from "./reducers/UserReducer";
 import activityReducer from "./reducers/ActivityReducer";
 import activityCommentReducer from "./reducers/ActivityCommentReducer";
+import subscriptionReducer from "./reducers/SubscriptionReducer";
+import paymentReducer from "./reducers/PaymentReducer";
 
 
 const rootReducer = combineReducers({
@@ -17,7 +19,9 @@ const rootReducer = combineReducers({
     announcement : announcementReducer,
     user : userReducer,
     activity : activityReducer,
-    activityComment :activityCommentReducer
+    activityComment :activityCommentReducer,
+    subscription : subscriptionReducer,
+    payment : paymentReducer
  
 })
 const initialState = {}

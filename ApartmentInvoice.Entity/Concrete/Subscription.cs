@@ -14,8 +14,8 @@ namespace ApartmentInvoice.Entity.Concrete
         //public int FlatId { get; set; }
         //public virtual Flat Flat { get; set; }
         public float Amount { get; set; }
-        public int Month { get; set; }
-        public int Year { get; set; }
+
+        public string SubscriptionDate { get; set; }
         public virtual ICollection<FlatSubscription>? FlatSubscriptions { get; set; }
 
     }

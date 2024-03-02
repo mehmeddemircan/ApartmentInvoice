@@ -17,7 +17,7 @@ import {useDispatch, useSelector } from 'react-redux'
 const products = [
   { name: 'Apartman Ekle', description: 'Get a better understanding of your traffic', href: '/blocks', icon: ChartPieIcon },
   { name: 'Daire Ekle', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
-  { name: 'Aidat Ekle', description: 'Your customers’ data will be safe and secure', href: '#', icon: FingerPrintIcon },
+  { name: 'Aidat Ekle', description: 'Your customers’ data will be safe and secure', href: '/add-subscription', icon: FingerPrintIcon },
   { name: 'Etkinlik Ekle', description: 'Connect with third-party tools', href: '/add-activity', icon: SquaresPlusIcon },
   { name: 'Anket Ekle', description: 'Build strategic funnels that will convert', href: '#', icon: ArrowPathIcon },
 ]

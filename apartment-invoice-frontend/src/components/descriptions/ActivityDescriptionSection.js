@@ -1,18 +1,44 @@
-import React, { Fragment,  useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import JoinButton from "../button/JoinButton";
 import ActivityParticipantsModal from "../modal/ActivityParticipantsModal";
-
-const ActivityDescriptionSection = ({ getSingleActivity }) => {
-  const [showActivityParticipantsModal, setShowActivityParticipantsModal] = useState(false)
+import { useDispatch, useSelector } from "react-redux";
+const ActivityDescriptionSection = ({
+  getSingleActivity,
+  handleJoinActivity,
+  handleLeaveFromActivity,
+}) => {
+  const [showActivityParticipantsModal, setShowActivityParticipantsModal] =
+    useState(false);
 
   const handleShowActivityParticipantsModal = () => {
-    setShowActivityParticipantsModal(true)
-  }
+    setShowActivityParticipantsModal(true);
+  };
 
   const handleCloseActivityParticipantsModal = () => {
-    setShowActivityParticipantsModal(false)
-  }
+    setShowActivityParticipantsModal(false);
+  };
 
+  const checkUserActivity = useSelector(
+    (state) => state.activity.checkUserActivity
+  );
+  const [userActivityId, setUserActivityId] = useState();
+
+  useEffect(() => {
+    if (checkUserActivity.success && checkUserActivity.userActivity.data != null) {
+      setUserActivityId(checkUserActivity.userActivity.data.id);
+    }
+  }, [checkUserActivity,checkUserActivity.userActivity.data]);
+
+  const handleUserActivityFunction = () => {
+    if (
+      checkUserActivity.success &&
+      checkUserActivity.userActivity.data != null
+    ) {
+      handleLeaveFromActivity(userActivityId);
+    } else {
+      handleJoinActivity();
+    }
+  };
 
   return (
     <Fragment>
@@ -28,7 +54,7 @@ const ActivityDescriptionSection = ({ getSingleActivity }) => {
 							mt-2
 						"
         >
-            {getSingleActivity.success && getSingleActivity.activity.data.title}
+          {getSingleActivity.success && getSingleActivity.activity.data.title}
         </h1>
         <div className="mt-4">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -40,14 +66,28 @@ const ActivityDescriptionSection = ({ getSingleActivity }) => {
           culpa qui officia deserunt mollit anim id est laborum.
         </div>
         <div className="mt-4">
-          <JoinButton buttonName="Katıl" className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" />
-          <JoinButton onClick={handleShowActivityParticipantsModal} buttonName="Katılımcıları göster" className="text-white bg-gradient-to-r from-blue-500 to-green-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
- />
+          <JoinButton
+            onClick={handleUserActivityFunction}
+            buttonName={
+              checkUserActivity.success &&
+              checkUserActivity.userActivity.data != null
+                ? "Etkinlikten Ayrıl"
+                : "Etkinliğe katıl"
+            }
+            className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+          />
+          <JoinButton
+            onClick={handleShowActivityParticipantsModal}
+            buttonName="Katılımcıları göster"
+            className="text-white bg-gradient-to-r from-blue-500 to-green-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+          />
 
-    <ActivityParticipantsModal
-      showActivityParticipantsModal={showActivityParticipantsModal}
-      handleCloseActivityParticipantsModal={handleCloseActivityParticipantsModal}
-    />
+          <ActivityParticipantsModal
+            showActivityParticipantsModal={showActivityParticipantsModal}
+            handleCloseActivityParticipantsModal={
+              handleCloseActivityParticipantsModal
+            }
+          />
         </div>
       </div>
     </Fragment>

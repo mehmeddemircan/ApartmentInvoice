@@ -98,7 +98,7 @@ namespace ApartmentInvocie.WebApi.Controllers
         [HttpPut]
         [Route("[action]")]
 
-        public async Task<IActionResult> UpdateSubscription([FromForm] SubscriptionUpdateDto subscriptionUpdateDto)
+        public async Task<IActionResult> UpdateSubscription([FromBody] SubscriptionUpdateDto subscriptionUpdateDto)
         {
             var result = await _subscriptionService.UpdateAsync(subscriptionUpdateDto);
 

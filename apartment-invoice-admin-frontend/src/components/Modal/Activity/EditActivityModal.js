@@ -115,7 +115,7 @@ const EditActivityModal = ({
         }}
         layout="vertical"
       >
-        {image}
+      
         <Form.Item
           name="title"
           label="Title"

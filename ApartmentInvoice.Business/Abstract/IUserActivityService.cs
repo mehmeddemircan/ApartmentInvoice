@@ -20,5 +20,6 @@ namespace ApartmentInvoice.Business.Abstract
         Task<IDataResult<IEnumerable<UserActivitiesDto>>> GetListOfParticipantsAsync(Expression<Func<UserActivity, bool>> filter = null);
 
         Task<IDataResult<bool>> LeaveActivityAsync(int userActivityId);
+        Task<IDataResult<UserActivitiesDto>> IsJoined(int activityId,int userId);
     }
 }

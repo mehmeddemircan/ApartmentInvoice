@@ -2,8 +2,10 @@ import React from "react";
 import { useState } from "react";
 import GenericPopover from "../popover/GenericPopover";
 import CommentSettingsContent from "../popover/content/CommentSettingsContent";
-
-const CommentItem = () => {
+import {useDispatch,useSelector} from 'react-redux'
+const CommentItem = ({item}) => {
+  //todo : DELETE , UPDATE Kısımda yapılacak 
+  const auth = useSelector((state) => state.auth)
   const [showCommentReplies, setShowCommentReplies] = useState(false);
   return (
     <article class="p-6 mb-6 text-base border-t bg-white rounded-lg dark:bg-gray-900">
@@ -25,12 +27,12 @@ const CommentItem = () => {
         </div>
 
         <div className="d-inline-flex justify-center gap-x-3">
-          {/* {!myComment && auth.user._id === comment.userId && ( */}
+           {auth.user.id === item.userId && ( 
           <GenericPopover
             content={
               <CommentSettingsContent
-                comment={1}
-                handleDeleteProjectComment={true}
+                item={item}
+              
               />
             }
           >
@@ -53,10 +55,10 @@ const CommentItem = () => {
                 
            
           </GenericPopover>
-          {/* )} */}
+         )} 
         </div>
       </footer>
-      <p class="text-gray-500 dark:text-gray-400">sadsaddsasdadsadsa</p>
+      <p class="text-gray-500 dark:text-gray-400">{item.content}</p>
       <div class="flex items-center mt-4 space-x-4">
         {/* like , dislike butonlar eklenebilir */}
         {/* {auth.user._id !== comment.userId && ( */}

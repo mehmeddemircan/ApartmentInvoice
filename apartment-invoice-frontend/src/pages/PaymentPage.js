@@ -1,13 +1,29 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import MainLayout from "../layouts/MainLayout";
 import PaymentSection from "../components/sections/payment/PaymentSection";
+import {useDispatch, useSelector} from 'react-redux'
+import { GetSingleSubscription } from "../redux/actions/SubscriptionAction";
+import { useParams } from "react-router-dom";
 
+import SuccessResult from "../components/results/SuccessResult";
+import PaymentResult from "../components/results/PaymentResult";
 const PaymentPage = () => {
+  
+  let { subscriptionId } = useParams();
+  const dispatch = useDispatch()
+  useEffect(() => {
+   dispatch(GetSingleSubscription(subscriptionId))
+  }, [dispatch,subscriptionId])
+
+  const paySubscription = useSelector((state) => state.payment.paySubscription)
+
   return (
     <MainLayout>
       <div className="container mx-auto">
         <div class="grid sm:px-10 lg:grid-cols-1 lg:px-20 xl:px-32">
-         <PaymentSection title="Aidat Ödemesi" content="Aidat kısmında ki ödemeyi bu sayfadan yapabilirsiniz" buttonTitle="Ödeme yap" isDonate={false} />
+        {paySubscription.isPayed ? <PaymentResult /> : (
+          <>
+           <PaymentSection title="Aidat Ödemesi" content="Aidat kısmında ki ödemeyi bu sayfadan yapabilirsiniz" buttonTitle="Ödeme yap" isDonate={false} />
           <div class="px-4 pt-8">
             <p class="mt-8 text-lg font-medium">Shipping Methods</p>
             <form class="mt-5 grid gap-6">
@@ -64,7 +80,8 @@ const PaymentPage = () => {
                 </label>
               </div>
             </form>
-          </div>
+          </div></>
+        )}
         </div>
       </div>
     </MainLayout>

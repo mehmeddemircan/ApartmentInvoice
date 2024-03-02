@@ -17,6 +17,7 @@ import ProfilePage from "./pages/ProfilePage";
 import PostsPage from "./pages/PostsPage";
 import MyPostsPage from "./pages/MyPostsPage";
 import MyCommentsPage from "./pages/MyCommentsPage";
+import SubscriptionsPage from "./pages/SubscriptionsPage";
 
 
 function App() {
@@ -38,7 +39,7 @@ function App() {
         <Route path="/complain" element={<ComplainPage />} />
         <Route path="/my-bills" element={<BillPage />} />
         <Route path="/features" element={<FeaturesPage />} />
-        <Route path="/payment" element={<PaymentPage />} />
+        <Route path="/:subscriptionId/payment" element={<PaymentPage />} />
         <Route path="/activities" element={<ActivitiesPage />} />
         <Route path="/activities/:activityId/details" element={<ActivityDetailsPage />} />
         <Route path="/donate" element={<DonatePage />} />
@@ -47,6 +48,7 @@ function App() {
         <Route path="/posts" element={<PostsPage />} />
         <Route path="/my-posts" element={<MyPostsPage />} />
         <Route path="/my-comments" element={<MyCommentsPage />} />
+        <Route path="/pay-aidat" element={<SubscriptionsPage />} />
       </Routes>
     </Router>
   );
