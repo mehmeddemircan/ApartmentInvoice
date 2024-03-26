@@ -44,9 +44,10 @@ namespace ApartmentInvoice.DataAccess.Concrete.Contexts
         public DbSet<Post> Posts { get; set; }
         public DbSet<PostComment> PostComments { get; set; }
         public DbSet<Announcement> Announcements { get; set; }
-
         public DbSet<Survey> Surveys { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Vote> Votes { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
     }
 }

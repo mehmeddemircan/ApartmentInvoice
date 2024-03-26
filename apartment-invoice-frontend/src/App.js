@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import ComplainPage from "./pages/ComplainPage";
-import BillPage from "./pages/BillPage";
+
 import FeaturesPage from "./pages/FeaturesPage";
 import PaymentPage from "./pages/PaymentPage";
 import ActivitiesPage from "./pages/ActivitiesPage";
@@ -18,12 +18,12 @@ import PostsPage from "./pages/PostsPage";
 import MyPostsPage from "./pages/MyPostsPage";
 import MyCommentsPage from "./pages/MyCommentsPage";
 import SubscriptionsPage from "./pages/SubscriptionsPage";
-
+import MyOrdersPage from "./pages/MyOrdersPage";
+import GiveOrderPage from "./pages/GiveOrderPage";
 
 function App() {
-
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state.auth)
+  const auth = useSelector((state) => state.auth);
 
   // When we fresh the page if you are in logged in  stay logged in
   useEffect(() => {
@@ -37,11 +37,14 @@ function App() {
         <Route index path="/" element={<HomePage />} />
         <Route path="*" element={<NotFoundPage />} />
         <Route path="/complain" element={<ComplainPage />} />
-        <Route path="/my-bills" element={<BillPage />} />
+
         <Route path="/features" element={<FeaturesPage />} />
         <Route path="/:subscriptionId/payment" element={<PaymentPage />} />
         <Route path="/activities" element={<ActivitiesPage />} />
-        <Route path="/activities/:activityId/details" element={<ActivityDetailsPage />} />
+        <Route
+          path="/activities/:activityId/details"
+          element={<ActivityDetailsPage />}
+        />
         <Route path="/donate" element={<DonatePage />} />
         <Route path="/results" element={<ResultsPage />} />
         <Route path="/my-profile" element={<ProfilePage />} />
@@ -49,6 +52,8 @@ function App() {
         <Route path="/my-posts" element={<MyPostsPage />} />
         <Route path="/my-comments" element={<MyCommentsPage />} />
         <Route path="/pay-aidat" element={<SubscriptionsPage />} />
+        <Route path="/my-orders" element={<MyOrdersPage />} />
+        <Route path="/give-order" element={<GiveOrderPage />} />
       </Routes>
     </Router>
   );

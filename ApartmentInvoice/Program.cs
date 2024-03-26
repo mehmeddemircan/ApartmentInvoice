@@ -44,6 +44,7 @@ var mapperConfig = new MapperConfiguration(mc =>
     mc.AddProfile(new SurveyProfile());
     mc.AddProfile(new QuestionProfile());
     mc.AddProfile(new VoteProfile());
+    mc.AddProfile(new OrderProfile());
 
   
 });

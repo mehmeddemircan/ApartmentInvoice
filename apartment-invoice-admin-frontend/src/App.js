@@ -16,6 +16,7 @@ import RolesPage from './pages/RolesPage';
 import ComplainsPage from './pages/ComplainsPage';
 import ActivityPage from './pages/ActivityPage';
 import SubscriptionPage from './pages/SubscriptionPage';
+import OrderPage from './pages/OrderPage';
 function App() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth)
@@ -40,6 +41,7 @@ function App() {
       <Route  path="/complains" element={<PrivateRoute><ComplainsPage /></PrivateRoute>} />
       <Route  path="/add-activity" element={<PrivateRoute><ActivityPage /></PrivateRoute>} />
       <Route  path="/add-subscription" element={<PrivateRoute><SubscriptionPage /></PrivateRoute>} />
+      <Route  path="/orders" element={<PrivateRoute><OrderPage /></PrivateRoute>} />
       <Route  path="*" element={<NotFoundPage />} />
    
     </Routes>

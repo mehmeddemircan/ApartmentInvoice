@@ -10,6 +10,7 @@ import activityReducer from "./reducers/ActivityReducer";
 import activityCommentReducer from "./reducers/ActivityCommentReducer";
 import subscriptionReducer from "./reducers/SubscriptionReducer";
 import paymentReducer from "./reducers/PaymentReducer";
+import orderReducer from "./reducers/OrderReducer";
 
 
 const rootReducer = combineReducers({
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
     activity : activityReducer,
     activityComment :activityCommentReducer,
     subscription : subscriptionReducer,
-    payment : paymentReducer
+    payment : paymentReducer,
+    order : orderReducer
  
 })
 const initialState = {}
