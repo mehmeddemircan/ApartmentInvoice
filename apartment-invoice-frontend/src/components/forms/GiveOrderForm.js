@@ -41,19 +41,20 @@ const GiveOrderForm = () => {
         />
       ) : (
         <div className="bg-white px-6 py-2 sm:py-32 lg:px-8">
-          <h2>Give Order Page</h2>
+          <h2 className="text-center">Kapıcıya Sipariş Ver</h2>
+          <p className="text-center">Kapıcıya sipariş vererek kendi işlerinizi daha kısa sürede halledersiniz</p>
           <form
             action="#"
             method="POST"
             className="mx-auto mt-3 max-w-xl sm:mt-20"
           >
             <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-              <div className="sm:col-span-2">
+              <div className="mt-4 sm:col-span-2">
                 <label
                   htmlFor="Sipariş İçeriği"
                   className="block text-sm font-semibold leading-6 text-gray-900"
                 >
-                  Content
+                  Sipariş İçeriği
                 </label>
                 <div className="mt-2.5">
                   <textarea

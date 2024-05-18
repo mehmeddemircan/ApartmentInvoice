@@ -17,6 +17,8 @@ import ComplainsPage from './pages/ComplainsPage';
 import ActivityPage from './pages/ActivityPage';
 import SubscriptionPage from './pages/SubscriptionPage';
 import OrderPage from './pages/OrderPage';
+import ApartmentDetailPage from './pages/ApartmentDetailPage';
+import NotFoundResultPage from './pages/NotFoundResultPage';
 function App() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth)
@@ -42,6 +44,8 @@ function App() {
       <Route  path="/add-activity" element={<PrivateRoute><ActivityPage /></PrivateRoute>} />
       <Route  path="/add-subscription" element={<PrivateRoute><SubscriptionPage /></PrivateRoute>} />
       <Route  path="/orders" element={<PrivateRoute><OrderPage /></PrivateRoute>} />
+      <Route  path="/apartments/:apartmentId/details" element={<PrivateRoute><ApartmentDetailPage /></PrivateRoute>} />
+      <Route path= '/NotFoundResult'  element={<NotFoundResultPage />} />
       <Route  path="*" element={<NotFoundPage />} />
    
     </Routes>

@@ -20,6 +20,7 @@ import MyCommentsPage from "./pages/MyCommentsPage";
 import SubscriptionsPage from "./pages/SubscriptionsPage";
 import MyOrdersPage from "./pages/MyOrdersPage";
 import GiveOrderPage from "./pages/GiveOrderPage";
+import AboutUsPage from "./pages/AboutUsPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ function App() {
         <Route index path="/" element={<HomePage />} />
         <Route path="*" element={<NotFoundPage />} />
         <Route path="/complain" element={<ComplainPage />} />
+        <Route path="/about-us" element={<AboutUsPage />} />
 
         <Route path="/features" element={<FeaturesPage />} />
         <Route path="/:subscriptionId/payment" element={<PaymentPage />} />

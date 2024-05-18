@@ -50,12 +50,7 @@ const products = [
     href: "/donate",
     icon: FingerPrintIcon,
   },
-  {
-    name: "Otopark Takip",
-    description: "Connect with third-party tools",
-    href: "#",
-    icon: SquaresPlusIcon,
-  },
+ 
 ];
 const callsToAction = [
   { name: "Watch demo", href: "#", icon: PlayCircleIcon },
@@ -196,6 +191,12 @@ const MainHeader = () => {
             className="text-sm font-semibold leading-6 text-dark  hover:text-green-400"
           >
             {t("header.giveorder")}
+          </a>
+          <a
+            href="/about-us"
+            className="text-sm font-semibold leading-6 text-dark  hover:text-green-400"
+          >
+            {t("header.aboutus")}
           </a>
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">

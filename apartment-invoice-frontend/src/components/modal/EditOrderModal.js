@@ -11,7 +11,7 @@ const EditOrderModal = ({item,showEditOrderModal , handleCloseEditOrderModal}) =
     }
     const [id, setId] = useState(item.id)
     const [userId, setUserId] = useState(auth.user.id)
-    const [orderContent, setOrderContent] = useState("")
+    const [orderContent, setOrderContent] = useState(item.orderContent)
     const [orderStatus, setOrderStatus] = useState(item.orderStatus)
   return (
     <Fragment>

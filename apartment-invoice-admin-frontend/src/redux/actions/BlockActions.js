@@ -84,28 +84,6 @@ export const AllBlock = () => async (dispatch) => {
   };
 
 
-// tek bir anket getir 
-//   export const GetSingleSurvey = (surveyId) => async (dispatch) => {
-//     try {
-//       dispatch({
-//         type: GET_SINGLE_SURVEY_REQUEST,
-//       });
-  
-//       const { data } = await axios.get(
-//         `https://akinsoftanketapi.onrender.com/api/surveys/${surveyId}/details`
-//       );
-  
-//       dispatch({
-//         type: GET_SINGLE_SURVEY_SUCCESS,
-//         payload: data,
-//       });
-//     } catch (error) {
-//       dispatch({
-//         type: GET_SINGLE_SURVEY_FAIL,
-//         error: error.response,
-//       });
-//     }
-//   };
 
 
   

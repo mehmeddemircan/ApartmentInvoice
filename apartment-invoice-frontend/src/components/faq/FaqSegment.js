@@ -1,42 +1,49 @@
+import { useTranslation } from "react-i18next";
+import { t } from "i18next";
+import { Fragment } from "react";
+import FaqComponent from "./FaqComponent";
+
 const FaqSegment = () => {
+  const { t } = useTranslation();
   const faqsList = [
     {
-      q: "What are some random questions to ask?",
-      a: "That's exactly the reason we created this random question generator. There are hundreds of random questions to choose from so you're able to find the perfect random question.",
+      q: (t("mainPage.question1")),
+      a: (t("mainPage.answer1")),
       href: "javascript:void(0)",
     },
     {
-      q: "Do you include common questions?",
-      a: "This generator doesn't include most common questions. The thought is that you can come up with common questions on your own so most of the questions in this generator.",
+      q: (t("mainPage.question2")),
+      a: (t("mainPage.answer2")),
       href: "javascript:void(0)",
     },
     {
-      q: "Can I use this for 21 questions?",
-      a: "Yes! there are two ways that you can use this question generator depending on what you're after. You can indicate that you want 21 questions generated.",
+      q: (t("mainPage.question3")),
+      a: (t("mainPage.answer3")),
       href: "javascript:void(0)",
     },
     {
-      q: "Are these questions for girls or for boys?",
-      a: "The questions in this generator are gender neutral and can be used to ask either male of females (or any other gender the person identifies with).",
+      q: (t("mainPage.question4")),
+      a: (t("mainPage.answer4")),
       href: "javascript:void(0)",
     },
     {
-      q: "What do you wish you had more talent doing?",
-      a: "If you've been searching for a way to get random questions, you've landed on the correct webpage. We created the Random Question Generator to ask you as many random questions as your heart desires.",
+      q: (t("mainPage.question5")),
+      a: (t("mainPage.answer5")),
       href: "javascript:void(0)",
     },
   ];
 
   return (
-    <section className="py-14">
+    <Fragment>
+<section className="py-14">
       <div className="max-w-screen-xl mx-auto px-4 md:px-8">
         <div className="space-y-5 sm:text-center sm:max-w-md sm:mx-auto">
           <h3 className="text-gray-800 text-3xl font-extrabold sm:text-4xl">
-            How can we help?
+          {t("mainPage.header4")}
+
           </h3>
           <p className="text-gray-600">
-            Everything you need to know about the product. Can’t find the answer
-            you’re looking for? feel free to{" "}
+          {t("mainPage.section4")}
             <a
               className="text-indigo-600 font-semibold whitespace-nowrap"
               href="javascript:void(0)"
@@ -85,7 +92,7 @@ const FaqSegment = () => {
                   href={item.href}
                   className="flex items-center gap-x-1 text-sm text-indigo-600 hover:text-indigo-400 duration-150 font-medium"
                 >
-                  Read more
+                  {t("mainPage.readMore")}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
@@ -105,6 +112,10 @@ const FaqSegment = () => {
         </div>
       </div>
     </section>
+            <FaqComponent />
+    </Fragment>
+    
+    
   );
 };
 

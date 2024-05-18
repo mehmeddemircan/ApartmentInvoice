@@ -265,6 +265,52 @@ namespace ApartmentInvoice.DataAccess.Migrations
                     b.ToTable("Announcements");
                 });
 
+            modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.Apartment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Images")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Latitude")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Longitude")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Apartments");
+                });
+
             modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.Bill", b =>
                 {
                     b.Property<int>("Id")
@@ -528,6 +574,8 @@ namespace ApartmentInvoice.DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Orders");
                 });
@@ -880,6 +928,17 @@ namespace ApartmentInvoice.DataAccess.Migrations
                 });
 
             modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.Message", b =>
+                {
+                    b.HasOne("ApartmentInvoice.Core.Entities.Concrete.Auth.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.Order", b =>
                 {
                     b.HasOne("ApartmentInvoice.Core.Entities.Concrete.Auth.User", "User")
                         .WithMany()

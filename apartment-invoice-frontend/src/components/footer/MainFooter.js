@@ -1,66 +1,70 @@
-export default () => {
+import { useTranslation } from "react-i18next";
+import { t } from "i18next";
 
+
+export default () => {
+    const { t } = useTranslation();
     const footerNavs = [
         {
-            label: "Company",
+            label: (t("footer.label.company")),
             items: [
                 {
                     href: 'javascript:void()',
-                    name: 'Partners'
+                    name: (t("footer.company.partners"))
                 },
                 {
                     href: 'javascript:void()',
-                    name: 'Blog'
+                    name: (t("footer.company.blog"))
                 },
                 {
                     href: 'javascript:void()',
-                    name: 'Team'
+                    name: (t("footer.company.team"))
                 },
                 {
                     href: 'javascript:void()',
-                    name: 'Careers'
+                    name: (t("footer.company.career"))
                 },
             ],
         },
         {
-            label: "Resources",
+            label: (t("footer.label.resources")),
             items: [
                 {
                     href: 'javascript:void()',
-                    name: 'contact'
+                    name: (t("footer.resources.contact"))
                 },
                 {
                     href: 'javascript:void()',
-                    name: 'Support'
+                    name: (t("footer.resources.support"))
                 },
                 {
                     href: 'javascript:void()',
-                    name: 'Docs'
+                    name: (t("footer.resources.docs"))
                 },
                 {
                     href: 'javascript:void()',
-                    name: 'Pricing'
+                    name: (t("footer.resources.pricing"))
                 },
             ],
         },
         {
-            label: "About",
+            label: (t("footer.label.about")),
             items: [
                 {
                     href: 'javascript:void()',
-                    name: 'Terms'
+                    name: (t("footer.about.terms"))
                 },
                 {
                     href: 'javascript:void()',
-                    name: 'License'
+                    name: (t("footer.about.license"))
                 },
                 {
                     href: 'javascript:void()',
-                    name: 'Privacy'
+                    name: (t("footer.about.privacy"))
                 },
                 {
                     href: 'javascript:void()',
-                    name: 'About US'
+                    name: (t("footer.about.aboutUS"))
                 },
             ]
         }
@@ -70,28 +74,22 @@ export default () => {
         <footer className="text-gray-500 bg-white px-4 py-5 max-w-screen-xl mx-auto md:px-8">
             <div className="gap-6 justify-between md:flex">
                 <div className="flex-1">
-                    <div className="max-w-xs">
-                      
-                        <p className="leading-relaxed mt-2 text-[15px]">
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                        </p>
-                    </div>
                     <form 
                         onSubmit={(e) => e.preventDefault()}
                     >
                         <label className="block pt-4 pb-2">
-                            Stay up to date
+                        {t("footer.stayUpToDate")}
                         </label>
                         <div className="max-w-sm flex items-center border rounded-md p-1">
                             <input 
                                 type="email"
-                                placeholder="Enter your email"
+                                placeholder={t("footer.enterYourEmail")}
                                 className="w-full p-2.5 outline-none"
                             />
                             <button
                                 className="p-2.5 rounded-md text-white bg-indigo-600 outline-none shadow-md focus:shadow-none sm:px-5"
                             >
-                                Subscribe
+                            {t("footer.subscribe")}
                             </button>
                         </div>
                     </form>

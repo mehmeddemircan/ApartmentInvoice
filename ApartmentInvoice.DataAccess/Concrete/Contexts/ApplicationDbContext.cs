@@ -49,5 +49,7 @@ namespace ApartmentInvoice.DataAccess.Concrete.Contexts
         public DbSet<Vote> Votes { get; set; }
 
         public DbSet<Order> Orders { get; set; }
+
+        public DbSet<Apartment> Apartments { get; set; }
     }
 }

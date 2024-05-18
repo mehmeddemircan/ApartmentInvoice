@@ -5,10 +5,70 @@
         "complain" : "Şikayet Et",
         "pay" : "Ödeme yap",
         "general": "Genel",
-        "giveorder" : "Sipariş Ver"
-
-
-        
+        "giveorder" : "Sipariş Ver",
+        "aboutus" : "Hakkımızda" 
+    },
+    "loggedInHeader" : {
+        "myAccount" : "Hesabım",
+        "myProfile" : "Profilim",
+        "myPosts" : "Postlarım",
+        "myComments" : "Yorumlarım",
+        "myBasket" : "Sepetim",
+        "myOrders" : "Siparişlerim",
+        "logOut" : "Çıkış yap"
+    },
+    "footer" : {
+        "label" : {
+            "company" : "Şirket",
+            "resources" : "Kaynaklar",
+            "about" : "Hakkımızda"
+        },
+        "company" : {
+            "partners" : "Ortaklar",
+            "blog" : "Blog",
+            "team" : "Takım",
+            "career" : "Kariyer"
+        },
+        "resources" : {
+            "contact" : "İletişim",
+            "support" : "Destek",
+            "docs" : "Dokümanlar",
+            "pricing" : "Fiyatlandırma"
+        },
+        "about" : {
+            "terms" : "Şartlar",
+            "license" : "Lisans",
+            "privacy" : "Gizlilik",
+            "aboutUS" : "Hakkımızda"
+        },
+        "stayUpToDate" : "Güncel kal",
+        "enterYourEmail" : "Emailinizi giriniz",
+        "subscribe" : "Abone ol"
+    },
+    
+    "mainPage" : {
+        "header1" : "Tekerleği yeniden icat etmedik",
+        "section1" : "Biz stratejist, tasarımcı ve geliştiriciyiz. Yenilikçiler ve problem çözücüler. Basit ve hızlı olacak kadar küçük, ancak istediğiniz kapsamı ihtiyaç duyduğunuz hızda sunacak kadar da büyük. Basit ve hızlı olacak kadar küçük, ancak istediğiniz kapsamı ihtiyaç duyduğunuz hızda sunacak kadar da büyük. Biz stratejist, tasarımcı ve geliştiriciyiz. Yenilikçiler ve problem çözücüler. Basit ve hızlı olacak kadar küçük.",
+        "professionalServices": "Profesyonel Servisler",
+        "header2" : "Geleceği bizimle inşa et",
+        "section2" : "istediğiniz kapsamı ihtiyaç duyduğunuz hızda sunacak kadar da büyük. Basit ve hızlı olacak kadar küçük, ancak istediğiniz kapsamı ihtiyaç duyduğunuz hızda sunacak kadar da büyük",
+        "btn1" : "Şu an başla",
+        "header3" : "SaaS çözümünüzü uzmanlarımızın yardımıyla oluşturun",
+        "section3" : "Üretim ve tüketimin geleceğini şekillendirecek, ülkeler arasında zenginlik akışını farklılaştıracak önemli bir olgu. Bir grup teknolojik gelişmenin üretimde stratejik kullanımı...",
+        "learnMore" : "Daha fazlası",
+        "header4" : "Nasıl yardımcı olabiliriz?",
+        "section4" : "Ürün hakkında bilmeniz gereken her şey. Aradığınız cevabı bulamıyor musunuz? bizimle iletişime geçmekten çekinmeyin.",
+        "question1" : "Sorulacak rastgele sorular nelerdir?",
+        "answer1" : "Bu rastgele soru oluşturucuyu oluşturmamızın nedeni tam olarak budur. Aralarından seçim yapabileceğiniz yüzlerce rastgele soru vardır, böylece mükemmel rastgele soruyu bulabilirsiniz.",
+        "readMore" : "Daha fazlası için",
+        "question2" : "Sık sorulan soruları ekliyor musunuz?",
+        "answer2" : "Bu oluşturucu en sık sorulan soruları içermez. Buradaki düşünce, bu oluşturucudaki soruların çoğunu kendi başınıza oluşturabileceğinizdir.",
+        "question3" : "Bunu 21 soru için kullanabilir miyim?",
+        "answer3" : "Evet! Neyin peşinde olduğunuza bağlı olarak bu soru oluşturucuyu kullanmanın iki yolu vardır. 21 soru oluşturulmasını istediğinizi belirtebilirsiniz.",
+        "question4" : "Bu sorular kızlara mı yoksa erkeklere mi yönelik?",
+        "answer4" : "Bu oluşturucudaki sorular cinsiyet ayrımı gözetmez ve erkeğe veya kadına (veya kişinin tanımladığı herhangi bir cinsiyete) soru sormak için kullanılabilir.",
+        "question5" : "Ne yaparken daha fazla yeteneğin olmasını isterdin?",
+        "answer6" : "Rastgele sorular almanın bir yolunu arıyorsanız doğru web sayfasına geldiniz. Size dilediğiniz kadar rastgele soru sorabilmek için Rastgele Soru Oluşturucuyu oluşturduk.",
+        "videoHeader": "Bizim hakkımızda bizi anlatan bir video ile başlayalım"
     }
-
  }

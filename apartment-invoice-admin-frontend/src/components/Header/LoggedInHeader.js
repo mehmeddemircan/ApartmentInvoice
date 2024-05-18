@@ -91,7 +91,7 @@ export const LoggedInHeader = () => {
           leaveFrom="opacity-100 translate-y-0"
           leaveTo="opacity-0 translate-y-1"
         >
-          <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
+          <Popover.Panel style={{width : '320px'}} className="absolute -left-8 top-full z-10 mt-3  overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
             <div className="p-4">
               <div class="flex flex-1 justify-between items-center">
                 <a className="font-semibold text-lg text-start">

@@ -16,14 +16,13 @@ const DonatePage = () => {
   const handlePayDonate = () => {
     dispatch(Donate(amount));
   };
-  
+
   useEffect(() => {
     if (payDonate.isDonated) {
-      setAmount(0)
+      setAmount(0);
     }
-  }, [payDonate.isDonated])
+  }, [payDonate.isDonated]);
 
-  
   return (
     <MainLayout>
       {payDonate.isDonated ? (
@@ -31,7 +30,10 @@ const DonatePage = () => {
       ) : (
         <div class="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0">
           <p class="text-xl font-medium">Bağış yaparak katkıda bulun</p>
-          <p class="text-gray-400">lorem ipsum sadsaddasdas</p>
+          <p class="text-gray-400">
+            Bağış yaparak apartmanımız da katkıda bulunabilirsiniz apartmana
+            zamanla yenilikler gelecektir{" "}
+          </p>
           <div class="">
             <label
               for="card-holder"
@@ -46,7 +48,6 @@ const DonatePage = () => {
                 name="card-holder"
                 class="w-25 rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm uppercase shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                 placeholder="Miktar yazınız "
-          
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
               />

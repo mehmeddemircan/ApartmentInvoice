@@ -36,6 +36,9 @@ namespace ApartmentInvoice.Business.DependencyResolvers.Autofac
             builder.RegisterType<BlockManager>().As<IBlockService>();
             builder.RegisterType<BlockRepository>().As<IBlockRepository>();
 
+            builder.RegisterType<ApartmentManager>().As<IApartmentService>();
+            builder.RegisterType<ApartmentRepository>().As<IApartmentRepository>();
+
             builder.RegisterType<FlatManager>().As<IFlatService>();
             builder.RegisterType<FlatRepository>().As<IFlatRepository>();
 

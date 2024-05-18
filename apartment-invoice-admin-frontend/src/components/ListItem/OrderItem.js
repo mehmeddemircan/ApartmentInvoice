@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from "react";
 import { List, Tag, Tooltip, Badge } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { UpdateOrderStatus } from "../../redux/actions/OrderActions";
+import { DeleteOrder, UpdateOrderStatus } from "../../redux/actions/OrderActions";
 import { useState } from "react";
 
 const OrderItem = ({ item }) => {
@@ -19,6 +19,11 @@ const OrderItem = ({ item }) => {
   const handleDejectOrder = () => {
     dispatch(UpdateOrderStatus(orderId, 3));
   };
+
+  const handleDeleteOrder = (orderId) => {
+    dispatch(DeleteOrder(orderId))
+  }
+
   return (
     <Fragment>
       <List.Item
@@ -51,7 +56,7 @@ const OrderItem = ({ item }) => {
           item.orderStatus === 3 && (
             <div>
               <Tooltip title="Delete">
-                <button className="btn btn-light">
+                <button className="btn btn-light" onClick={() => handleDeleteOrder(item.id)}>
                   <i class="fa-solid fa-trash"></i>
                 </button>
               </Tooltip>

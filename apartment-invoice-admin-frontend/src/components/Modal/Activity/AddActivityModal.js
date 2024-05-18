@@ -199,7 +199,7 @@ const AddActivityModal = ({isShowAddActivityModal,handleCloseAddActivityModal}) 
            onChange={(checked) => setIsActive(checked)}  
           />
     </Form.Item>
-       {imageLength}
+     
       <Form.Item name="images" label="Thumbnail Image">
         <ImgCrop rotationSlider>
           <Upload

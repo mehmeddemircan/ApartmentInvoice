@@ -10,6 +10,8 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../redux/actions/AuthAction";
+import { useTranslation } from "react-i18next";
+import { t } from "i18next";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -21,14 +23,15 @@ export const PhoneLoggedInHeader = () => {
   const LogoutHandler = () => {
     dispatch(logout());
   };
-  const auth = useSelector((state) => state.auth)
+  const auth = useSelector((state) => state.auth);
+  const { t } = useTranslation();
 
   return (
     <Disclosure as="div" className="-mx-3">
       {({ open }) => (
         <>
           <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-            Hesabım 
+          {t("loggedInHeader.myAccount")}
             <ChevronDownIcon
               className={classNames(
                 open ? "rotate-180" : "",
@@ -38,17 +41,20 @@ export const PhoneLoggedInHeader = () => {
             />
           </Disclosure.Button>
           <Disclosure.Panel className="mt-2 space-y-2">
-          <Disclosure.Button
+            <Disclosure.Button
               key="profilim"
               as="a"
               href="/my-profile"
               className="block flex justify-between rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
             >
-             <a className="font-semibold text-lg text-start">
-                  {auth.user.firstName}
-                  <a className="ms-2">{auth.user.lastName}</a>
-                </a>
-                <button className="btn btn-dark rounded-pill" >Profilim</button>
+              <a className="font-semibold text-lg text-start">
+                {auth.user.firstName}
+                <a className="ms-2">{auth.user.lastName}</a>
+              </a>
+              <button className="btn btn-dark rounded-pill">
+                {" "}
+                {t("loggedInHeader.myProfile")}
+              </button>
             </Disclosure.Button>
             <Disclosure.Button
               key="/yorumlarım"
@@ -56,7 +62,7 @@ export const PhoneLoggedInHeader = () => {
               href="/my-comments"
               className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
             >
-              Yorumlarım
+              {t("loggedInHeader.myProfile")}
             </Disclosure.Button>
             <Disclosure.Button
               key="isteklifi"
@@ -64,7 +70,7 @@ export const PhoneLoggedInHeader = () => {
               href="/my-forms"
               className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
             >
-              Formlarım
+              {t("loggedInHeader.myForms")}
             </Disclosure.Button>
             <Disclosure.Button
               key="isteklifi"
@@ -72,7 +78,7 @@ export const PhoneLoggedInHeader = () => {
               href="/my-basket"
               className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
             >
-              Sepetim
+              {t("loggedInHeader.mybasket")}
             </Disclosure.Button>
             <Disclosure.Button
               key="isteklifi"
@@ -80,7 +86,7 @@ export const PhoneLoggedInHeader = () => {
               href="/my-orders"
               className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
             >
-              Siparişlerim
+              {t("loggedInHeader.myOrders")}
             </Disclosure.Button>
             <Disclosure.Button
               key="isteklifi"
@@ -88,7 +94,7 @@ export const PhoneLoggedInHeader = () => {
               onClick={LogoutHandler}
               className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
             >
-              Çıkış Yap
+              {t("loggedInHeader.logOut")}
             </Disclosure.Button>
           </Disclosure.Panel>
         </>
@@ -102,17 +108,15 @@ export const LoggedInHeader = () => {
   const navigate = useNavigate();
   // çıkış yapma işlemi
   const LogoutHandler = () => {
-  
-   
-      dispatch(logout());
-
+    dispatch(logout());
   };
   const auth = useSelector((state) => state.auth);
   return (
     <Popover.Group className="hidden lg:flex lg:gap-x-12">
       <Popover className="relative">
         <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-          Hesabım
+          {t("loggedInHeader.myAccount")}
+
           <ChevronDownIcon
             className="h-5 w-5 flex-none text-gray-400"
             aria-hidden="true"
@@ -132,13 +136,16 @@ export const LoggedInHeader = () => {
             <div className="p-4">
               <div class="flex flex-1 justify-between items-center">
                 <a className="font-semibold text-lg text-start">
-              
-              
                   {auth.user.firstName}
                   <a className="ms-2">{auth.user.lastName}</a>
-        
                 </a>
-                <button className="btn btn-dark rounded-pill" onClick={() => navigate('/my-profile', {replace : true })}>Profilim</button>
+                <button
+                  className="btn btn-dark rounded-pill"
+                  onClick={() => navigate("/my-profile", { replace: true })}
+                >
+                  {" "}
+                  {t("loggedInHeader.myProfile")}
+                </button>
               </div>
               <div
                 key="postlarım"
@@ -152,7 +159,7 @@ export const LoggedInHeader = () => {
                     href="/my-posts"
                     className="block font-semibold text-gray-900"
                   >
-                    Postlarım
+                    {t("loggedInHeader.myPosts")}
                     <span className="absolute inset-0" />
                   </a>
                 </div>
@@ -170,7 +177,8 @@ export const LoggedInHeader = () => {
                     href="/my-comments"
                     className="block font-semibold text-gray-900"
                   >
-                    Yorumlarım
+                    {t("loggedInHeader.myComments")}
+
                     <span className="absolute inset-0" />
                   </a>
                 </div>
@@ -187,7 +195,7 @@ export const LoggedInHeader = () => {
                     href="/my-orders"
                     className="block font-semibold text-gray-900"
                   >
-                    Siparişlerim
+                    {t("loggedInHeader.myOrders")}
                     <span className="absolute inset-0" />
                   </a>
                 </div>
@@ -201,10 +209,10 @@ export const LoggedInHeader = () => {
                 </div>
                 <div className="flex-auto">
                   <a
-                    onClick={ LogoutHandler}
+                    onClick={LogoutHandler}
                     className="block font-semibold text-gray-900"
                   >
-                    Çıkış Yap
+                    {t("loggedInHeader.logOut")}
                     <span className="absolute inset-0" />
                   </a>
                 </div>

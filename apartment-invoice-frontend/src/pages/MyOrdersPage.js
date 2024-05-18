@@ -52,7 +52,7 @@ const MyOrdersPage = () => {
 
   return (
     <MainLayout>
-      <h2>my orders page</h2>
+      <h2>Siparişlerim sayfası</h2>
       <List YitemLayout="horizontal">
         {getMyOrders && getMyOrders.success ? (
           getMyOrders.myOrders.data.length === 0 ? (
@@ -60,6 +60,7 @@ const MyOrdersPage = () => {
           ) : (
             getMyOrders.myOrders.data.map((item, idx) => (
               <List.Item
+                key={item.id}
                 className="w-full p-3"
                 actions={[
                   <div className="text-right">
@@ -76,10 +77,11 @@ const MyOrdersPage = () => {
                     <a>Düzenle</a>
                   </a>,
                   <EditOrderModal 
-                        item ={item}
-                        showEditOrderModal={showEditOrderModal}
-                        handleCloseEditOrderModal={handleCloseEditOrderModal}
-                  />,
+                  key={item.id}
+                  item ={item}
+                  showEditOrderModal={showEditOrderModal}
+                  handleCloseEditOrderModal={handleCloseEditOrderModal}
+            />,
                   <a
                     class="block my-1 py-2 pe-2 ps-1 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                      onClick={() => handleDeleteOrder(item.id)}
@@ -99,11 +101,13 @@ const MyOrdersPage = () => {
                 />
               </List.Item>
             ))
+            
           )
         ) : (
           <LoadingSpinner />
         )}
       </List>
+      
     </MainLayout>
   );
 };

@@ -2,7 +2,7 @@ import React from 'react'
 
 const NotFoundResult = ({title, description}) => {
   return (
-    <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
+    <main className="grid min-h-full place-items-center bg-white ">
     <div className="text-center">
   <div className='d-flex justify-center'>
   <img  width={'50%'} src='https://img.freepik.com/free-vector/oops-404-error-with-broken-robot-concept-illustration_114360-5529.jpg?w=826&t=st=1684868724~exp=1684869324~hmac=f76cd3716dd94d47e68bc95c6e9f72f4f384932432dfa311f41a2501b8ae8dad' />
