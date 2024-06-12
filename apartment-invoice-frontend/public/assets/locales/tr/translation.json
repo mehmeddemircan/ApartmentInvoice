@@ -69,6 +69,10 @@
         "answer4" : "Bu oluşturucudaki sorular cinsiyet ayrımı gözetmez ve erkeğe veya kadına (veya kişinin tanımladığı herhangi bir cinsiyete) soru sormak için kullanılabilir.",
         "question5" : "Ne yaparken daha fazla yeteneğin olmasını isterdin?",
         "answer6" : "Rastgele sorular almanın bir yolunu arıyorsanız doğru web sayfasına geldiniz. Size dilediğiniz kadar rastgele soru sorabilmek için Rastgele Soru Oluşturucuyu oluşturduk.",
-        "videoHeader": "Bizim hakkımızda bizi anlatan bir video ile başlayalım"
+        "videoHeader": "Bizim hakkımızda bizi anlatan bir video ile başlayalım",
+         "header5" : "Sponsorlarımız",
+        "sponsorDesc" : "Üzerinde çalışmaya devam etmemize yardımcı olan eklentimize sponsor olan her şirkete müteşekkiriz.",
+         "languageModal" : "Dil Seç",
+          "languageTab" : "Dil Ve Bölge"
     }
  }

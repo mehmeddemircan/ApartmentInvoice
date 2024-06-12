@@ -1,6 +1,9 @@
 import React, { Fragment } from 'react'
 
+import { t } from "i18next";
+import { useTranslation } from 'react-i18next';
 const SponsorSection = () => {
+    const { t } = useTranslation();
   return (
     <Fragment>
         <div class="max-w-3xl mx-auto  mt-20">
@@ -8,11 +11,10 @@ const SponsorSection = () => {
 
         <div class="text-center">
 
-            <h2 class="font-semibold text-3xl">Our Sponsors</h2>
+            <h2 class="font-semibold text-3xl">{t("mainPage.header5")}</h2>
 
             <p class="max-w-md mx-auto mt-2 text-gray-500">
-                We are thankful to each and every company sponsored our
-                plugin which helped us to continue working on it.
+            {t("mainPage.sponsorDesc")}
             </p>
 
         </div>

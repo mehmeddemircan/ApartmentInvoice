@@ -33,19 +33,17 @@ const HomePage = () => {
             ></path>
           </svg>
           <p class="text-sm font-semibold text-[#1d9bf0]">
-            Introducing New Feature
+           Yeni Gelen özellik
           </p>
         </a>
         <h1 class="mt-8 max-w-sm bg-gradient-to-br from-gray-500 via-teal-500 to-gray-500 bg-clip-text text-center text-4xl font-extrabold text-transparent sm:max-w-4xl sm:text-6xl">
-          Empowering Tomorrow with AI Today
+          Apartmanını bu site ile güçlendir
         </h1>
         <span class="mt-8 max-w-lg text-center text-xl leading-relaxed text-gray-800">
-          Discover the latest features and enhancements for your SaaS product.
-          Stay ahead in the market with these improvements.
+          Yeni özellikleri apartmanım sitesiyle takip et yeni özellikleri kesfet ve kaçırma
         </span>
         <p class="mt-3 rounded border px-3 py-1 shadow">
-          🎁 <span class="text-accent font-semibold">$50 off</span> for the
-          first 1,000 customers!
+          🎁 <span class="text-accent font-semibold">TL50 indirim </span> ilk 1000 müsteri için!
         </p>
         <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-0 sm:gap-x-4">
           <a
@@ -67,13 +65,13 @@ const HomePage = () => {
               <path d="M26.55,49.4l-.69,5.3a.27.27,0,0,0,.37.28l9-3.92a2.69,2.69,0,0,0,1.53-1.89l1.38-6.59"></path>
               <path d="M22.21,48.13c-2.37,7.41-14.1,7.78-14.1,7.78S8,44.51,15.76,41.67"></path>
             </svg>
-            Get the Latest Update
+           En son güncellemeyi al
           </a>
           <a
             href="#demo"
             class="flex flex-row items-center justify-center gap-x-2 rounded-lg border border-teal-500 px-10 py-3 text-teal-500"
           >
-            Learn More →
+            Daha fazlası için
           </a>
         </div>
       </div>
@@ -274,18 +272,18 @@ const HomePage = () => {
         />
         <div class="mt-4 md:mt-0">
           <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
-            Let's create more tools and ideas that brings us together.
+           Bizi bir araya getirecek daha fazla araç ve fikir yaratalım.
           </h2>
           <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">
-            Flowbite helps you connect with friends and communities of people
-            who share your interests. Connecting with your friends and family as
-            well as discovering new ones is easy with features like Groups.
+          bu özellik arkadaşlarınızla ve insan topluluklarıyla bağlantı kurmanıza yardımcı olur
+            ilgi alanlarınızı paylaşan kişiler. Arkadaşlarınızla ve ailenizle bağlantı kurmak
+            Gruplar gibi özellikler sayesinde yenilerini keşfetmek de kolaydır.
           </p>
           <a
             href="#"
             class="inline-flex items-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900"
           >
-            Get started
+            Başlayın
             <svg
               class="ml-2 -mr-1 w-5 h-5"
               fill="currentColor"
@@ -314,14 +312,11 @@ const HomePage = () => {
               <div class="lg:self-center">
                 <h2 class="text-3xl leading-9 font-extrabold text-white sm:text-4xl sm:leading-10">
                   <span class="block">
-                    This is a title for your call to action card
+                  Kullanıcı hesapları nasıl yönetilir
                   </span>
                 </h2>
                 <p class="mt-4 text-base leading-6 text-white">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
+                Her sakin için ayrı kullanıcı hesapları oluşturulur. Yönetici, kullanıcıların yetkilerini ve erişim düzeylerini belirleyebilir. Sistem, gelir-gider tablosu, borç-alacak durumu gibi detaylı finansal raporlar oluşturabilir. Bu raporlar, PDF veya Excel formatında indirilebilir ve toplantılarda kullanılabilir.
                 </p>
                 <p class="mt-4 text-base leading-6 text-dark-blue-800"></p>
                 <a
@@ -330,21 +325,21 @@ const HomePage = () => {
                   style={{ backgroundColor: "#000" }}
                   class="mt-8 border border-transparent rounded-md shadow px-6 py-3 inline-flex items-center text-base leading-6 font-medium  text-white transition duration-150 ease-in-out"
                 >
-                  Get started
+                 Başlayın
                 </a>
                 <a
                   href="#"
                   target="_blank"
                   class="ml-4 mt-8 text-white font-bold text-sm underline"
                 >
-                  Learn more
+                Daha fazlası 
                 </a>
               </div>
             </div>
             <div class="relative pb-3/5 -mt-6 md:pb-1/2">
               <img
                 class="absolute inset-0 w-full h-full transform translate-x-6 translate-y-6 rounded-md object-cover object-left-top sm:translate-x-10 lg:translate-y-20"
-                src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw5fHxsYXB0b3B8ZW58MHwwfHx8MTY5NzQ0ODQ4M3ww&ixlib=rb-4.0.3&q=80&w=1080"
+                src="https://st3.depositphotos.com/1017986/16434/i/950/depositphotos_164346090-stock-photo-happy-family-with-child-moving.jpg"
               />
             </div>
           </div>
@@ -353,11 +348,11 @@ const HomePage = () => {
       <div class="mx-auto max-w-7xl sm:px-6 lg:px-8 my-4 ">
         <div class="relative isolate overflow-hidden bg-white px-6 py-20 text-center sm:rounded-3xl sm:border sm:border-gray-100 sm:px-16 sm:shadow-sm">
           <h2 class="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Join our community today!
+          Bugün topluluğumuza katılın!
           </h2>
 
           <h3 class="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-500">
-            Sign up for exclusive access to events, resources, and more
+            Etkinliklere, kaynaklara ve daha fazlasına özel erişim için kaydolun
           </h3>
 
           <div class="mt-8 flex items-center justify-center gap-x-6">
@@ -365,7 +360,7 @@ const HomePage = () => {
               class="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-150 hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
               href="#"
             >
-              Explore the forum
+             Forumu keşfedin
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-4 w-4"
@@ -406,12 +401,12 @@ const HomePage = () => {
       <div class="py-4 max-w-screen-lg mx-auto">
         <div class="text-center mb-16">
           <h3 class="text-3xl sm:text-4xl leading-normal font-extrabold tracking-tight text-gray-900">
-            Frequently Asked <span class="text-indigo-600">Questions</span>
+            Sıkça Sorulan <span class="text-indigo-600">Sorular</span>
           </h3>
         </div>
 
         <div class="px-10 sm:px-16 sm:flex items-start mb-10">
-          <h3 class="py-3 font-bold text-lg text-gray-900 w-3/12">Technical</h3>
+          <h3 class="py-3 font-bold text-lg text-gray-900 w-3/12">Teknik Sorular</h3>
           <div class="w-9/12">
             <div class="flex items-start mb-8">
               <div class="hidden sm:flex items-center justify-center p-3 mr-3 rounded-full bg-indigo-500 text-white border-4 border-white text-xl font-semibold">
@@ -437,13 +432,11 @@ const HomePage = () => {
                 </svg>
               </div>
               <div class="text-md">
-                <h1 class="text-gray-900 font-semibold mb-2">
-                  What might be your first question?
+                <h1 class="text-gray-900 font-semibold mb-2">              
+                Apartman yönetim sistemi nedir?
                 </h1>
                 <p class="text-gray-500 text-sm">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Maiores impedit perferendis suscipit eaque, iste dolor
-                  cupiditate blanditiis ratione.
+                Apartman yönetim sistemi, apartman, site veya toplu konutların yönetimini kolaylaştırmak için kullanılan yazılım ve uygulamalardır. Bu sistemler, aidat takibi, gider yönetimi, duyurular, rezervasyonlar ve diğer yönetimsel işleri dijital platformda düzenlemeye yardımcı olur.
                 </p>
               </div>
             </div>
@@ -472,12 +465,10 @@ const HomePage = () => {
               </div>
               <div class="text-md">
                 <h1 class="text-gray-900 font-semibold mb-2">
-                  What might be your first question?
+                  Aidat ödemeleri nasıl yapılır?
                 </h1>
                 <p class="text-gray-500 text-sm">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Maiores impedit perferendis suscipit eaque, iste dolor
-                  cupiditate blanditiis ratione.
+                Aidat ödemeleri apartman yönetim sistemi üzerinden online olarak kredi kartı veya banka havalesi ile yapılabilir. Sistem, otomatik hatırlatmalar ve ödeme geçmişi gibi özellikler de sunar.
                 </p>
               </div>
             </div>
@@ -506,19 +497,17 @@ const HomePage = () => {
               </div>
               <div class="text-md">
                 <h1 class="text-gray-900 font-semibold mb-2">
-                  What might be your first question?
+                Giderler nasıl takip edilir?
                 </h1>
                 <p class="text-gray-500 text-sm">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Maiores impedit perferendis suscipit eaque, iste dolor
-                  cupiditate blanditiis ratione.
+                Apartman yönetim sistemi, yapılan tüm harcamaların kayıt altına alınmasını ve raporlanmasını sağlar. Böylece tüm sakinler giderlerin nereye harcandığını görebilir ve şeffaflık sağlanır.
                 </p>
               </div>
             </div>
           </div>
         </div>
         <div class="px-10 sm:px-16 sm:flex items-start mb-10">
-          <h3 class="py-3 font-bold text-lg text-gray-900 w-3/12">Billing</h3>
+          <h3 class="py-3 font-bold text-lg text-gray-900 w-3/12">Ödeme Soruları</h3>
           <div class="w-9/12">
             <div class="flex items-start mb-8">
               <div class="hidden sm:flex items-center justify-center p-3 mr-3 rounded-full bg-indigo-500 text-white border-4 border-white text-xl font-semibold">
@@ -545,12 +534,10 @@ const HomePage = () => {
               </div>
               <div class="text-md">
                 <h1 class="text-gray-900 font-semibold mb-2">
-                  What might be your first question?
+                Duyurular nasıl yapılır?
                 </h1>
                 <p class="text-gray-500 text-sm">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Maiores impedit perferendis suscipit eaque, iste dolor
-                  cupiditate blanditiis ratione.
+                Apartman yönetim sistemi üzerinden yönetim tarafından yapılan duyurular, tüm sakinlere e-posta, SMS veya mobil uygulama bildirimleriyle iletilebilir. Ayrıca duyurular sistemin duyuru panosunda da görüntülenebilir.
                 </p>
               </div>
             </div>
@@ -579,12 +566,10 @@ const HomePage = () => {
               </div>
               <div class="text-md">
                 <h1 class="text-gray-900 font-semibold mb-2">
-                  What might be your first question?
+                Güvenlik nasıl sağlanır?
                 </h1>
                 <p class="text-gray-500 text-sm">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Maiores impedit perferendis suscipit eaque, iste dolor
-                  cupiditate blanditiis ratione.
+                Apartman yönetim sistemi, kullanıcı verilerini korumak için şifreleme teknolojileri kullanır. Ayrıca, sadece yetkili kullanıcılar belirli bilgilere erişebilir.
                 </p>
               </div>
             </div>
@@ -606,7 +591,7 @@ const HomePage = () => {
         <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
           <div class="relative max-w-2xl sm:mx-auto sm:max-w-xl md:max-w-2xl sm:text-center">
             <h2 class="mb-6 font-sans text-3xl text-center font-bold tracking-tight text-white sm:text-4xl sm:leading-none">
-              Subscribe to our newsletter
+            Haber bültenimize abone ol
             </h2>
             <p class="mb-6 text-base text-indigo-200 md:text-lg">
               Sed ut perspiciatis unde omnis iste natus error sit voluptatem

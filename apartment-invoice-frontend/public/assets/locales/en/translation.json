@@ -69,6 +69,11 @@
         "answer4" : "The questions in this generator are gender neutral and can be used to ask either male of females (or any other gender the person identifies with).",
         "question5" : "What do you wish you had more talent doing?",
         "answer6" : "If you've been searching for a way to get random questions, you've landed on the correct webpage. We created the Random Question Generator to ask you as many random questions as your heart desires.",
-        "videoHeader": "Your browser does not support the video tag."
+        "videoHeader": "Your browser does not support the video tag.",
+        "header5" : "Our Sponsors",
+        "sponsorDesc" : "We are thankful to each and every company sponsored our plugin which helped us to continue working on it.",
+        "languageModal" : "Choose Language",
+        "languageTab" : "Language & Region"
+        
     }
  }
