@@ -1,12 +1,15 @@
 using ApartmentInvoice.Business.DependencyResolvers.Autofac;
 using ApartmentInvoice.Business.Mappings;
+using ApartmentInvoice.Core.Utilities.Cloudinary;
 using ApartmentInvoice.Core.Utilities.Security.Encryption;
 using ApartmentInvoice.Core.Utilities.Security.JWT;
+using ApartmentInvoice.Email;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,6 +40,12 @@ var mapperConfig = new MapperConfiguration(mc =>
     mc.AddProfile(new UserActivityProfile());
     mc.AddProfile(new PostProfile());
     mc.AddProfile(new PostCommentProfile());
+    mc.AddProfile(new AnnouncementProfile());
+    mc.AddProfile(new SurveyProfile());
+    mc.AddProfile(new QuestionProfile());
+    mc.AddProfile(new VoteProfile());
+    mc.AddProfile(new OrderProfile());
+    mc.AddProfile(new ApartmentProfile());
 
   
 });
@@ -50,12 +59,14 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 // call builder.Populate(), that happens in AutofacServiceProviderFactory.
 builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterModule(new AutofacBusinessModule()));
 #endregion
-
-
-
-#region JWT Authentication
 var provider = builder.Services.BuildServiceProvider();
 var configuration = provider.GetRequiredService<IConfiguration>();
+#region
+StripeConfiguration.ApiKey = configuration.GetSection("Stripe").GetValue<string>("SecretKey");
+#endregion
+
+#region JWT Authentication
+
 var tokenOptions = configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -74,6 +85,21 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 #endregion
 
+builder.Services.Configure<CloudinarySettings>(configuration.GetSection("CloudinarySettings"));
+var emailConfig = builder.Configuration
+        .GetSection("EmailConfiguration")
+        .Get<EmailConfiguration>();
+builder.Services.AddSingleton(emailConfig);
+builder.Services.AddCors(options =>
+{
+    var frontendURL = configuration.GetValue<string>("frontend_url");
+
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.WithOrigins(frontendURL).AllowAnyMethod().AllowAnyHeader();
+    });
+
+});
 
 var app = builder.Build();
 
@@ -88,6 +114,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 
+app.UseCors();
 app.UseAuthorization();
 
 app.MapControllers();

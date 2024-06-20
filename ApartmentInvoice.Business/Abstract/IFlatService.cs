@@ -24,6 +24,8 @@ namespace ApartmentInvoice.Business.Abstract
 
         Task<IDataResult<FlatUpdateDto>> UpdateAsync(FlatUpdateDto flatUpdateDto);
 
+
+        Task<IDataResult<FlatUpdateDto>> AddUserToFlat(FlatUpdateDto flatUpdateDto);
         Task<IDataResult<bool>> DeleteAsync(int id);
     }
 }

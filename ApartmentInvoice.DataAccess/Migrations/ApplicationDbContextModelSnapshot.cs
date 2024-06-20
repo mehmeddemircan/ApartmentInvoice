@@ -77,6 +77,9 @@ namespace ApartmentInvoice.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("OperationClaimId")
+                        .HasColumnType("int");
+
                     b.Property<byte[]>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
@@ -95,6 +98,8 @@ namespace ApartmentInvoice.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OperationClaimId");
 
                     b.ToTable("Users");
                 });
@@ -158,6 +163,10 @@ namespace ApartmentInvoice.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Images")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -213,6 +222,93 @@ namespace ApartmentInvoice.DataAccess.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("ActivityComments");
+                });
+
+            modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.Announcement", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DatePosted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Announcements");
+                });
+
+            modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.Apartment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Images")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Latitude")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Longitude")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Apartments");
                 });
 
             modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.Bill", b =>
@@ -447,6 +543,43 @@ namespace ApartmentInvoice.DataAccess.Migrations
                     b.ToTable("Messages");
                 });
 
+            modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("OrderContent")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("OrderStatus")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders");
+                });
+
             modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.Post", b =>
                 {
                     b.Property<int>("Id")
@@ -518,6 +651,40 @@ namespace ApartmentInvoice.DataAccess.Migrations
                     b.ToTable("PostComments");
                 });
 
+            modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.Question", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("SurveyId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SurveyId");
+
+                    b.ToTable("Questions");
+                });
+
             modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.Subscription", b =>
                 {
                     b.Property<int>("Id")
@@ -535,8 +702,9 @@ namespace ApartmentInvoice.DataAccess.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Month")
-                        .HasColumnType("int");
+                    b.Property<string>("SubscriptionDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("UpdatedBy")
                         .HasColumnType("int");
@@ -544,12 +712,38 @@ namespace ApartmentInvoice.DataAccess.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Year")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.ToTable("Subscriptions");
+                });
+
+            modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.Survey", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Surveys");
                 });
 
             modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.UserActivity", b =>
@@ -587,16 +781,60 @@ namespace ApartmentInvoice.DataAccess.Migrations
                     b.ToTable("UserActivities");
                 });
 
+            modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.Vote", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("QuestionId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuestionId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Votes");
+                });
+
+            modelBuilder.Entity("ApartmentInvoice.Core.Entities.Concrete.Auth.User", b =>
+                {
+                    b.HasOne("ApartmentInvoice.Core.Entities.Concrete.Auth.OperationClaim", "OperationClaim")
+                        .WithMany()
+                        .HasForeignKey("OperationClaimId");
+
+                    b.Navigation("OperationClaim");
+                });
+
             modelBuilder.Entity("ApartmentInvoice.Core.Entities.Concrete.Auth.UserOperationClaim", b =>
                 {
                     b.HasOne("ApartmentInvoice.Core.Entities.Concrete.Auth.OperationClaim", "OperationClaim")
-                        .WithMany("UserRoles")
+                        .WithMany()
                         .HasForeignKey("OperationClaimId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ApartmentInvoice.Core.Entities.Concrete.Auth.User", "User")
-                        .WithMany("UserRoles")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -614,6 +852,17 @@ namespace ApartmentInvoice.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ApartmentInvoice.Core.Entities.Concrete.Auth.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.Announcement", b =>
+                {
                     b.HasOne("ApartmentInvoice.Core.Entities.Concrete.Auth.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
@@ -689,6 +938,17 @@ namespace ApartmentInvoice.DataAccess.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.Order", b =>
+                {
+                    b.HasOne("ApartmentInvoice.Core.Entities.Concrete.Auth.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.Post", b =>
                 {
                     b.HasOne("ApartmentInvoice.Core.Entities.Concrete.Auth.User", "User")
@@ -711,6 +971,17 @@ namespace ApartmentInvoice.DataAccess.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.Question", b =>
+                {
+                    b.HasOne("ApartmentInvoice.Entity.Concrete.Survey", "Survey")
+                        .WithMany("Questions")
+                        .HasForeignKey("SurveyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Survey");
+                });
+
             modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.UserActivity", b =>
                 {
                     b.HasOne("ApartmentInvoice.Entity.Concrete.Activity", "Activity")
@@ -730,14 +1001,23 @@ namespace ApartmentInvoice.DataAccess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ApartmentInvoice.Core.Entities.Concrete.Auth.OperationClaim", b =>
+            modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.Vote", b =>
                 {
-                    b.Navigation("UserRoles");
-                });
+                    b.HasOne("ApartmentInvoice.Entity.Concrete.Question", "Question")
+                        .WithMany()
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-            modelBuilder.Entity("ApartmentInvoice.Core.Entities.Concrete.Auth.User", b =>
-                {
-                    b.Navigation("UserRoles");
+                    b.HasOne("ApartmentInvoice.Core.Entities.Concrete.Auth.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Question");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.Activity", b =>
@@ -762,6 +1042,11 @@ namespace ApartmentInvoice.DataAccess.Migrations
             modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.Subscription", b =>
                 {
                     b.Navigation("FlatSubscriptions");
+                });
+
+            modelBuilder.Entity("ApartmentInvoice.Entity.Concrete.Survey", b =>
+                {
+                    b.Navigation("Questions");
                 });
 #pragma warning restore 612, 618
         }

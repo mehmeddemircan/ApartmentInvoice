@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -12,18 +13,14 @@ namespace ApartmentInvoice.Core.Entities.Concrete.Auth
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
-
         public string Email { get; set; }
-
-
         public byte[] PasswordSalt { get; set; }
         public byte[] PasswordHash { get; set; }
         public bool Status { get; set; }
 
+        public int? OperationClaimId { get; set; }
 
-        public virtual ICollection<UserOperationClaim>? UserRoles { get; set; }
-
-
+        public virtual OperationClaim OperationClaim { get; set; }
 
 
 

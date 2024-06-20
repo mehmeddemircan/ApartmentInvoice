@@ -79,9 +79,9 @@ namespace ApartmentInvoice.WebApi.Controllers
         [HttpPut]
         [Route("[action]")]
 
-        public async Task<IActionResult> UpdateActivityComment([FromForm] ActivityCommentUpdateDto commentUpdateDto)
+        public async Task<IActionResult> UpdateActivityComment([FromBody] ActivityCommentUpdateDto activityCommentUpdateDto)
         {
-            var result = await _activityCommentService.UpdateAsync(commentUpdateDto);
+            var result = await _activityCommentService.UpdateAsync(activityCommentUpdateDto);
 
             if (result != null)
             {
@@ -97,6 +97,20 @@ namespace ApartmentInvoice.WebApi.Controllers
         public async Task<IActionResult> GetActivityCommentsByActivityId(int activityId)
         {
             var result = await _activityCommentService.GetListAsync(x => x.ActivityId == activityId);
+
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
+        [HttpGet]
+        [Route("[action]/{userId:int}")]
+
+        public async Task<IActionResult> GetActivityCommentsByUserId(int userId)
+        {
+            var result = await _activityCommentService.GetListAsync(x => x.UserId == userId);
 
             if (result != null)
             {

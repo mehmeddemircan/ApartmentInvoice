@@ -1,4 +1,5 @@
 import { Fragment, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import {
   ArrowPathIcon,
@@ -14,16 +15,29 @@ import {
   PhoneIcon,
   PlayCircleIcon,
 } from "@heroicons/react/20/solid";
+import { Menu, Dropdown, Badge, Tooltip } from "antd";
 import LoginModal from "../modal/LoginModal";
 import LanguageModal from "../modal/LanguageModal";
+import { LoggedInHeader } from "./LoggedInHeader";
+import { useSelector } from "react-redux";
+import { NotLoggedInHeader } from "./NotLoggedInHeader";
+import GenericPopover from "../popover/GenericPopover";
+import AnnouncementContent from "../popover/content/AnnouncementContent";
 
 const products = [
+  {
+    name: "Postlar",
+    description: "Get a better understanding of your traffic",
+    href: "/posts",
+    icon: ChartPieIcon,
+  },
   {
     name: "Özellikler",
     description: "Get a better understanding of your traffic",
     href: "/features",
     icon: ChartPieIcon,
   },
+
   {
     name: "Etkinlikler",
     description: "Speak directly to your customers",
@@ -36,18 +50,7 @@ const products = [
     href: "/donate",
     icon: FingerPrintIcon,
   },
-  {
-    name: "Integrations",
-    description: "Connect with third-party tools",
-    href: "#",
-    icon: SquaresPlusIcon,
-  },
-  {
-    name: "Automations",
-    description: "Build strategic funnels that will convert",
-    href: "#",
-    icon: ArrowPathIcon,
-  },
+ 
 ];
 const callsToAction = [
   { name: "Watch demo", href: "#", icon: PlayCircleIcon },
@@ -57,7 +60,6 @@ const callsToAction = [
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
-
 const MainHeader = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isShowLoginModalOpen, setIsShowLoginModalOpen] = useState(false);
@@ -77,8 +79,9 @@ const MainHeader = () => {
   const handleCloseLanguageModal = () => {
     setShowLanguageModal(false);
   };
+  const auth = useSelector((state) => state.auth);
 
-
+  const { t } = useTranslation();
   return (
     <header className="bg-white">
       <nav
@@ -108,7 +111,7 @@ const MainHeader = () => {
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
           <Popover className="relative">
             <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-dark hover:text-green-400">
-              Product
+              {t("header.general")}
               <ChevronDownIcon
                 className="h-5 w-5 flex-none text-gray-400"
                 aria-hidden="true"
@@ -170,48 +173,60 @@ const MainHeader = () => {
           </Popover>
 
           <a
-            href="/payment"
+            href="/pay-aidat"
             className="text-sm font-semibold leading-6 text-dark hover:text-green-400"
           >
-            Ödeme Yap
+            {t("header.pay")}
           </a>
-          <a
-            href="/my-bills"
-            className="text-sm font-semibold leading-6 text-dark  hover:text-green-400"
-          >
-            Faturalarım
-          </a>
+
           <a
             href="/complain"
             className="text-sm font-semibold leading-6 text-dark  hover:text-green-400"
           >
-            Sikayet Et
+            {t("header.complain")}
+          </a>
+
+          <a
+            href="/give-order"
+            className="text-sm font-semibold leading-6 text-dark  hover:text-green-400"
+          >
+            {t("header.giveorder")}
+          </a>
+          <a
+            href="/about-us"
+            className="text-sm font-semibold leading-6 text-dark  hover:text-green-400"
+          >
+            {t("header.aboutus")}
           </a>
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a
-            href="#"
-            className="text-sm font-semibold leading-6 text-dark  hover:text-green-400 me-4"
-            onClick={handleShowLoginModal}
-          >
-            Log in 
-          </a>
-          <LoginModal 
+          {auth.authenticate ? (
+            <LoggedInHeader />
+          ) : (
+            <NotLoggedInHeader handleShowLoginModal={handleShowLoginModal} />
+          )}
+          <LoginModal
             isShowLoginModalOpen={isShowLoginModalOpen}
             handleCancelLoginModal={handleCancelLoginModal}
           />
-           <div >
+
+          <GenericPopover content={<AnnouncementContent />}>
+            <div>
+              <i class="fa-solid fa-bell me-3 ms-3 mt-1"></i>
+            </div>
+          </GenericPopover>
+
+          <div>
             <i
               class="fa-solid fa-globe me-3 mt-1"
               onClick={handleShowLanguageModal}
             ></i>
-              <LanguageModal
-            showLanguageModal={showLanguageModal}
-            handleCloseLanguageModal={handleCloseLanguageModal}
-          />
+            <LanguageModal
+              showLanguageModal={showLanguageModal}
+              handleCloseLanguageModal={handleCloseLanguageModal}
+            />
           </div>
         </div>
-       
       </nav>
       <Dialog
         as="div"

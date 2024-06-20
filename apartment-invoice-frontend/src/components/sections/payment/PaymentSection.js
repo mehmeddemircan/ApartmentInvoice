@@ -1,6 +1,23 @@
-import React, { Fragment } from 'react'
-
+import React, { Fragment, useState } from 'react'
+import {useDispatch , useSelector} from 'react-redux'
+import { PaySubscription } from '../../../redux/actions/PaymentAction'
+import { useEffect } from 'react'
 const PaymentSection = ({isDonate,title, content, buttonTitle}) => {
+
+  const getSingleSubscription = useSelector((state) => state.subscription.getSingleSubscription)
+
+  const dispatch = useDispatch()
+  const [amount, setAmount] = useState("")
+
+  useEffect(() => {
+    if (getSingleSubscription.success) {
+      setAmount(getSingleSubscription.subscription.data.amount)
+    }
+  }, [getSingleSubscription.success])
+  const handlePaySubscription = () => {
+    dispatch(PaySubscription(amount))
+  }
+
   return (
     <Fragment>
          <div class="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0">
@@ -70,28 +87,29 @@ const PaymentSection = ({isDonate,title, content, buttonTitle}) => {
                   placeholder="CVC"
                 />
               </div>
+              
 
              {!isDonate && (
               <Fragment>
                    <div class="mt-6 border-t border-b py-2">
                  <div class="flex items-center justify-between">
-                   <p class="text-sm font-medium text-gray-900">Subtotal</p>
-                   <p class="font-semibold text-gray-900">$399.00</p>
+                   <p class="text-sm font-medium text-gray-900">Aidat Borcu</p>
+                   <p class="font-semibold text-gray-900">{getSingleSubscription.success && getSingleSubscription.subscription.data.amount} TL</p>
                  </div>
                  <div class="flex items-center justify-between">
-                   <p class="text-sm font-medium text-gray-900">Shipping</p>
-                   <p class="font-semibold text-gray-900">$8.00</p>
+                   <p class="text-sm font-medium text-gray-900">KDV Ucreti</p>
+                   <p class="font-semibold text-gray-900">0.00 TL</p>
                  </div>
                </div>
                <div class="mt-6 flex items-center justify-between">
-                 <p class="text-sm font-medium text-gray-900">Total</p>
-                 <p class="text-2xl font-semibold text-gray-900">$408.00</p>
+                 <p class="text-sm font-medium text-gray-900">Toplam tutar</p>
+                 <p class="text-2xl font-semibold text-gray-900">{getSingleSubscription.success && getSingleSubscription.subscription.data.amount} TL</p>
                </div>
             
               </Fragment>
              )}
               </div>
-            <button class="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">
+            <button class="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white" onClick={handlePaySubscription}>
            {buttonTitle}
             </button>
           </div>

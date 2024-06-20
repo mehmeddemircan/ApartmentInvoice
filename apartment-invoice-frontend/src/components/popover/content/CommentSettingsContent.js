@@ -1,18 +1,25 @@
 import React, { Fragment, useState } from "react";
 import CommentModal from "../../modal/CommentModal";
+import { useDispatch, useSelector } from "react-redux";
+import { DeleteActivityComment } from "../../../redux/actions/ActivityCommentAction";
+import EditCommentModal from "../../modal/EditCommentModal";
 
+const CommentSettingsContent = ({ item }) => {
+  const [showEditCommentModal, setShowEditCommentModal] = useState(false);
 
-
-const CommentSettingsContent = ({comment,handleDeleteProjectComment}) => {
-
-    const [showCommentModal, setShowCommentModal] = useState(false)
-
-    const handleShowEditCommentModal = () => {
-        setShowCommentModal(true)
-    }
-    const handleCloseCommentModal = () => {
-        setShowCommentModal(false)
-    }
+  const handleShowEditCommentModal = () => {
+    setShowEditCommentModal(true);
+  };
+  const handleCloseEditCommentModal = () => {
+    setShowEditCommentModal(false);
+  };
+  const activityCommentUpdateDelete = useSelector(
+    (state) => state.activityComment.activityCommentUpdateDelete
+  );
+  const dispatch = useDispatch();
+  const handleDeleteActivityCommentItem = (id) => {
+    dispatch(DeleteActivityComment(id));
+  };
 
   return (
     <Fragment>
@@ -21,22 +28,19 @@ const CommentSettingsContent = ({comment,handleDeleteProjectComment}) => {
         aria-labelledby="dropdownMenuIconHorizontalButton"
       >
         <li onClick={handleShowEditCommentModal}>
-          <a
-           
-            class="block my-1  py-2 pe-2 ps-1 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-          >
+          <a class="block my-1  py-2 pe-2 ps-1 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
             <i class="fa-solid fa-pen-to-square me-2"></i> <a>Düzenle</a>
           </a>
         </li>
-        <CommentModal
-            comment={comment} 
-            showCommentModal={showCommentModal}
-            handleCloseCommentModal={handleCloseCommentModal}
+        <EditCommentModal
+          item={item}
+          showEditCommentModal={showEditCommentModal}
+          handleCloseEditCommentModal={handleCloseEditCommentModal}
         />
-        <li onClick={() => handleDeleteProjectComment(comment._id)}>
+        <li>
           <a
-         
             class="block my-1 py-2 pe-2 ps-1 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+            onClick={() => handleDeleteActivityCommentItem(item.id)}
           >
             <i class="fa-solid fa-trash me-2"></i>
             <a>Sil</a>

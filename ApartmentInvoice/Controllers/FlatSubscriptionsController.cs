@@ -16,6 +16,11 @@ namespace ApartmentInvocie.WebApi.Controllers
             _flatSubscriptionService = flatSubscriptionService;
 
         }
+
+        /// <summary>
+        /// Daire üyeliklerini aidatlarını gösteren apı 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
 
@@ -32,6 +37,11 @@ namespace ApartmentInvocie.WebApi.Controllers
         }
 
 
+        /// <summary>
+        /// Yeni aidat ekleyen api 
+        /// </summary>
+        /// <param name="flatSubscriptionAddDto"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("[action]")]
 
@@ -46,6 +56,13 @@ namespace ApartmentInvocie.WebApi.Controllers
             return BadRequest();
 
         }
+
+
+        /// <summary>
+        /// Aidati id ye göre çeken api 
+        /// </summary>
+        /// <param name="flatSubscriptionId"></param>
+        /// <returns></returns>
 
         [HttpGet]
         [Route("[action]/{flatSubscriptionId:int}")]
@@ -62,6 +79,11 @@ namespace ApartmentInvocie.WebApi.Controllers
 
 
 
+        /// <summary>
+        /// Aidati silen api 
+        /// </summary>
+        /// <param name="flatSubscriptionId"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("[action]/{flatSubscriptionId:int}")]
         public async Task<IActionResult> DeleteFlatSubscription(int flatSubscriptionId)
@@ -77,6 +99,12 @@ namespace ApartmentInvocie.WebApi.Controllers
         }
 
 
+
+        /// <summary>
+        /// Aidati güncelleyen api 
+        /// </summary>
+        /// <param name="flatSubscriptionUpdateDto"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("[action]")]
 

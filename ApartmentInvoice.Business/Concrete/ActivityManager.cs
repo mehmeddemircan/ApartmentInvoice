@@ -7,6 +7,7 @@ using ApartmentInvoice.Entity.Concrete;
 using ApartmentInvoice.Entity.DTOs.ActivityDtos;
 using ApartmentInvoice.Entity.DTOs.BillDtos;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,19 +20,25 @@ namespace ApartmentInvoice.Business.Concrete
     public class ActivityManager : IActivityService
     {
         IMapper _mapper;
-        IActivityRepository _activityRepository; 
-        public ActivityManager(IMapper mapper,IActivityRepository activityRepository)
+        IActivityRepository _activityRepository;
+        ICloudinaryService _cloudinaryService;
+        IActivityImageRepository _activityImageRepository; 
+        public ActivityManager(IMapper mapper,IActivityRepository activityRepository, ICloudinaryService cloudinaryService,IActivityImageRepository activityImageRepository)
         {
             _mapper = mapper;
-            _activityRepository = activityRepository; 
+            _activityRepository = activityRepository;
+            _cloudinaryService = cloudinaryService;
+            _activityImageRepository = activityImageRepository;
         }
         public async Task<IResult> AddAsync(ActivityAddDto entity)
         {
+       
+
             var newActivity = _mapper.Map<Activity>(entity);
+          
+           
 
-            await _activityRepository.AddAsync(newActivity);
-
-
+          await _activityRepository.AddAsync(newActivity);
             return new SuccessResult(Messages.Added);
         }
 
@@ -58,9 +65,12 @@ namespace ApartmentInvoice.Business.Concrete
             var activity = await _activityRepository.GetAsync(x => x.Id == id);
             if (activity != null)
             {
+                
+                
+             
+
                 var activityDetailDto = _mapper.Map<ActivityDetailDto>(activity);
                 return new SuccessDataResult<ActivityDetailDto>(activityDetailDto, Messages.Listed);
-
             }
             return new ErrorDataResult<ActivityDetailDto>(null, Messages.NotListed);
         }
@@ -98,6 +108,27 @@ namespace ApartmentInvoice.Business.Concrete
             var resultUpdateDto = _mapper.Map<ActivityUpdateDto>(activityUpdate);
 
             return new SuccessDataResult<ActivityUpdateDto>(resultUpdateDto, Messages.Updated);
+        }
+
+        private async Task<string> UploadImageAsync(IFormFile imageFile)
+        {
+            if (imageFile == null || imageFile.Length == 0)
+            {
+                return null;
+            }
+
+            var imagePath = Path.GetTempFileName(); // Get a temporary file path to store the uploaded image
+            using (var stream = new FileStream(imagePath, FileMode.Create))
+            {
+                await imageFile.CopyToAsync(stream);
+            }
+
+            var imageUrl = await _cloudinaryService.UploadImageAsync(imagePath);
+
+            // Delete the temporary image file
+            System.IO.File.Delete(imagePath);
+
+            return imageUrl;
         }
     }
 }

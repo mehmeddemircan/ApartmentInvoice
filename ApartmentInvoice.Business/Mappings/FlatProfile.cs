@@ -20,11 +20,18 @@ namespace ApartmentInvoice.Business.Mappings
             CreateMap<FlatUpdateDto, Flat>();
             CreateMap<Flat, FlatUpdateDto>();
 
+            CreateMap<AddUserToFlatDto, Flat>();
+            CreateMap<Flat, AddUserToFlatDto>();
+
             CreateMap<FlatsDto, Flat>();
-            CreateMap<Flat, FlatsDto>();
+            CreateMap<Flat, FlatsDto>()
+                             .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.User.Email));
 
             CreateMap<FlatDetailDto, Flat>();
             CreateMap<Flat, FlatDetailDto>();
+    
+
+               
         }
     }
 }

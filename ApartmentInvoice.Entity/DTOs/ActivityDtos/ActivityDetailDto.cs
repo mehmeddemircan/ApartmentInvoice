@@ -22,6 +22,7 @@ namespace ApartmentInvoice.Entity.DTOs.ActivityDtos
 
         public bool IsActive { get; set; }
 
+        public string Images { get; set; }
         public ICollection<ActivityCommentsDto> Comments { get; set; }
 
     }

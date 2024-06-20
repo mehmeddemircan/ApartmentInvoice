@@ -14,7 +14,10 @@ namespace ApartmentInvocie.WebApi.Controllers
         {
             _subscriptionService = subscriptionService;
         }
-
+        /// <summary>
+        /// Bütün üyelikleri çeken api
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
 
@@ -30,7 +33,11 @@ namespace ApartmentInvocie.WebApi.Controllers
 
         }
 
-
+        /// <summary>
+        /// Yeni aidat ekleyen api 
+        /// </summary>
+        /// <param name="subscriptionAddDto"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("[action]")]
 
@@ -45,7 +52,11 @@ namespace ApartmentInvocie.WebApi.Controllers
             return BadRequest();
 
         }
-
+        /// <summary>
+        /// Tek aidati çeken api
+        /// </summary>
+        /// <param name="subscriptionId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("[action]/{subscriptionId:int}")]
         public async Task<IActionResult> GetSubscriptionById(int subscriptionId)
@@ -59,7 +70,11 @@ namespace ApartmentInvocie.WebApi.Controllers
         }
 
 
-
+        /// <summary>
+        /// Aidati silen api 
+        /// </summary>
+        /// <param name="subscriptionId"></param>
+        /// <returns></returns>
 
         [HttpDelete]
         [Route("[action]/{subscriptionId:int}")]
@@ -75,11 +90,15 @@ namespace ApartmentInvocie.WebApi.Controllers
             return BadRequest();
         }
 
-
+        /// <summary>
+        /// Aidati güncelleyen api 
+        /// </summary>
+        /// <param name="subscriptionUpdateDto"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("[action]")]
 
-        public async Task<IActionResult> UpdateSubscription([FromForm] SubscriptionUpdateDto subscriptionUpdateDto)
+        public async Task<IActionResult> UpdateSubscription([FromBody] SubscriptionUpdateDto subscriptionUpdateDto)
         {
             var result = await _subscriptionService.UpdateAsync(subscriptionUpdateDto);
 

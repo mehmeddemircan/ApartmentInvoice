@@ -1,4 +1,5 @@
 ﻿using ApartmentInvoice.Core.Entities.Abstract;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace ApartmentInvoice.Entity.DTOs.ActivityDtos
 
         public bool IsActive { get; set; } = true;
 
-
+        public string Images { get; set; }
 
 
     }

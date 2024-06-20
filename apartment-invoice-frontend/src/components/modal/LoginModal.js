@@ -1,29 +1,81 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import { Button, Modal } from 'antd';
+import {useSelector,useDispatch} from 'react-redux';
+import { useNavigate } from "react-router-dom";
+
+import { message } from "antd";
+import { login ,register as _register} from '../../redux/actions/AuthAction';
 const LoginModal = ({isShowLoginModalOpen,handleCancelLoginModal}) => {
-  const [register, setRegister] = useState(false);
-   // kayıt ol , giriş yap kısımlarını toggle şeklinde geçis yapma 
+  const [showRegister, setShowRegister] = useState(false);
+   // kayıt ol , giriş yap kısımlarını toggle şeklinde geçis yapma
    const handleToggleAuthButton = () => {
-    setRegister((prev) => !prev);
+    setShowRegister((prev) => !prev);
   };
+
+  const [firstname, setFirstname] = useState("")
+  const [lastname, setLastname] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const auth = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const userSignUp = () => {
+    const user = { firstname, lastname, email, password };
+
+    dispatch(_register(user));
+  };
+    // authentication işlemi
+const userLogin = (e) => {
+  e.preventDefault();
+
+  if (showRegister) {
+    userSignUp();
+  } else {
+    dispatch(login({ email, password }));
+  }
+};
+// regiter true ise inputları temizle
+useEffect(() => {
+  if (showRegister) {
+    setFirstname("");
+    setLastname("");
+    setEmail("");
+    setPassword("");
+  }
+}, [showRegister]);
+// başarılı şekilde giriş yaparsa anasayfaya yönlendir
+useEffect(() => {
+  if (auth.authenticate) {
+    handleCancelLoginModal()
+  }
+}, [auth.authenticate, navigate]);
+// authentication olurken hata mesajlarını göster
+useEffect(() => {
+  if (!auth.authenticating && auth.error !== null && auth.token === null) {
+    if (auth.error) {
+      message.error(auth.error);
+    }
+  }
+}, [auth.authenticating, auth.error, auth.token]);
 
   return (
     <>
-      <Modal footer={null} title="Basic Modal"  centered={true} open={isShowLoginModalOpen} onOk={handleCancelLoginModal} onCancel={handleCancelLoginModal}>
+      <Modal footer={null}   centered={true} open={isShowLoginModalOpen} onOk={handleCancelLoginModal} onCancel={handleCancelLoginModal}>
       <main className="w-full  flex flex-col items-center justify-center px-4">
           <div className="max-w-sm w-full text-gray-600 space-y-8">
               <div className="text-center">
-                  <img src="https://floatui.com/logo.svg" width={150} className="mx-auto" />
+                 
                   <div className="mt-5 space-y-2">
-                      
+
                       <a onClick={handleToggleAuthButton}>
-                      {register ? (
+                      {showRegister ? (
                         <>
                          <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">Create your account now</h3>
                          <p className="">İf you have a account <a href="javascript:void(0)" className="font-medium text-indigo-600 hover:text-indigo-500">Sign in </a></p>
                          </>
-                      ) : 
-                        ( 
+                      ) :
+                        (
                         <>
                           <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl"> Log in to your account </h3>
                         <p className="">Don't have an account? <a href="javascript:void(0)" className="font-medium text-indigo-600 hover:text-indigo-500">Sign up</a></p>
@@ -35,18 +87,35 @@ const LoginModal = ({isShowLoginModalOpen,handleCancelLoginModal}) => {
               </div>
               <form
                   onSubmit={(e) => e.preventDefault()}
-              > 
-                {register&& (
-                  <div>
+              >
+                {showRegister&& (
+                    <>
+                      <div>
                   <label className="font-medium">
-                      Username
+                      FirstName
                   </label>
                   <input
                       type="name"
                       required
                       className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+                    value={firstname}
+                      onChange={(e)=>setFirstname(e.target.value)}
                   />
               </div>
+              <div>
+              <label className="font-medium">
+                  LastName
+              </label>
+              <input
+                  type="name"
+                  required
+                  className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+                    value={lastname}
+                    onChange={(e) => setLastname(e.target.value)}
+              />
+          </div>
+                    </>
+
                 )}
                   <div>
                       <label className="font-medium">
@@ -56,6 +125,8 @@ const LoginModal = ({isShowLoginModalOpen,handleCancelLoginModal}) => {
                           type="email"
                           required
                           className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+                          value={email}
+                          onChange={(e)=>setEmail(e.target.value)}
                       />
                   </div>
                   <div>
@@ -66,11 +137,14 @@ const LoginModal = ({isShowLoginModalOpen,handleCancelLoginModal}) => {
                           type="password"
                           required
                           className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
-                      />
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                     />
                   </div>
                   <button
                       className="w-full mt-4 px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150"
-                  >
+                 onClick={userLogin}
+                 >
                       Sign in
                   </button>
               </form>

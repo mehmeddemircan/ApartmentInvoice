@@ -94,6 +94,18 @@ namespace ApartmentInvocie.WebApi.Controllers
             return BadRequest();
         }
 
+        [HttpGet]
+        [Route("[action]/{blockId:int}")]
+        public async Task<IActionResult> GetFlatByBlock(int blockId)
+        {
+            var result = await _flatService.GetListAsync(x => x.BlockId == blockId);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
         /// <summary>
         /// Daire silmeyi sağlayan API 
         /// </summary>
@@ -121,9 +133,23 @@ namespace ApartmentInvocie.WebApi.Controllers
         [HttpPut]
         [Route("[action]")]
 
-        public async Task<IActionResult> UpdateFlat([FromForm] FlatUpdateDto flatUpdateDto)
+        public async Task<IActionResult> UpdateFlat([FromBody] FlatUpdateDto flatUpdateDto)
         {
             var result = await _flatService.UpdateAsync(flatUpdateDto);
+
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
+        [HttpPut]
+        [Route("[action]")]
+
+        public async Task<IActionResult> AddUserToFlat([FromBody] FlatUpdateDto flatUpdateDto)
+        {
+            var result = await _flatService.AddUserToFlat(flatUpdateDto);
 
             if (result != null)
             {

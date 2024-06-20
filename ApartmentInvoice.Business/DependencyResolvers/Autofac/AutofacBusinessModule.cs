@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ApartmentInvoice.Email;
 
 namespace ApartmentInvoice.Business.DependencyResolvers.Autofac
 {
@@ -34,6 +35,9 @@ namespace ApartmentInvoice.Business.DependencyResolvers.Autofac
 
             builder.RegisterType<BlockManager>().As<IBlockService>();
             builder.RegisterType<BlockRepository>().As<IBlockRepository>();
+
+            builder.RegisterType<ApartmentManager>().As<IApartmentService>();
+            builder.RegisterType<ApartmentRepository>().As<IApartmentRepository>();
 
             builder.RegisterType<FlatManager>().As<IFlatService>();
             builder.RegisterType<FlatRepository>().As<IFlatRepository>();
@@ -72,6 +76,31 @@ namespace ApartmentInvoice.Business.DependencyResolvers.Autofac
 
             builder.RegisterType<PostCommentManager>().As<IPostCommentService>();
             builder.RegisterType<PostCommentRepository>().As<IPostCommentRepository>();
+
+            builder.RegisterType<AnnouncementManager>().As<IAnnouncementService>();
+            builder.RegisterType<AnnouncementRepository>().As<IAnnouncementRepository>();
+
+
+            builder.RegisterType<SurveyManager>().As<ISurveyService>();
+            builder.RegisterType<SurveyRepository>().As<ISurveyRepository>();
+
+
+            builder.RegisterType<QuestionManager>().As<IQuestionService>();
+            builder.RegisterType<QuestionRepository>().As<IQuestionRepository>();
+
+
+            builder.RegisterType<VoteManager>().As<IVoteService>();
+            builder.RegisterType<VoteRepository>().As<IVoteRepository>();
+
+
+            builder.RegisterType<OrderManager>().As<IOrderService>();
+            builder.RegisterType<OrderRepository>().As<IOrderRepository>();
+
+            builder.RegisterType<PaymentManager>().As<IPaymentService>();
+
+            builder.RegisterType<EmailSender>().As<IEmailSender>();
+            builder.RegisterType<CloudinaryManager>().As<ICloudinaryService>();
+            builder.RegisterType<ActivityImageRepository>().As<IActivityImageRepository>();
             //builder.RegisterType<CarImageRepository>().As<ICarImageRepository>();
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();

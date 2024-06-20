@@ -1,0 +1,79 @@
+{
+    "header" : {
+        "login" : "Sign In",
+        "mybills" : "My bills",
+        "complain" : "Complain",
+        "pay" : "Pay",
+        "general": "General",
+        "giveorder" : "Give Order" ,
+        "aboutus" : "About Us" 
+    },
+    "loggedInHeader" : {
+        "myAccount" : "My Account",
+        "myProfile" : "My Profile",
+        "myPosts" : "My Posts",
+        "myComments" : "My Comments",
+        "myBasket" : "My Basket",
+        "myOrders" : "My Orders",
+        "myForms" : "My Forms",
+        "logOut" : "Log Out"
+    },
+    "footer" : {
+        "label" : {
+            "company" : "Company",
+            "resources" : "Resources",
+            "about" : "About"
+        },
+        "company" : {
+            "partners" : "Partners",
+            "blog" : "Blog",
+            "team" : "Team",
+            "career" : "Careers"
+        },
+        "resources" : {
+            "contact" : "Contact",
+            "support" : "Support",
+            "docs" : "Docs",
+            "pricing" : "Pricing"
+        },
+        "about" : {
+            "terms" : "Terms",
+            "license" : "License",
+            "privacy" : "Privacy",
+            "aboutUS" : "About US"
+        },
+        "stayUpToDate" : "Stay up to date",
+        "enterYourEmail" : "Enter Your Email",
+        "subscribe" : "Subscribe"
+    },
+    "mainPage" : {
+        "header1" : "We didn't reinvent the wheel",
+        "section1" : "We are strategists, designers and developers. Innovators and problem solvers. Small enough to be simple and quick, but big enough to deliver the scope you want at the pace you need. Small enough to be simple and quick, but big enough to deliver the scope you want at the pace you need. We are strategists, designers and developers. Innovators and problem solvers. Small enough to be simple and quick.",
+        "professionalServices": "Professional services",
+        "header2" : "Build the future with us",
+        "section2" : "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat non proident.",
+        "btn1" : "Get started",
+        "header3" : "Build your SaaS solution with help from our experts",
+        "section3" : "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum, sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium",
+        "learnMore" : "Learn more",
+        "header4" : "How can we help?",
+        "section4" : "Everything you need to know about the product. Can’t find the answer you’re looking for? feel free to contact us.",
+        "question1" : "What are some random questions to ask?",
+        "answer1" : "That's exactly the reason we created this random question generator. There are hundreds of random questions to choose from so you're able to find the perfect random question.",
+        "readMore" : "Read more",
+        "question2" : "Do you include common questions?",
+        "answer2" : "This generator doesn't include most common questions. The thought is that you can come up with common questions on your own so most of the questions in this generator.",
+        "question3" : "Can I use this for 21 questions?",
+        "answer3" : "Yes! there are two ways that you can use this question generator depending on what you're after. You can indicate that you want 21 questions generated.",
+        "question4" : "Are these questions for girls or for boys?",
+        "answer4" : "The questions in this generator are gender neutral and can be used to ask either male of females (or any other gender the person identifies with).",
+        "question5" : "What do you wish you had more talent doing?",
+        "answer6" : "If you've been searching for a way to get random questions, you've landed on the correct webpage. We created the Random Question Generator to ask you as many random questions as your heart desires.",
+        "videoHeader": "Your browser does not support the video tag.",
+        "header5" : "Our Sponsors",
+        "sponsorDesc" : "We are thankful to each and every company sponsored our plugin which helped us to continue working on it.",
+        "languageModal" : "Choose Language",
+        "languageTab" : "Language & Region"
+        
+    }
+ }

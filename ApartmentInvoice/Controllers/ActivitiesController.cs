@@ -33,7 +33,7 @@ namespace ApartmentInvoice.WebApi.Controllers
         [HttpPost]
         [Route("[action]")]
 
-        public async Task<IActionResult> AddNewActivity(ActivityAddDto activityAddDto)
+        public async Task<IActionResult> AddNewActivity([FromBody]ActivityAddDto activityAddDto)
         {
             var result = await _activityService.AddAsync(activityAddDto);
             if (result != null)

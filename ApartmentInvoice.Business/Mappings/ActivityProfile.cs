@@ -15,6 +15,7 @@ namespace ApartmentInvoice.Business.Mappings
         public ActivityProfile()
         {
             CreateMap<ActivityAddDto, Activity>();
+                 
             CreateMap<Activity, ActivityAddDto>();
 
             CreateMap<ActivityUpdateDto, Activity>();
@@ -25,6 +26,10 @@ namespace ApartmentInvoice.Business.Mappings
 
             CreateMap<ActivityDetailDto, Activity>();
             CreateMap<Activity, ActivityDetailDto>();
+
+            CreateMap<ActivityImageDto, Activity>();
+            CreateMap< Activity, ActivityImageDto > ();
+            CreateMap<ActivityImage, string>().ConvertUsing(src => src.Url);
         }
     }
 }

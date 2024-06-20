@@ -59,5 +59,23 @@ namespace ApartmentInvoice.WebApi.Controllers
             return BadRequest();
 
         }
+
+        [HttpGet]
+        [Route("[action]/{activityId:int}/{userId:int}")]
+
+        public async Task<IActionResult> GetUserActivityById(int activityId, int userId)
+        {
+            var result = await _userActivityService.IsJoined(activityId,userId);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest();
+
+        }
+
+    
+
     }
 }

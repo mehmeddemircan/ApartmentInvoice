@@ -6,6 +6,7 @@ using ApartmentInvoice.DataAccess.Concrete.EntityFramework;
 using ApartmentInvoice.Entity.Concrete;
 using ApartmentInvoice.Entity.DTOs.BlockDtos;
 using ApartmentInvoice.Entity.DTOs.CategoryDtos;
+using ApartmentInvoice.Entity.DTOs.CommentDtos;
 using ApartmentInvoice.Entity.DTOs.FlatDtos;
 using AutoMapper;
 using System;
@@ -15,6 +16,7 @@ using System.Linq.Expressions;
 using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ApartmentInvoice.Business.Concrete
 {
@@ -22,13 +24,14 @@ namespace ApartmentInvoice.Business.Concrete
     {
         IFlatRepository _flatRepository;
         IBlockRepository _blockRepository;
+        IUserRepository _userRepository; 
         IMapper _mapper;
-        public FlatManager(IFlatRepository flatRepository,IMapper mapper, IBlockRepository blockRepository)
+        public FlatManager(IFlatRepository flatRepository,IMapper mapper, IBlockRepository blockRepository, IUserRepository userRepository)
         {
             _flatRepository = flatRepository;
             _mapper = mapper;
             _blockRepository = blockRepository;
-
+            _userRepository = userRepository;
         }
         public async Task<IResult> AddAsync(FlatAddDto entity)
         {
@@ -37,6 +40,23 @@ namespace ApartmentInvoice.Business.Concrete
             var flatAdd = await _flatRepository.AddAsync(flat);
             return new SuccessResult(Messages.Added);
 
+        }
+
+        public async Task<IDataResult<FlatUpdateDto>> AddUserToFlat(FlatUpdateDto flatUpdateDto)
+        {
+            var getFlat = await _flatRepository.GetAsync(x => x.Id == flatUpdateDto.Id);
+
+            var flat = _mapper.Map<Flat>(flatUpdateDto);
+
+            
+            flat.UpdatedDate = DateTime.Now;
+            flat.UpdatedBy = 1;
+
+
+            var flatUpdate = await _flatRepository.UpdateAsync(flat);
+            var resultUpdateDto = _mapper.Map<FlatUpdateDto>(flatUpdate);
+
+            return new SuccessDataResult<FlatUpdateDto>(resultUpdateDto, Messages.Updated);
         }
 
         public async Task<IDataResult<bool>> DeleteAsync(int id)
@@ -71,19 +91,33 @@ namespace ApartmentInvoice.Business.Concrete
 
         public async Task<IDataResult<IEnumerable<FlatsDto>>> GetListAsync(Expression<Func<Flat, bool>> filter = null)
         {
+            List<FlatsDto> comments = new List<FlatsDto>();
+
             if (filter == null)
             {
                 // Exception 
                 //throw new UnauthorizedAccessException("UnAuthorized"); 
                 var response = await _flatRepository.GetListAsync();
-                var responseDetailDto = _mapper.Map<IEnumerable<FlatsDto>>(response);
-                return new SuccessDataResult<IEnumerable<FlatsDto>>(responseDetailDto, Messages.Listed);
+                foreach (var comment in response)
+                {
+                    var commentDto = await AssignUserDetails(comment, comment.UserId);
+                    comments.Add(commentDto);
+                }
+            
+        
+                return new SuccessDataResult<IEnumerable<FlatsDto>>(comments, Messages.Listed);
             }
             else
             {
                 var response = await _flatRepository.GetListAsync(filter);
-                var responseDetailDto = _mapper.Map<IEnumerable<FlatsDto>>(response);
-                return new SuccessDataResult<IEnumerable<FlatsDto>>(responseDetailDto, Messages.Listed);
+                foreach (var comment in response)
+                {
+                    var commentDto = await AssignUserDetails(comment, comment.UserId);
+                    comments.Add(commentDto);
+                }
+
+
+                return new SuccessDataResult<IEnumerable<FlatsDto>>(comments, Messages.Listed);
             }
         }
 
@@ -104,14 +138,22 @@ namespace ApartmentInvoice.Business.Concrete
             return new SuccessDataResult<FlatUpdateDto>(resultUpdateDto, Messages.Updated);
         }
 
+        private async Task<FlatsDto> AssignUserDetails(Flat flat, int? userId)
+        {
+            var user = await _userRepository.GetAsync(x => x.Id == userId);
+
+          
+
+            flat.User = user;
+
+            var flatDetailDto = _mapper.Map<FlatsDto>(flat);
+            return flatDetailDto;
+        }
         private async Task<FlatDetailDto> AssignDetails(Flat flat, int blockId)
         {
             var block = await _blockRepository.GetAsync(x => x.Id == blockId);
        
-            if (block == null )
-            {
-                return null;
-            }
+          
            
             flat.Block = block;
             

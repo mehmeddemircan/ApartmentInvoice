@@ -7,13 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Controllers\Areas\Doorman\**" />
-    <Content Remove="Controllers\Areas\Doorman\**" />
-    <EmbeddedResource Remove="Controllers\Areas\Doorman\**" />
-    <None Remove="Controllers\Areas\Doorman\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.11" />
@@ -24,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ApartmentInvoice.Business\ApartmentInvoice.Business.csproj" />
+    <ProjectReference Include="..\ApartmentInvoice.Email\ApartmentInvoice.Email.csproj" />
   </ItemGroup>
 
 </Project>

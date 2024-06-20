@@ -1,5 +1,6 @@
 ﻿using ApartmentInvoice.Business.Abstract;
 using ApartmentInvoice.Business.Constants;
+using ApartmentInvoice.Core.Helpers;
 using ApartmentInvoice.Core.Utilities.Results;
 using ApartmentInvoice.DataAccess.Abstract;
 using ApartmentInvoice.DataAccess.Concrete.EntityFramework;
@@ -9,6 +10,7 @@ using ApartmentInvoice.Entity.DTOs.PostDtos;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.ConstrainedExecution;
@@ -146,6 +148,40 @@ namespace ApartmentInvoice.Business.Concrete
 
             var postDetailDto = _mapper.Map<PostDetailDto>(post);
             return postDetailDto;
+        }
+
+        public async Task<IDataResult<IEnumerable<PostsDto>>> GetListAsyncPagination(int pageNumber, int pageSize, Expression<Func<Post, bool>> filter = null)
+        {
+
+            List<PostsDto> posts = new List<PostsDto>();
+
+            if (filter == null)
+            {
+          
+                var response = await _postRepository.GetListAsyncPagination(pageNumber, pageSize);
+
+                //var responsePostsDto= _mapper.Map<IEnumerable<PostsDto>>(response);
+
+                foreach (var post in response)
+                {
+                    var postDto = await AssignPosts(post, post.UserId);
+                    posts.Add(postDto);
+                }
+                return new SuccessDataResult<IEnumerable<PostsDto>>(posts, Messages.Listed);
+            }
+            else
+            {
+
+                var response = await _postRepository.GetListAsyncPagination(pageNumber, pageSize,filter);
+
+
+                foreach (var post in response)
+                {
+                    var postDto = await AssignPosts(post, post.UserId);
+                    posts.Add(postDto);
+                }
+                return new SuccessDataResult<IEnumerable<PostsDto>>(posts, Messages.Listed);
+            }
         }
     }
 }

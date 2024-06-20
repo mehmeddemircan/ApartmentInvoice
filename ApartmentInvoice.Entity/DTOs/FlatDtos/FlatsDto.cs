@@ -13,7 +13,7 @@ namespace ApartmentInvoice.Entity.DTOs.FlatDtos
         public int Floor { get; set; }
         public int FlatNo { get; set; }
         public int? UserId { get; set; }
-        public virtual User User { get; set; }
-      
+        public string Email { get; set; }
+
     }
 }

@@ -9,6 +9,7 @@ namespace ApartmentInvoice.Core.Utilities.Results
 {
     public class Result : IResult
     {
+
         public Result(string message, bool success)
         {
             Success = success;

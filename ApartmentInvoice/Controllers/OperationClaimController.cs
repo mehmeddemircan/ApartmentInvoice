@@ -16,6 +16,11 @@ namespace ApartmentInvocie.WebApi.Controllers
             _operationClaimService = operationClaimService;
         }
 
+
+        /// <summary>
+        /// Bütün rolleri gösteren api 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
 
@@ -32,6 +37,11 @@ namespace ApartmentInvocie.WebApi.Controllers
         }
 
 
+        /// <summary>
+        /// Yeni rol ekleyen api 
+        /// </summary>
+        /// <param name="operationClaimAddDto"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("[action]")]
 
@@ -47,6 +57,12 @@ namespace ApartmentInvocie.WebApi.Controllers
 
         }
 
+
+        /// <summary>
+        /// Id ye göre tek rol getiren api 
+        /// </summary>
+        /// <param name="operationClaimId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("[action]/{operationClaimId:int}")]
         public async Task<IActionResult> GetOperationClaimById(int operationClaimId)
@@ -61,7 +77,11 @@ namespace ApartmentInvocie.WebApi.Controllers
 
 
 
-
+        /// <summary>
+        /// rolü silen api 
+        /// </summary>
+        /// <param name="operationClaimId"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("[action]/{operationClaimId:int}")]
         public async Task<IActionResult> DeleteOperationClaim(int operationClaimId)
@@ -76,11 +96,15 @@ namespace ApartmentInvocie.WebApi.Controllers
             return BadRequest();
         }
 
-
+        /// <summary>
+        /// rolü güncelleyen api 
+        /// </summary>
+        /// <param name="operationClaimUpdateDto"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("[action]")]
 
-        public async Task<IActionResult> UpdateOperationClaim([FromForm] OperationClaimUpdateDto operationClaimUpdateDto)
+        public async Task<IActionResult> UpdateOperationClaim([FromBody] OperationClaimUpdateDto operationClaimUpdateDto)
         {
             var result = await _operationClaimService.UpdateAsync(operationClaimUpdateDto);
 

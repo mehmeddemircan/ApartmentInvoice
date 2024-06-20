@@ -26,5 +26,8 @@ namespace ApartmentInvoice.Business.Constants
         public static string NotListed = "Basarisiz listeleme";
         public static string Updated = "Güncellendi basariyla";
         public static string Deleted = "Silindii basariyla";
+        public static string Payed = "Başarılı şekilde ödeme alındı";
+        public static string isJoined = "Zaten bu etkinlikte kayıtlısınız";
+        public static string NotJoined = " etkinlikte kayıtlı değilsiniz"; 
     }
 }
