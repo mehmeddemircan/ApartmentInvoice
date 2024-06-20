@@ -67,7 +67,7 @@ const AnnouncementItem = ({ item }) => {
           title={
             <a href="https://ant.design">
               {item.title}
-              {item.id}
+            
             </a>
           }
           description={item.content}
